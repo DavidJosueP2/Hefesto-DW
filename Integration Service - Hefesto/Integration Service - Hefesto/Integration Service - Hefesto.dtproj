@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DAVID-BARRAGAN</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAoDVqcR4XMEqfOsiGASeAcQAAAAACAAAAAAAQZgAAAAEAACAAAAAh1tDxPLdhYWvLeS/cddiYM3la3pNaC5UxSV3NLSQttgAAAAAOgAAAAAIAACAAAABlIKestD0Q1MDohyXNbdnFU8X14xM5VTAJsL5Wd8JYZZAAAABPxYt3I+0H8TbKSJ1wFMBTksPcgs9laPlD4waPazQ5MwPZ/6Al2evWaCJ/SKzrwLRgMzp0Gvb7ryue3J85gkIB3me2idAWCY3J7BsQjMUJ7U4Gff0R/FLXjeG9HVj6z9hqD1PEi0sMi9TStXD/aEnCwtjg/SDOQEdZhDqTdnJ/gK0EcbZHMRuPAX1Z1vlawixAAAAAKvSZVqeUE5LEYJGlVAVXVOUrAHnKpzYDNEgmUEd4FSa2a25g+V/7AwV1IrKVufAVnhbHHZG31jNk2rKn60gCOg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAoDVqcR4XMEqfOsiGASeAcQAAAAACAAAAAAAQZgAAAAEAACAAAADBfnS9uTp5zbb2NyTY9Mv2dY3qgZ88z5z3P5prabt5EAAAAAAOgAAAAAIAACAAAAAcwQjjPaZDv5DS7E73z8thAvSqA09/SAkmgMnuCFrzYpAAAADLCTwifkFAlQAwCFiTYw5mYD1o1GiXYgfSU+jwrSj1etsOywgTvEccAq6+NI7wTnHdKvues0cXOTVQ/u49PWAq/OxGX5bNFz6+W6lrK9I9kc1MIgklIFHXHglSaZG7IePrKkvKRC7qU1O2hcphBCPTbLRj1bnpW1YRvFj4sAVt0z5xp6k+wNw8Tm/icsx5J/pAAAAA4zntKY96ZhhCFm9cmcXnjbRKWk1RVX+HhQ8X/+56ZB8K3t7CYi3NQT0LowP2/7d8DgfeA0I3L5Q/MdTMIXdrFQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -369,12 +369,27 @@
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>
             <Name>LastModifiedTime</Name>
-            <Value xsi:type="xsd:dateTime">2025-05-11T17:24:37.2446617Z</Value>
+            <Value xsi:type="xsd:dateTime">2025-05-11T22:17:33.0541059Z</Value>
           </ConfigurationSetting>
           <ConfigurationSetting>
             <Id>{6bcbd47f-250e-48ef-b6c7-17abb3c3ddb5}</Id>
             <Name>Project::SourceDataBase</Name>
             <Value xsi:type="xsd:string">AdventureWorks2022</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>{d006e17e-6d0a-4814-9adf-0ff86981f848}</Id>
+            <Name>Project::DestinationDataBase</Name>
+            <Value xsi:type="xsd:string">AW_HefestoDW2025</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>{139e4633-cd7b-4d38-87ab-7006e78ebdc2}</Id>
+            <Name>Project::SSAS_ServerName</Name>
+            <Value xsi:type="xsd:string">DAVID-BARRAGAN\MYSQLSERVER</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>{90d5cb6f-ecc3-4b13-94b5-607ab48da0b0}</Id>
+            <Name>Project::SSAS_DBName</Name>
+            <Value xsi:type="xsd:string">HefestoMultidimensional</Value>
           </ConfigurationSetting>
         </ParameterConfigurationValues>
       </Options>
