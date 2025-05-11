@@ -10,6 +10,8 @@ obj/
 
 # Archivos de configuración sensibles o por usuario
 *.params
+*.dtproj
 
 # Excepciones para ejemplos compartidos
 !*.params.example
+!*.dtproj.example

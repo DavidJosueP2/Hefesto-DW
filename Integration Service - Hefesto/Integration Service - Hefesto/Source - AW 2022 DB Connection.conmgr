@@ -13,6 +13,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=DAVID-BARRAGAN\MYSQLSERVER;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;" />
+      />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

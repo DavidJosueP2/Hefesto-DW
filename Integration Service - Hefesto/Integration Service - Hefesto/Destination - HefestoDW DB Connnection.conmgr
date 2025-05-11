@@ -12,7 +12,6 @@
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
-      DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=DAVID-BARRAGAN\MYSQLSERVER;Initial Catalog=AdventureWorksDWHefesto;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;" />
+      DTS:ConnectRetryInterval="5"/>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
