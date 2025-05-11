@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DAVID-BARRAGAN</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAoDVqcR4XMEqfOsiGASeAcQAAAAACAAAAAAAQZgAAAAEAACAAAAAh1tDxPLdhYWvLeS/cddiYM3la3pNaC5UxSV3NLSQttgAAAAAOgAAAAAIAACAAAABlIKestD0Q1MDohyXNbdnFU8X14xM5VTAJsL5Wd8JYZZAAAABPxYt3I+0H8TbKSJ1wFMBTksPcgs9laPlD4waPazQ5MwPZ/6Al2evWaCJ/SKzrwLRgMzp0Gvb7ryue3J85gkIB3me2idAWCY3J7BsQjMUJ7U4Gff0R/FLXjeG9HVj6z9hqD1PEi0sMi9TStXD/aEnCwtjg/SDOQEdZhDqTdnJ/gK0EcbZHMRuPAX1Z1vlawixAAAAAKvSZVqeUE5LEYJGlVAVXVOUrAHnKpzYDNEgmUEd4FSa2a25g+V/7AwV1IrKVufAVnhbHHZG31jNk2rKn60gCOg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAxhn+PHi0EkCqHxNKch2sOgAAAAACAAAAAAAQZgAAAAEAACAAAACe5NBPFa1/k5cxCwSZNSeuGqOYNL69a3luUUHtNPNW6gAAAAAOgAAAAAIAACAAAAB0I+m3COUqmF+rM1MrzE4uWNEJ5cq01a2K2SYwgRgxHJAAAACE06BW3vmceyynEQdkgNsVdh2NIImmNh4SLuHkYj7Vi7RRvUym1iNxMd+WVYzoBG0dJZqlqyH6/pT3vaeDA0zRjZEGUrDm2z7J5Vru0XmqMDEuaOo2qEFNcVpEDY9ON34QjkJLvfV5Gazs2Me18s+3oWrQ4e3r6IhACZUqc6beLgc7EnsVE+dCm+Z2V+9Z5ddAAAAAq4XTfL1YPWJKMbNHsAKyYAWw0z7DxUfO5o+SKhQcmdEnmI6hoQowENLi4TEUxoTfOwkwp413u852wyh365hwxA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -364,12 +364,12 @@
           <ConfigurationSetting>
             <Id>{a313fbcb-0f66-4679-bf3f-24cfd473149c}</Id>
             <Name>Project::ServerName</Name>
-            <Value xsi:type="xsd:string">DAVID-BARRAGAN\MYSQLSERVER</Value>
+            <Value xsi:type="xsd:string">DESKTOP-NH4JHR6\PRACTICA_MULTI</Value>
           </ConfigurationSetting>
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>
             <Name>LastModifiedTime</Name>
-            <Value xsi:type="xsd:dateTime">2025-05-11T17:24:37.2446617Z</Value>
+            <Value xsi:type="xsd:dateTime">2025-05-11T22:24:58.2852632Z</Value>
           </ConfigurationSetting>
           <ConfigurationSetting>
             <Id>{6bcbd47f-250e-48ef-b6c7-17abb3c3ddb5}</Id>

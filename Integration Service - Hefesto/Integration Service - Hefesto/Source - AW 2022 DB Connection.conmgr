@@ -13,6 +13,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=DAVID-BARRAGAN\MYSQLSERVER;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;" />
+      DTS:ConnectionString="Data Source=DESKTOP-NH4JHR6\PRACTICA_MULTI;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}Source - AW 2022 DB Connection;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
