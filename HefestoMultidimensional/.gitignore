@@ -1,0 +1,29 @@
+# Visual Studio - archivos y carpetas temporales
+.vs/
+*.user
+*.suo
+
+# Builds y salidas de procesamiento SSAS
+*.asdatabase
+*.deploymenttargets
+*.deploymentoptions
+*.configsettings
+*.config
+*.dwproj.user
+
+# Carpeta de salida de build (opcional, si haces deploy local)
+bin/
+obj/
+
+# Archivos de conexión de origen de datos (contienen servidores locales)
+*.ds
+*.dwproj
+
+# Opcional: Excluir archivos personalizados si usas varios entornos
+*.dsv.settings
+*.bak
+*.tmp
+
+# Archivos de ejemplo que sí debes subir
+!*.ds.example
+!*.dwproj.example
