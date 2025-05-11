@@ -3,16 +3,11 @@
   <Name>AW Hefesto DW2025</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
   <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-  <ConnectionString>
-    Provider=MSOLEDBSQL.1;
-    Data Source=NOMBRE_SERVIDOR; <!-- Ej: DAVID-BARRAGAN\MYSQLSERVER -->
-    Integrated Security=SSPI;
-    Initial Catalog=AW_HefestoDW2025
-  </ConnectionString>
+  <ConnectionString>Provider=MSOLEDBSQL.1;Data Source=DAVID-BARRAGAN\MYSQLSERVER;Integrated Security=SSPI;Initial Catalog=AW_HefestoDW2025</ConnectionString>
   <ConnectionStringSecurity>Unchanged</ConnectionStringSecurity>
   <ImpersonationInfo>
     <ImpersonationMode>ImpersonateAccount</ImpersonationMode>
-    <Account>NOMBRE_CUENTA_WINDOWS</Account> <!-- Ej: DAVID-BARRAGAN\User -->
+    <Account>DAVID-BARRAGAN\User</Account>
     <ImpersonationInfoSecurity>PasswordRemoved</ImpersonationInfoSecurity>
   </ImpersonationInfo>
   <Timeout>PT0S</Timeout>

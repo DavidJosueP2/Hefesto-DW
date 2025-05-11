@@ -74,7 +74,7 @@
             <Name>AW Hefesto DW2025</Name>
             <Value xsi:type="xsd:string">
               Provider=MSOLEDBSQL.1;
-              Data Source=TU_SERVIDOR_LOCAL;  <!-- Nombre del servidor para deploy Ej:DAVID-BARRAGAN\MYSQLSERVER -->
+              Data Source=DAVID-BARRAGAN\MYSQLSERVER;
               Integrated Security=SSPI;
               Initial Catalog=AW_HefestoDW2025
             </Value>
