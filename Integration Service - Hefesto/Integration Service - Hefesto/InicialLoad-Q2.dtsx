@@ -11,28 +11,1041 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package2"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{91904833-1657-47E1-B705-0F53608D8F20}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{C4BAC926-5322-42C0-A2C8-29AA9A377C9D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
+      DTS:refId="Package\Poblar Dim Moneda"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{7E4821C4-60E1-4A1B-BF52-23A9AA0F6DC1}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
+      DTS:ObjectName="Poblar Dim Moneda"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Moneda"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimMonedas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Connections[OleDbConnection]"
+                  connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input].Columns[MonedaID]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="MonedaID"
+                      externalMetadataColumnId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].Columns[MonedaID]" />
+                    <inputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input].Columns[Moneda]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Moneda"
+                      externalMetadataColumnId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input].ExternalColumns[Moneda]"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].Columns[Moneda]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
+                      dataType="wstr"
+                      length="3"
+                      name="MonedaID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input].ExternalColumns[Moneda]"
+                      dataType="wstr"
+                      length="50"
+                      name="Moneda" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar Dim Moneda\OLE DB Source Moneda"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Moneda"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    c.CurrencyCode AS MonedaID,
+    c.Name AS Moneda
+FROM Sales.Currency c</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Connections[OleDbConnection]"
+                  connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].Columns[MonedaID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
+                      length="3"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].Columns[MonedaID]"
+                      name="MonedaID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].Columns[Moneda]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].ExternalColumns[Moneda]"
+                      length="50"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].Columns[Moneda]"
+                      name="Moneda"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
+                      dataType="wstr"
+                      length="3"
+                      name="MonedaID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output].ExternalColumns[Moneda]"
+                      dataType="wstr"
+                      length="50"
+                      name="Moneda" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
+                      name="MonedaID" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output].Columns[Moneda]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output].Columns[Moneda]"
+                      name="Moneda" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Poblar Dim Moneda.Paths[OLE DB Source Output]"
+              endId="Package\Poblar Dim Moneda\OLE DB Destination Moneda.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Poblar Dim Moneda\OLE DB Source Moneda.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar Dim Territorios"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2058C0E7-8968-450B-86C6-17B9559D00DB}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar Dim Territorios"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Territorios"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimTerritorios]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Connections[OleDbConnection]"
+                  connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].Columns[Territorio]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Territorio"
+                      externalMetadataColumnId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Territorio]"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Territorio]" />
+                    <inputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
+                      cachedDataType="i4"
+                      cachedName="TerritoryID"
+                      externalMetadataColumnId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
+                      dataType="i4"
+                      name="TerritorioID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Territorio]"
+                      dataType="wstr"
+                      length="100"
+                      name="Territorio" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar Dim Territorios\OLE DB Source Territorios"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Territorios"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    st.TerritoryID,
+    st.Name AS Territorio
+FROM Sales.SalesTerritory st</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Connections[OleDbConnection]"
+                  connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                      name="TerritoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Territorio]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Territorio]"
+                      length="50"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Territorio]"
+                      name="Territorio"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Territorio]"
+                      dataType="wstr"
+                      length="50"
+                      name="Territorio" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      name="TerritoryID" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Territorio]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Territorio]"
+                      name="Territorio" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Poblar Dim Territorios.Paths[OLE DB Source Output]"
+              endId="Package\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar Fact Ventas Monedas"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ADC34B06-F9EA-459B-8EAE-8AA9D0812036}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar Fact Ventas Monedas"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Fact Monedas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[factVentasMonedas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Connections[OleDbConnection]"
+                  connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[MonedaID]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="MonedaID"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[MonedaID]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[VendedorID]"
+                      cachedDataType="i4"
+                      cachedName="VendedorID"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[VendedorID]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[FechaID]"
+                      cachedDataType="i4"
+                      cachedName="FechaID"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[FechaID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[FechaID]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[Cantidad]"
+                      cachedDataType="i2"
+                      cachedName="Cantidad"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[PrecioUnitario]"
+                      cachedDataType="cy"
+                      cachedName="PrecioUnitario"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[TasaCambioPromedio]"
+                      cachedDataType="cy"
+                      cachedName="TasaCambioPromedio"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[TasaCambioPromedio]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TasaCambioPromedio]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
+                      cachedDataType="i4"
+                      cachedName="TerritoryID"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[MonedaID]"
+                      dataType="wstr"
+                      length="3"
+                      name="MonedaID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
+                      dataType="i4"
+                      name="TerritorioID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[FechaID]"
+                      dataType="i4"
+                      name="FechaID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
+                      dataType="i4"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[PrecioUnitario]"
+                      dataType="numeric"
+                      name="PrecioUnitario"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[TasaCambioPromedio]"
+                      dataType="numeric"
+                      name="TasaCambioPromedio"
+                      precision="10"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[VentaMoneda]"
+                      dataType="numeric"
+                      name="VentaMoneda"
+                      precision="32"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Fact Monedas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    cr.ToCurrencyCode AS MonedaID,
+    soh.TerritoryID,
+    soh.SalesPersonID AS VendedorID,
+    CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS FechaID,
+    SUM(sod.OrderQty) AS Cantidad,
+    AVG(sod.UnitPrice) AS PrecioUnitario,
+    AVG(cr.AverageRate) AS TasaCambioPromedio
+FROM Sales.SalesOrderHeader soh
+INNER JOIN Sales.SalesOrderDetail sod
+    ON soh.SalesOrderID = sod.SalesOrderID
+INNER JOIN Sales.CurrencyRate cr
+    ON soh.CurrencyRateID = cr.CurrencyRateID
+WHERE soh.SalesPersonID IS NOT NULL
+GROUP BY
+    cr.ToCurrencyCode,
+    soh.TerritoryID,
+    soh.SalesPersonID,
+    soh.OrderDate</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Connections[OleDbConnection]"
+                  connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[MonedaID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
+                      length="3"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[MonedaID]"
+                      name="MonedaID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                      name="TerritoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      name="VendedorID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[FechaID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[FechaID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[FechaID]"
+                      name="FechaID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[Cantidad]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[Cantidad]"
+                      name="Cantidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TasaCambioPromedio]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[TasaCambioPromedio]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TasaCambioPromedio]"
+                      name="TasaCambioPromedio"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[MonedaID]"
+                      dataType="wstr"
+                      length="3"
+                      name="MonedaID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[FechaID]"
+                      dataType="i4"
+                      name="FechaID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
+                      dataType="i4"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
+                      dataType="cy"
+                      name="PrecioUnitario" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[TasaCambioPromedio]"
+                      dataType="cy"
+                      name="TasaCambioPromedio" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
+                      name="MonedaID" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      name="TerritoryID" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      name="VendedorID" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[FechaID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[FechaID]"
+                      name="FechaID" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
+                      name="Cantidad" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
+                      dataType="cy"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[TasaCambioPromedio]"
+                      dataType="cy"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[TasaCambioPromedio]"
+                      name="TasaCambioPromedio" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Poblar Fact Ventas Monedas.Paths[OLE DB Source Output]"
+              endId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D284B8C7-B5A2-4177-B1B0-E844B7EB4BC5}"
+      DTS:From="Package\Poblar Dim Moneda"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Poblar Fact Ventas Monedas" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{86490422-FBD3-462D-9D40-633802CD7C15}"
+      DTS:From="Package\Poblar Dim Territorios"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Poblar Fact Ventas Monedas" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -44,13 +1057,270 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Data Flow Task"
-          TopLeft="350.000000745058,195.764705710758" />
+          Size="170.4,41.6"
+          Id="Package\Poblar Dim Moneda"
+          TopLeft="262.857143416697,198.058823355806" />
+        <NodeLayout
+          Size="181.6,41.6"
+          Id="Package\Poblar Dim Territorios"
+          TopLeft="497.85714391695,198.058823355806" />
+        <NodeLayout
+          Size="211.2,41.6"
+          Id="Package\Poblar Fact Ventas Monedas"
+          TopLeft="380.00000080892,305.117646791376" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="348.057143416697,239.658823355806">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103.676190725557,65.4588234355699"
+              Start="0,0"
+              End="103.676190725557,57.9588234355699">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9799910984747" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.9799910984747"
+                    Point2="0,38.9799910984747"
+                    Point3="4,38.9799910984747" />
+                  <mssgle:LineSegment
+                    End="99.6761907255569,38.9799910984747" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99.6761907255569,38.9799910984747"
+                    Point2="103.676190725557,38.9799910984747"
+                    Point3="103.676190725557,42.9799910984747" />
+                  <mssgle:LineSegment
+                    End="103.676190725557,57.9588234355699" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="588.65714391695,239.658823355806">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-69.1904764413633,65.4588234355704"
+              Start="0,0"
+              End="-69.1904764413633,57.9588234355704">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.979991098475" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.979991098475"
+                    Point2="0,38.979991098475"
+                    Point3="-4,38.979991098475" />
+                  <mssgle:LineSegment
+                    End="-65.1904764413633,38.979991098475" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-65.1904764413633,38.979991098475"
+                    Point2="-69.1904764413633,38.979991098475"
+                    Point3="-69.1904764413633,42.979991098475" />
+                  <mssgle:LineSegment
+                    End="-69.1904764413633,57.9588234355704" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Poblar Dim Moneda">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="189.6,41.6"
+          Id="Package\Poblar Dim Moneda\OLE DB Source Moneda"
+          TopLeft="407.142858009557,81.8235293400432" />
+        <NodeLayout
+          Size="210.4,41.6"
+          Id="Package\Poblar Dim Moneda\OLE DB Destination Moneda"
+          TopLeft="390.000000830208,225.588235096381" />
+        <EdgeLayout
+          Id="Package\Poblar Dim Moneda.Paths[OLE DB Source Output]"
+          TopLeft="498.571429419883,123.423529340043">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.164705756338"
+              Start="0,0"
+              End="0,94.6647057563376">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.6647057563376" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Moneda\OLE DB Destination Moneda">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Moneda\OLE DB Source Moneda">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar Dim Territorios">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="200.8,41.6"
+          Id="Package\Poblar Dim Territorios\OLE DB Source Territorios"
+          TopLeft="570.999991491437,161.999997586012" />
+        <NodeLayout
+          Size="221.6,41.6"
+          Id="Package\Poblar Dim Territorios\OLE DB Destination Territorios"
+          TopLeft="560.999991640449,319.999995231628" />
+        <EdgeLayout
+          Id="Package\Poblar Dim Territorios.Paths[OLE DB Source Output]"
+          TopLeft="671.599991565943,203.599997586012">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,116.399997645616"
+              Start="0,0"
+              End="0,108.899997645616">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,108.899997645616" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Territorios\OLE DB Destination Territorios">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Territorios\OLE DB Source Territorios">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar Fact Ventas Monedas">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas"
+          TopLeft="584.999991282821,144.999997839332" />
+        <NodeLayout
+          Size="238.4,41.6"
+          Id="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas"
+          TopLeft="572.999991461635,263.999996066094" />
+        <EdgeLayout
+          Id="Package\Poblar Fact Ventas Monedas.Paths[OLE DB Source Output]"
+          TopLeft="692.999991372228,186.599997839332">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77.3999982267619"
+              Start="0,0"
+              End="0,69.8999982267619">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.8999982267619" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

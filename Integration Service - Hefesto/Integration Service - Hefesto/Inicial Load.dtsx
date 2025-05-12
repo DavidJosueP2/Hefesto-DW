@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="23"
-  DTS:VersionGUID="{4F2C1E48-BF1D-4FDF-8F8C-66C4F0665291}">
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{4395F86B-1D7B-4CB2-BFB4-2E6D9006D60A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,6 +23,8 @@
       DTS:ObjectName="SSAS Hefesto Multidimensional">
       <DTS:PropertyExpression
         DTS:Name="ConnectionString">"Provider=MSOLAP;Data Source=" + @[$Project::SSAS_ServerName] + ";Initial Catalog=" + @[$Project::SSAS_DBName] + ";Impersonation Level=Impersonate;Integrated Security=SSPI;"</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Project::SSAS_DBName]</DTS:PropertyExpression>
       <DTS:PropertyExpression
         DTS:Name="ServerName">@[$Project::SSAS_ServerName]</DTS:PropertyExpression>
       <DTS:ObjectData>
@@ -39,7 +41,7 @@
       DTS:refId="Package\Analysis Services Processing Task"
       DTS:CreationName="Microsoft.DTSProcessingTask"
       DTS:Description="Analysis Services Processing Task"
-      DTS:DTSID="{488C2E2C-57A1-4AFB-A880-C18BC8573B4E}"
+      DTS:DTSID="{3DC64F3C-0C29-4E3B-BB8D-B0C49FE031BE}"
       DTS:ExecutableType="Microsoft.DTSProcessingTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Analysis Services Processing Task"
@@ -65,7 +67,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}"
-          SQLTask:SqlStatementSource="DELETE FROM factCancelaciones;&#xA;DELETE FROM factVentasMonedas;&#xA;DELETE FROM FactDiferenciaVentas;&#xA;&#xA;-- Luego eliminar datos de las dimensiones&#xA;DELETE FROM dimCapitalHumano;&#xA;DELETE FROM dimTiempo;&#xA;DELETE FROM dimVendedores;&#xA;DELETE FROM dimTerritorios;&#xA;DELETE FROM dimMonedas;&#xA;DELETE FROM dimOrdenes;&#xA;DELETE FROM dimUbicacionVendedores;&#xA;DELETE FROM dimProductos;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="-- 🔴 Limpiar tablas de hechos&#xA;DELETE FROM factOrdenes;&#xA;DELETE FROM factVentasMonedas;&#xA;DELETE FROM FactDiferenciaVentas;&#xA;&#xA;-- 🔵 Limpiar dimensiones analíticas&#xA;DELETE FROM dimVendedores;&#xA;DELETE FROM dimOrdenes;&#xA;DELETE FROM dimProductos;&#xA;DELETE FROM dimMonedas;&#xA;DELETE FROM dimTerritorios;&#xA;DELETE FROM dimTiempo;&#xA;&#xA;-- 🟢 Limpiar jerarquía geográfica&#xA;DELETE FROM dimUbicaciones;&#xA;DELETE FROM dimCiudades;&#xA;DELETE FROM dimProvincias;&#xA;DELETE FROM dimPaises;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -120,6 +122,2060 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Poblar de Territorios"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{41B806E4-D8C1-4CB7-B62E-D91735A7F368}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar de Territorios">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Poblar de Territorios\Poblar Dim Ciudades"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{CDD32DE4-10E8-4045-8B1D-CD931E05836C}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Poblar Dim Ciudades"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination Ciudades"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[dimCiudades]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Connections[OleDbConnection]"
+                      connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].Columns[idCiudad]"
+                          cachedDataType="i8"
+                          cachedName="idCiudad"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].ExternalColumns[idCiudad]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[idCiudad]" />
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].Columns[idProvincia]"
+                          cachedDataType="i4"
+                          cachedName="idProvincia"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].ExternalColumns[idProvincia]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[idProvincia]" />
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].Columns[ciudad]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="ciudad"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].ExternalColumns[ciudad]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[ciudad]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].ExternalColumns[idCiudad]"
+                          dataType="i4"
+                          name="idCiudad" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].ExternalColumns[idProvincia]"
+                          dataType="i4"
+                          name="idProvincia" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input].ExternalColumns[ciudad]"
+                          dataType="wstr"
+                          length="100"
+                          name="ciudad" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source Ciudades"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+    ROW_NUMBER() OVER (ORDER BY a.City, a.StateProvinceID) AS idCiudad,
+    a.StateProvinceID AS idProvincia, -- luego haces Lookup contra dimProvincias
+    a.City AS ciudad
+FROM Person.Address a</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Connections[OleDbConnection]"
+                      connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[idCiudad]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].ExternalColumns[idCiudad]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[idCiudad]"
+                          name="idCiudad"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[idProvincia]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].ExternalColumns[idProvincia]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[idProvincia]"
+                          name="idProvincia"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[ciudad]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                          length="30"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].Columns[ciudad]"
+                          name="ciudad"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].ExternalColumns[idCiudad]"
+                          dataType="i8"
+                          name="idCiudad" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].ExternalColumns[idProvincia]"
+                          dataType="i4"
+                          name="idProvincia" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                          dataType="wstr"
+                          length="30"
+                          name="ciudad" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[idCiudad]"
+                          dataType="i8"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[idCiudad]"
+                          name="idCiudad" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[idProvincia]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[idProvincia]"
+                          name="idProvincia" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                          name="ciudad" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Poblar de Territorios\Poblar Dim Ciudades.Paths[OLE DB Source Output]"
+                  endId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Poblar de Territorios\Poblar Dim Paises"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{9FDC8D42-568C-46D9-A812-811B442D0DC8}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Poblar Dim Paises"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination Paises"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[dimPaises]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Connections[OleDbConnection]"
+                      connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input].Columns[idPais]"
+                          cachedDataType="i8"
+                          cachedName="idPais"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input].ExternalColumns[idPais]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].Columns[idPais]" />
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input].Columns[pais]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="pais"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input].ExternalColumns[pais]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].Columns[pais]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input].ExternalColumns[idPais]"
+                          dataType="i4"
+                          name="idPais" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input].ExternalColumns[pais]"
+                          dataType="wstr"
+                          length="100"
+                          name="pais" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source Paises"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    ROW_NUMBER() OVER (ORDER BY cr.Name) AS idPais,
+    cr.Name AS pais
+FROM Person.CountryRegion cr</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Connections[OleDbConnection]"
+                      connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].Columns[idPais]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].ExternalColumns[idPais]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].Columns[idPais]"
+                          name="idPais"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].Columns[pais]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                          length="50"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].Columns[pais]"
+                          name="pais"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].ExternalColumns[idPais]"
+                          dataType="i8"
+                          name="idPais" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                          dataType="wstr"
+                          length="50"
+                          name="pais" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output].Columns[idPais]"
+                          dataType="i8"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output].Columns[idPais]"
+                          name="idPais" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output].Columns[pais]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output].Columns[pais]"
+                          name="pais" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Poblar de Territorios\Poblar Dim Paises.Paths[OLE DB Source Output]"
+                  endId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Poblar de Territorios\Poblar Dim Provincias"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{1B1C2A1B-E016-417A-B7A0-259705F110E7}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Poblar Dim Provincias"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination Provincias"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[dimProvincias]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Connections[OleDbConnection]"
+                      connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input].Columns[idProvincia]"
+                          cachedDataType="i4"
+                          cachedName="idProvincia"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input].ExternalColumns[idProvincia]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].Columns[idProvincia]" />
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input].Columns[provincia]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="provincia"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input].ExternalColumns[provincia]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].Columns[provincia]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input].ExternalColumns[idProvincia]"
+                          dataType="i4"
+                          name="idProvincia" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input].ExternalColumns[idPais]"
+                          dataType="i4"
+                          name="idPais" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input].ExternalColumns[provincia]"
+                          dataType="wstr"
+                          length="100"
+                          name="provincia" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source Provincias"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    sp.StateProvinceID AS idProvincia,
+    cr.Name AS pais, -- usarás esto para el Lookup a dimPaises
+    sp.Name AS provincia
+FROM Person.StateProvince sp
+INNER JOIN Person.CountryRegion cr 
+    ON sp.CountryRegionCode = cr.CountryRegionCode</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Connections[OleDbConnection]"
+                      connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].Columns[idProvincia]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].ExternalColumns[idProvincia]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].Columns[idProvincia]"
+                          name="idProvincia"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].Columns[pais]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                          length="50"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].Columns[pais]"
+                          name="pais"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].Columns[provincia]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].ExternalColumns[provincia]"
+                          length="50"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].Columns[provincia]"
+                          name="provincia"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].ExternalColumns[idProvincia]"
+                          dataType="i4"
+                          name="idProvincia" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                          dataType="wstr"
+                          length="50"
+                          name="pais" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output].ExternalColumns[provincia]"
+                          dataType="wstr"
+                          length="50"
+                          name="provincia" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[idProvincia]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[idProvincia]"
+                          name="idProvincia" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[pais]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[pais]"
+                          name="pais" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[provincia]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[provincia]"
+                          name="provincia" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Poblar de Territorios\Poblar Dim Provincias.Paths[OLE DB Source Output]"
+                  endId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{DDC202B4-6BA4-4C5A-A78F-5C90CC7B93A9}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Poblar Dim Ubicaciones"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination Ubicaciones"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[dimUbicaciones]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Connections[OleDbConnection]"
+                      connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].Columns[idUbicacion]"
+                          cachedDataType="i8"
+                          cachedName="idUbicacion"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].ExternalColumns[idUbicacion]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[idUbicacion]" />
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].Columns[barrio]"
+                          cachedDataType="wstr"
+                          cachedLength="60"
+                          cachedName="barrio"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].ExternalColumns[barrio]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[barrio]" />
+                        <inputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].Columns[ciudad]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="ciudad"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].ExternalColumns[idCiudad]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[ciudad]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].ExternalColumns[idUbicacion]"
+                          dataType="i4"
+                          name="idUbicacion" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].ExternalColumns[idCiudad]"
+                          dataType="i4"
+                          name="idCiudad" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input].ExternalColumns[barrio]"
+                          dataType="wstr"
+                          length="100"
+                          name="barrio" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source Ubicaciones"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    a.AddressID AS idUbicacion,
+    a.AddressLine1 AS barrio,
+    a.City AS ciudad
+FROM Person.Address a</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Connections[OleDbConnection]"
+                      connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[idUbicacion]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].ExternalColumns[idUbicacion]"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[idUbicacion]"
+                          name="idUbicacion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[ciudad]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                          length="30"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[ciudad]"
+                          name="ciudad"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[barrio]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].ExternalColumns[barrio]"
+                          length="60"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].Columns[barrio]"
+                          name="barrio"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].ExternalColumns[idUbicacion]"
+                          dataType="i4"
+                          name="idUbicacion" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                          dataType="wstr"
+                          length="30"
+                          name="ciudad" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output].ExternalColumns[barrio]"
+                          dataType="wstr"
+                          length="60"
+                          name="barrio" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[idUbicacion]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[idUbicacion]"
+                          name="idUbicacion" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                          name="ciudad" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[barrio]"
+                          dataType="wstr"
+                          length="60"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[barrio]"
+                          name="barrio" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Poblar de Territorios\Poblar Dim Ubicaciones.Paths[OLE DB Source Output]"
+                  endId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Poblar de Territorios.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5D0EC4E6-B81C-4D73-9DA5-4DBB7F5722CA}"
+          DTS:From="Package\Poblar de Territorios\Poblar Dim Paises"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Poblar de Territorios\Poblar Dim Provincias" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Poblar de Territorios.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{74C96F01-0958-43DE-A048-92EA6C926AB3}"
+          DTS:From="Package\Poblar de Territorios\Poblar Dim Provincias"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Poblar de Territorios\Poblar Dim Ciudades" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Poblar de Territorios.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{30FD623A-11B4-4D40-A0C2-B9FD269423AA}"
+          DTS:From="Package\Poblar de Territorios\Poblar Dim Ciudades"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Poblar de Territorios\Poblar Dim Ubicaciones" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar Dim Ordenes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7A33323F-8F87-4667-838B-9E640D6D02C8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar Dim Ordenes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Poblar Dim Ordenes\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Poblar Dim Ordenes\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar Dim Ordenes\Derived Column.Inputs[Derived Column Input].Columns[Estado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="Estado"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].Columns[Estado]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Poblar Dim Ordenes\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Output].Columns[Derived Fixed]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Output].Columns[Derived Fixed]"
+                      name="Derived Fixed"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].Columns[Estado]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Estado</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Poblar Dim Ordenes\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Ordenes"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimOrdenes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Connections[OleDbConnection]"
+                  connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input].Columns[OrdenID]"
+                      cachedDataType="i4"
+                      cachedName="OrdenID"
+                      externalMetadataColumnId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].Columns[OrdenID]" />
+                    <inputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input].Columns[Derived Fixed]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Derived Fixed"
+                      externalMetadataColumnId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      lineageId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Output].Columns[Derived Fixed]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
+                      dataType="i4"
+                      name="OrdenID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      dataType="wstr"
+                      length="15"
+                      name="Estado" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Ordenes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+    soh.SalesOrderID AS OrdenID,
+    CASE soh.Status
+        WHEN 1 THEN 'En Proceso'
+        WHEN 2 THEN 'Aprobado'
+        WHEN 3 THEN 'Pendiente Envío'
+        WHEN 4 THEN 'Rechazado'
+        WHEN 5 THEN 'Enviado'
+        WHEN 6 THEN 'Cancelado'
+        ELSE 'Desconocido'
+    END AS Estado
+FROM Sales.SalesOrderHeader soh</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Connections[OleDbConnection]"
+                  connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].Columns[OrdenID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].ExternalColumns[OrdenID]"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].Columns[OrdenID]"
+                      name="OrdenID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].Columns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
+                      length="15"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].Columns[Estado]"
+                      name="Estado"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].ExternalColumns[OrdenID]"
+                      dataType="i4"
+                      name="OrdenID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="Estado" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output].Columns[OrdenID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output].Columns[OrdenID]"
+                      name="OrdenID" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output].Columns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output].Columns[Estado]"
+                      name="Estado" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Poblar Dim Ordenes.Paths[Derived Column Output]"
+              endId="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Poblar Dim Ordenes\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Poblar Dim Ordenes.Paths[OLE DB Source Output]"
+              endId="Package\Poblar Dim Ordenes\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Poblar Dim Ordenes\OLE DB Source Ordenes.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar Dim Vendedores"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{CE3F4155-F6A5-4ABF-8FB8-E8510616198A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar Dim Vendedores"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Vendedores"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimVendedores]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Connections[OleDbConnection]"
+                  connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[VendedorID]"
+                      cachedDataType="i4"
+                      cachedName="VendedorID"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[VendedorID]" />
+                    <inputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[NombreCompleto]"
+                      cachedDataType="wstr"
+                      cachedLength="101"
+                      cachedName="NombreCompleto"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[NombreCompleto]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]" />
+                    <inputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[Cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Cargo"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]" />
+                    <inputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[EsAsalariado]"
+                      cachedDataType="bool"
+                      cachedName="EsAsalariado"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[EsAsalariado]" />
+                    <inputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[PorcentajeComision]"
+                      cachedDataType="cy"
+                      cachedName="PorcentajeComision"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[PorcentajeComision]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[PorcentajeComision]" />
+                    <inputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[Tipo]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="Tipo"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[Tipo]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Tipo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[NombreCompleto]"
+                      dataType="wstr"
+                      length="100"
+                      name="NombreCompleto" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                      dataType="wstr"
+                      length="100"
+                      name="Cargo" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
+                      dataType="bool"
+                      name="EsAsalariado" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[PorcentajeComision]"
+                      dataType="numeric"
+                      name="PorcentajeComision"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[idUbicacion]"
+                      dataType="i4"
+                      name="idUbicacion" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[Tipo]"
+                      dataType="wstr"
+                      length="2"
+                      name="Tipo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source Vendedores"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    p.BusinessEntityID AS VendedorID,
+    p.FirstName + ' ' + p.LastName AS NombreCompleto,
+    e.JobTitle AS Cargo,
+    e.SalariedFlag AS EsAsalariado,
+    ISNULL(sp.CommissionPct, 0.00) AS PorcentajeComision,
+    a.AddressID AS idUbicacion,
+    CAST(p.PersonType AS NCHAR(2)) AS Tipo
+FROM Person.Person p
+INNER JOIN HumanResources.Employee e
+    ON p.BusinessEntityID = e.BusinessEntityID
+LEFT JOIN Sales.SalesPerson sp
+    ON p.BusinessEntityID = sp.BusinessEntityID
+LEFT JOIN Person.BusinessEntityAddress bea
+    ON p.BusinessEntityID = bea.BusinessEntityID
+LEFT JOIN Person.Address a
+    ON bea.AddressID = a.AddressID
+WHERE a.AddressID IS NOT NULL</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Connections[OleDbConnection]"
+                  connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      name="VendedorID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[NombreCompleto]"
+                      length="101"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
+                      name="NombreCompleto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
+                      length="50"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]"
+                      name="Cargo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[EsAsalariado]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[EsAsalariado]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[EsAsalariado]"
+                      name="EsAsalariado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[PorcentajeComision]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[PorcentajeComision]"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[PorcentajeComision]"
+                      name="PorcentajeComision"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Tipo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[Tipo]"
+                      length="2"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Tipo]"
+                      name="Tipo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[NombreCompleto]"
+                      dataType="wstr"
+                      length="101"
+                      name="NombreCompleto" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
+                      dataType="wstr"
+                      length="50"
+                      name="Cargo" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[EsAsalariado]"
+                      dataType="bool"
+                      name="EsAsalariado" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[PorcentajeComision]"
+                      dataType="cy"
+                      name="PorcentajeComision" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[Tipo]"
+                      dataType="wstr"
+                      length="2"
+                      name="Tipo" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[idUbicacion]"
+                      dataType="i4"
+                      name="idUbicacion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      name="VendedorID" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[NombreCompleto]"
+                      dataType="wstr"
+                      length="101"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[NombreCompleto]"
+                      name="NombreCompleto" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[Cargo]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[Cargo]"
+                      name="Cargo" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[EsAsalariado]"
+                      dataType="bool"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[EsAsalariado]"
+                      name="EsAsalariado" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[PorcentajeComision]"
+                      dataType="cy"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[PorcentajeComision]"
+                      name="PorcentajeComision" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[Tipo]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[Tipo]"
+                      name="Tipo" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Poblar Dim Vendedores.Paths[OLE DB Source Output]"
+              endId="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Poblar DimTiempo"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -133,7 +2189,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}"
-          SQLTask:SqlStatementSource="WITH FechaSerie AS (&#xA;    SELECT CAST('2011-05-31' AS DATE) AS Fecha&#xA;    UNION ALL&#xA;    SELECT DATEADD(DAY, 1, Fecha)&#xA;    FROM FechaSerie&#xA;    WHERE Fecha &lt; '2014-06-30'&#xA;)&#xA;SELECT &#xA;    CONVERT(INT, FORMAT(Fecha, 'yyyyMMdd')) AS FechaId,&#xA;    DATEPART(YEAR, Fecha) AS Año,&#xA;    DATENAME(MONTH, Fecha) AS Mes,&#xA;    DATEPART(MONTH, Fecha) AS NumeroMes,&#xA;    DATEPART(QUARTER, Fecha) AS Trimestre&#xA;FROM FechaSerie&#xA;OPTION (MAXRECURSION 32767);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="-- Insertar registros en dimTiempo&#xA;WITH FechaSerie AS (&#xA;    SELECT CAST('2011-05-31' AS DATE) AS Fecha&#xA;    UNION ALL&#xA;    SELECT DATEADD(DAY, 1, Fecha)&#xA;    FROM FechaSerie&#xA;    WHERE Fecha &lt; '2014-06-30'&#xA;)&#xA;INSERT INTO dimTiempo (FechaID, Año, Mes, NumeroMes, Trimestre)&#xA;SELECT &#xA;    CONVERT(INT, FORMAT(Fecha, 'yyyyMMdd')) AS FechaId,&#xA;    DATEPART(YEAR, Fecha) AS Año,&#xA;    DATENAME(MONTH, Fecha) AS Mes,&#xA;    DATEPART(MONTH, Fecha) AS NumeroMes,&#xA;    DATEPART(QUARTER, Fecha) AS Trimestre&#xA;FROM FechaSerie&#xA;OPTION (MAXRECURSION 32767);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -141,59 +2197,91 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{B26B9C6F-5B1A-406D-B417-0099A0A6025A}"
+      DTS:DTSID="{B6E310A4-683A-4499-9654-183C865A88B6}"
       DTS:From="Package\Borrar Información Anterior"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Poblar DimTiempo" />
+      DTS:To="Package\Poblar de Territorios" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{366538C6-B442-4EC4-A2E5-3C983003EB41}"
-      DTS:From="Package\Inicial Load Q2"
+      DTS:DTSID="{AC42EECC-D23A-42BB-B37B-760F4E4BA565}"
+      DTS:From="Package\Poblar de Territorios"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Poblar Dim Vendedores" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{DC9ABFF6-37BC-412D-8A17-BACE6381957E}"
+      DTS:From="Package\Inicial Load Q3"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
       DTS:To="Package\Analysis Services Processing Task" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{82B457E0-FD77-4250-AD48-239739C87AFD}"
-      DTS:From="Package\Poblar DimTiempo"
+      DTS:DTSID="{2E8F4A1F-ED5F-4C56-933E-419196A95634}"
+      DTS:From="Package\Borrar Información Anterior"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Inicial Load Q2" />
+      DTS:To="Package\Poblar Dim Ordenes" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{531E24E4-A8E2-4053-9D1A-0A0A98591E89}"
-      DTS:From="Package\Inicial Load Q1"
+      DTS:DTSID="{D465D51E-C2E5-409C-9509-57567427F3ED}"
+      DTS:From="Package\Poblar Dim Ordenes"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
-      DTS:To="Package\Analysis Services Processing Task" />
+      DTS:To="Package\Poblar DimTiempo" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
-      DTS:DTSID="{67B406F5-8962-42B1-AD63-FEC8C08784E3}"
-      DTS:From="Package\Poblar DimTiempo"
+      DTS:DTSID="{3BC924F5-3D5F-4358-8E1F-1CFE2C73242D}"
+      DTS:From="Package\Poblar Dim Vendedores"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
-      DTS:To="Package\Inicial Load Q3" />
+      DTS:To="Package\Poblar DimTiempo" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
-      DTS:DTSID="{B1240F69-8145-4280-B4DD-2EB2B5820F03}"
-      DTS:From="Package\Inicial Load Q3"
+      DTS:DTSID="{B952ABDA-E1AA-451D-9563-1DC8CA1E60B2}"
+      DTS:From="Package\Poblar DimTiempo"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
-      DTS:To="Package\Analysis Services Processing Task" />
+      DTS:To="Package\Inicial Load Q2" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
       DTS:CreationName=""
-      DTS:DTSID="{FFAD362D-318F-4106-9739-BF21E546E8B9}"
+      DTS:DTSID="{6B978477-1A45-4B4F-9870-837308A5F0B5}"
       DTS:From="Package\Poblar DimTiempo"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Inicial Load Q3" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{6993962A-021A-4C94-9E7E-0BCE69F3F139}"
+      DTS:From="Package\Poblar DimTiempo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
       DTS:To="Package\Inicial Load Q1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{F3F05A3C-BBD0-4825-80EE-D4BFE684E824}"
+      DTS:From="Package\Inicial Load Q2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Analysis Services Processing Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{468D1ABE-CA30-4751-8F20-616A80EAB1F6}"
+      DTS:From="Package\Inicial Load Q1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Analysis Services Processing Task" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -206,11 +2294,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="236,41.6"
-          Id="Package\Analysis Services Processing Task"
-          TopLeft="403.571429430526,335.705882058681" />
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="208,41.6"
           Id="Package\Borrar Información Anterior"
@@ -218,123 +2302,182 @@
         <NodeLayout
           Size="148.8,41.6"
           Id="Package\Inicial Load Q1"
-          TopLeft="184.28571467801,212.588235107776" />
+          TopLeft="259.285714837666,346.411764402239" />
         <NodeLayout
           Size="148.8,41.6"
           Id="Package\Inicial Load Q2"
-          TopLeft="440.000000936644,211.058823344411" />
+          TopLeft="472.857143863731,353.294117337383" />
         <NodeLayout
           Size="148.8,41.6"
           Id="Package\Inicial Load Q3"
-          TopLeft="678.571430015929,219.47058804292" />
+          TopLeft="668.571429994642,348.705882047287" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Ciudades"
+          TopLeft="28,145.141176233974" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Paises"
+          TopLeft="38.5428571687061,6.39999981767997" />
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Provincias"
+          TopLeft="27.1142857158061,75.2235291691182" />
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Ubicaciones"
+          TopLeft="21.5714285577439,220.847058520556" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="517.985715183585,252.658823344411">
+          Id="Package\Poblar de Territorios.PrecedenceConstraints[Constraint]"
+          TopLeft="118.428571442256,47.99999981768">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,83.0470587142704"
+              EndConnector="0,27.2235293514382"
               Start="0,0"
-              End="0,75.5470587142704">
+              End="0,19.7235293514382">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,75.5470587142704" />
+                    End="0,19.7235293514382" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="258.68571467801,254.188235107776">
+          Id="Package\Poblar de Territorios.PrecedenceConstraints[Constraint 1]"
+          TopLeft="116.557142857903,116.823529169118">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="205.885714752515,81.5176469509053"
+              EndConnector="0,28.3176470648562"
               Start="0,0"
-              End="205.885714752515,74.0176469509053">
+              End="0,20.8176470648562">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,49.7378901687532" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,49.7378901687532"
-                    Point2="0,53.7378901687532"
-                    Point3="4,53.7378901687532" />
-                  <mssgle:LineSegment
-                    End="201.885714752515,53.7378901687532" />
-                  <mssgle:CubicBezierSegment
-                    Point1="201.885714752515,53.7378901687532"
-                    Point2="205.885714752515,53.7378901687532"
-                    Point3="205.885714752515,57.7378901687532" />
-                  <mssgle:LineSegment
-                    End="205.885714752515,74.0176469509053" />
+                    End="0,20.8176470648562" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="752.971430015929,261.07058804292">
+          Id="Package\Poblar de Territorios.PrecedenceConstraints[Constraint 2]"
+          TopLeft="115.985714278872,186.741176233974">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-174.400000585403,74.6352940157614"
+              EndConnector="0,34.1058822865821"
               Start="0,0"
-              End="-174.400000585403,67.1352940157614">
+              End="0,26.6058822865821">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,45.2009200774293" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,45.2009200774293"
-                    Point2="0,49.2009200774293"
-                    Point3="-4,49.2009200774293" />
-                  <mssgle:LineSegment
-                    End="-170.400000585403,49.2009200774293" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-170.400000585403,49.2009200774293"
-                    Point2="-174.400000585403,49.2009200774293"
-                    Point3="-174.400000585403,53.2009200774293" />
-                  <mssgle:LineSegment
-                    End="-174.400000585403,67.1352940157614" />
+                    End="0,26.6058822865821" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.2"
+          IsExpanded="False"
+          PanelSize="220,317.6"
+          Size="198.4,43.2"
+          Id="Package\Poblar de Territorios"
+          TopLeft="231.428571921222,126.176470477637" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Poblar Dim Ordenes"
+          TopLeft="550.000001170806,147.588235164751" />
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\Poblar Dim Vendedores"
+          TopLeft="246.428571953153,199.588235119171" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\Poblar DimTiempo"
-          TopLeft="429.285715199551,123.117646950906" />
+          TopLeft="465.000000989864,255.411764482003" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="513.557143751973,74.4823529123538">
+          TopLeft="482.095238971062,74.4823529123538">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48.6352940385523"
+              EndConnector="-151.46666704984,51.6941175652832"
               Start="0,0"
-              End="0,41.1352940385523">
+              End="-151.46666704984,44.1941175652832">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.1352940385523" />
+                    End="0,16.914413976794" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.914413976794"
+                    Point2="0,20.914413976794"
+                    Point3="-4,20.914413976794" />
+                  <mssgle:LineSegment
+                    End="-147.46666704984,20.914413976794" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-147.46666704984,20.914413976794"
+                    Point2="-151.46666704984,20.914413976794"
+                    Point3="-151.46666704984,24.914413976794" />
+                  <mssgle:LineSegment
+                    End="-151.46666704984,44.1941175652832" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="330.628571921222,169.376470477637">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.200000031931,30.211764641534"
+              Start="0,0"
+              End="10.200000031931,22.711764641534">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.105882320767" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.105882320767"
+                    Point2="0,15.105882320767"
+                    Point3="4,15.105882320767" />
+                  <mssgle:LineSegment
+                    End="6.20000003193104,15.105882320767" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.20000003193104,15.105882320767"
+                    Point2="10.200000031931,15.105882320767"
+                    Point3="10.200000031931,19.105882320767" />
+                  <mssgle:LineSegment
+                    End="10.200000031931,22.711764641534" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -345,18 +2488,64 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="513.042858068097,164.717646950906">
+          TopLeft="548.761905637728,74.4823529123538">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,46.3411763935049"
+              EndConnector="87.2380955330777,73.1058822523972"
               Start="0,0"
-              End="0,38.8411763935049">
+              End="87.2380955330777,65.6058822523972">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.8411763935049" />
+                    End="0,25.5771890028783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5771890028783"
+                    Point2="0,29.5771890028783"
+                    Point3="4,29.5771890028783" />
+                  <mssgle:LineSegment
+                    End="83.2380955330777,29.5771890028783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.2380955330777,29.5771890028783"
+                    Point2="87.2380955330777,29.5771890028783"
+                    Point3="87.2380955330777,33.5771890028783" />
+                  <mssgle:LineSegment
+                    End="87.2380955330777,65.6058822523972" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="636.000001170806,189.188235164751">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-88.6000001809417,66.2235293172526"
+              Start="0,0"
+              End="-88.6000001809417,58.7235293172526">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.1117646586263" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.1117646586263"
+                    Point2="0,33.1117646586263"
+                    Point3="-4,33.1117646586263" />
+                  <mssgle:LineSegment
+                    End="-84.6000001809417,33.1117646586263" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-84.6000001809417,33.1117646586263"
+                    Point2="-88.6000001809417,33.1117646586263"
+                    Point3="-88.6000001809417,37.1117646586263" />
+                  <mssgle:LineSegment
+                    End="-88.6000001809417,58.7235293172526" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -367,30 +2556,52 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="550.885715199551,164.717646950906">
+          TopLeft="435.228571953153,220.388235119171">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="202.085714816378,54.7529410920139"
+              EndConnector="29.771429036711,55.8235293628328"
               Start="0,0"
-              End="202.085714816378,47.2529410920139">
+              End="22.271429036711,55.8235293628328">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.832221776871" />
+                    End="10.8857145183555,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.832221776871"
-                    Point2="0,18.832221776871"
-                    Point3="4,18.832221776871" />
+                    Point1="10.8857145183555,0"
+                    Point2="14.8857145183555,0"
+                    Point3="14.8857145183555,4" />
                   <mssgle:LineSegment
-                    End="198.085714816378,18.832221776871" />
+                    End="14.8857145183555,51.8235293628328" />
                   <mssgle:CubicBezierSegment
-                    Point1="198.085714816378,18.832221776871"
-                    Point2="202.085714816378,18.832221776871"
-                    Point3="202.085714816378,22.832221776871" />
+                    Point1="14.8857145183555,51.8235293628328"
+                    Point2="14.8857145183555,55.8235293628328"
+                    Point3="18.8857145183555,55.8235293628328" />
                   <mssgle:LineSegment
-                    End="202.085714816378,47.2529410920139" />
+                    End="22.271429036711,55.8235293628328" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="547.328572426798,297.011764482003">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.2823528553799"
+              Start="0,0"
+              End="0,48.7823528553799">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.7823528553799" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -401,30 +2612,158 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="472.485715199551,164.717646950906">
+          TopLeft="586.600000989864,297.011764482003">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-213.800000521541,47.8705881568699"
+              EndConnector="156.371429004778,51.694117565284"
               Start="0,0"
-              End="-213.800000521541,40.3705881568699">
+              End="156.371429004778,44.194117565284">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.4650430603247" />
+                    End="0,13.7801423472951" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.4650430603247"
-                    Point2="0,16.4650430603247"
-                    Point3="-4,16.4650430603247" />
+                    Point1="0,13.7801423472951"
+                    Point2="0,17.7801423472951"
+                    Point3="4,17.7801423472951" />
                   <mssgle:LineSegment
-                    End="-209.800000521541,16.4650430603247" />
+                    End="152.371429004778,17.7801423472951" />
                   <mssgle:CubicBezierSegment
-                    Point1="-209.800000521541,16.4650430603247"
-                    Point2="-213.800000521541,16.4650430603247"
-                    Point3="-213.800000521541,20.4650430603247" />
+                    Point1="152.371429004778,17.7801423472951"
+                    Point2="156.371429004778,17.7801423472951"
+                    Point3="156.371429004778,21.7801423472951" />
                   <mssgle:LineSegment
-                    End="-213.800000521541,40.3705881568699" />
+                    End="156.371429004778,44.194117565284" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="508.200000989864,297.011764482003">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-174.514286152198,49.399999920236"
+              Start="0,0"
+              End="-174.514286152198,41.899999920236">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.991082775113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.991082775113"
+                    Point2="0,16.991082775113"
+                    Point3="-4,16.991082775113" />
+                  <mssgle:LineSegment
+                    End="-170.514286152198,16.991082775113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-170.514286152198,16.991082775113"
+                    Point2="-174.514286152198,16.991082775113"
+                    Point3="-174.514286152198,20.991082775113" />
+                  <mssgle:LineSegment
+                    End="-174.514286152198,41.899999920236" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="236,41.6"
+          Id="Package\Analysis Services Processing Task"
+          TopLeft="429.285715199551,456.52941136454" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="547.271429531641,394.894117337383">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.6352940271573"
+              Start="0,0"
+              End="0,54.1352940271573">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.1352940271573" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="333.685714837666,388.011764402239">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="175.600000361885,68.5176469623013"
+              Start="0,0"
+              End="175.600000361885,61.0176469623013">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.8337491997553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.8337491997553"
+                    Point2="0,40.8337491997553"
+                    Point3="4,40.8337491997553" />
+                  <mssgle:LineSegment
+                    End="171.600000361885,40.8337491997553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="171.600000361885,40.8337491997553"
+                    Point2="175.600000361885,40.8337491997553"
+                    Point3="175.600000361885,44.8337491997553" />
+                  <mssgle:LineSegment
+                    End="175.600000361885,61.0176469623013" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="742.971429994642,390.305882047287">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-138.685714795091,66.2235293172533"
+              Start="0,0"
+              End="-138.685714795091,58.7235293172533">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.6557344102564" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.6557344102564"
+                    Point2="0,43.6557344102564"
+                    Point3="-4,43.6557344102564" />
+                  <mssgle:LineSegment
+                    End="-134.685714795091,43.6557344102564" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-134.685714795091,43.6557344102564"
+                    Point2="-138.685714795091,43.6557344102564"
+                    Point3="-138.685714795091,47.6557344102564" />
+                  <mssgle:LineSegment
+                    End="-138.685714795091,58.7235293172533" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -440,5 +2779,409 @@
     design-time-name="Package.ConnectionManagers[SSAS Hefesto Multidimensional]">
     <ProjectReferenceName></ProjectReferenceName>
   </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Ciudades">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="195.2,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades"
+          TopLeft="497.999992579222,111.99999833107" />
+        <NodeLayout
+          Size="216,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades"
+          TopLeft="494.999992623925,216.999996766448" />
+        <EdgeLayout
+          Id="Package\Poblar de Territorios\Poblar Dim Ciudades.Paths[OLE DB Source Output]"
+          TopLeft="599.299992601574,153.59999833107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.3999984353781"
+              Start="0,0"
+              End="0,55.8999984353781">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.8999984353781" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Destination Ciudades">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Ciudades\OLE DB Source Ciudades">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Paises">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181.6,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises"
+          TopLeft="546.999991849065,153.999997705221" />
+        <NodeLayout
+          Size="202.4,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises"
+          TopLeft="543.999991893769,268.999995991588" />
+        <EdgeLayout
+          Id="Package\Poblar de Territorios\Poblar Dim Paises.Paths[OLE DB Source Output]"
+          TopLeft="641.499991871417,195.599997705221">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73.3999982863665"
+              Start="0,0"
+              End="0,65.8999982863665">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.8999982863665" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Destination Paises">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Paises\OLE DB Source Paises">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Provincias">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias"
+          TopLeft="550.99999178946,119.999998211861" />
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias"
+          TopLeft="539.999991953373,249.99999627471" />
+        <EdgeLayout
+          Id="Package\Poblar de Territorios\Poblar Dim Provincias.Paths[OLE DB Source Output]"
+          TopLeft="650.699991871417,161.599998211861">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88.399998062849"
+              Start="0,0"
+              End="0,80.899998062849">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.899998062849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Destination Provincias">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Provincias\OLE DB Source Provincias">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Ubicaciones">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones"
+          TopLeft="554.999991729856,122.999998167157" />
+        <NodeLayout
+          Size="228.8,41.6"
+          Id="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones"
+          TopLeft="546.999991849065,230.999996557832" />
+        <EdgeLayout
+          Id="Package\Poblar de Territorios\Poblar Dim Ubicaciones.Paths[OLE DB Source Output]"
+          TopLeft="660.19999178946,164.599998167157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.3999983906746"
+              Start="0,0"
+              End="0,58.8999983906746">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.8999983906746" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Destination Ubicaciones">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar de Territorios\Poblar Dim Ubicaciones\OLE DB Source Ubicaciones">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar Dim Ordenes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Poblar Dim Ordenes\OLE DB Source Ordenes"
+          TopLeft="178.999991372228,79.5882339901887" />
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes"
+          TopLeft="156.999991614904,219.352938529891" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Poblar Dim Ordenes\Derived Column"
+          TopLeft="462.142858126638,143.764705756338" />
+        <EdgeLayout
+          Id="Package\Poblar Dim Ordenes.Paths[OLE DB Source Output]"
+          TopLeft="274.999991372228,121.188233990189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="263.54286675441,22.5764717661489"
+              Start="0,0"
+              End="263.54286675441,15.0764717661489">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.28823588307445" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.28823588307445"
+                    Point2="0,11.2882358830744"
+                    Point3="4,11.2882358830744" />
+                  <mssgle:LineSegment
+                    End="259.54286675441,11.2882358830744" />
+                  <mssgle:CubicBezierSegment
+                    Point1="259.54286675441,11.2882358830744"
+                    Point2="263.54286675441,11.2882358830744"
+                    Point3="263.54286675441,15.2882358830744" />
+                  <mssgle:LineSegment
+                    End="263.54286675441,15.0764717661489" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Poblar Dim Ordenes.Paths[Derived Column Output]"
+          TopLeft="538.542858126638,185.364705756338">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-275.142866511734,33.9882327735529"
+              Start="0,0"
+              End="-275.142866511734,26.4882327735529">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.9941163867765" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.9941163867765"
+                    Point2="0,16.9941163867765"
+                    Point3="-4,16.9941163867765" />
+                  <mssgle:LineSegment
+                    End="-271.142866511734,16.9941163867765" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-271.142866511734,16.9941163867765"
+                    Point2="-275.142866511734,16.9941163867765"
+                    Point3="-275.142866511734,20.9941163867765" />
+                  <mssgle:LineSegment
+                    End="-275.142866511734,26.4882327735529" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Ordenes\OLE DB Source Ordenes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Ordenes\OLE DB Destination Ordenes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar Dim Vendedores">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Poblar Dim Vendedores\OLE DB Source Vendedores"
+          TopLeft="190.00000040446,85.6470587484564" />
+        <NodeLayout
+          Size="228.8,41.6"
+          Id="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores"
+          TopLeft="175.000000372529,204.941176290949" />
+        <EdgeLayout
+          Id="Package\Poblar Dim Vendedores.Paths[OLE DB Source Output]"
+          TopLeft="291.700000388495,127.247058748456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77.6941175424929"
+              Start="0,0"
+              End="0,70.1941175424929">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.1941175424929" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Vendedores\OLE DB Destination Vendedores">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Vendedores\OLE DB Source Vendedores">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

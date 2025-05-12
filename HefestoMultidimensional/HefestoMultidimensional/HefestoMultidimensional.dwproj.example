@@ -20,32 +20,28 @@
   </Cubes>
   <Dimensions>
     <ProjectItem>
-      <Name>Dim Tiempo.dim</Name>
-      <FullPath>Dim Tiempo.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dim Capital Humano.dim</Name>
-      <FullPath>Dim Capital Humano.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Dim Productos.dim</Name>
       <FullPath>Dim Productos.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Vendedores.dim</Name>
+      <FullPath>Dim Vendedores.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Dim Ordenes.dim</Name>
       <FullPath>Dim Ordenes.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Dim Ubicacion Vendedores.dim</Name>
-      <FullPath>Dim Ubicacion Vendedores.dim</FullPath>
+      <Name>Dim Tiempo.dim</Name>
+      <FullPath>Dim Tiempo.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Fact Ordenes.dim</Name>
+      <FullPath>Fact Ordenes.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Dim Territorios.dim</Name>
       <FullPath>Dim Territorios.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dim Vendedores.dim</Name>
-      <FullPath>Dim Vendedores.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Dim Monedas.dim</Name>
