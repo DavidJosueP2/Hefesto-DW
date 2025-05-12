@@ -11,35 +11,20 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package3"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{E3D1717B-83F0-4DA4-9130-D3B27E89845E}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{867F8120-01A3-45DD-BB8B-A01AEA259A2D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{674ADF52-3D0C-48CC-A315-5976AB32E69A}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Poblar Capital Humano"
+      DTS:refId="Package\Poblar Dim Capital Humano"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{F2E3BF05-F1BF-4E53-95DB-A01151FDA708}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Poblar Capital Humano"
+      DTS:ObjectName="Poblar Dim Capital Humano"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -47,7 +32,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO"
+              refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -104,7 +89,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Connections[OleDbConnection]"
+                  refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Connections[OleDbConnection]"
                   connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
                   connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
                   description="The OLE DB runtime connection used to access the database."
@@ -112,55 +97,55 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input]"
+                  refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].Columns[IdEmpleado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].Columns[IdEmpleado]"
                       cachedDataType="i4"
                       cachedName="IdEmpleado"
-                      externalMetadataColumnId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[IdEmpleado]"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[IdEmpleado]" />
+                      externalMetadataColumnId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[IdEmpleado]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[IdEmpleado]" />
                     <inputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].Columns[Cargo]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].Columns[Cargo]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Cargo"
-                      externalMetadataColumnId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[Cargo]" />
+                      externalMetadataColumnId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[Cargo]" />
                     <inputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].Columns[EsAsalariado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].Columns[EsAsalariado]"
                       cachedDataType="bool"
                       cachedName="EsAsalariado"
-                      externalMetadataColumnId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[EsAsalariado]" />
+                      externalMetadataColumnId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[EsAsalariado]" />
                     <inputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].Columns[PorcentajeComision]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].Columns[PorcentajeComision]"
                       cachedDataType="cy"
                       cachedName="PorcentajeComision"
-                      externalMetadataColumnId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[PorcentajeComision]"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[PorcentajeComision]" />
+                      externalMetadataColumnId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[PorcentajeComision]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[PorcentajeComision]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[IdEmpleado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[IdEmpleado]"
                       dataType="i4"
                       name="IdEmpleado" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
                       dataType="wstr"
                       length="100"
                       name="Cargo" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
                       dataType="bool"
                       name="EsAsalariado" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[PorcentajeComision]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input].ExternalColumns[PorcentajeComision]"
                       dataType="numeric"
                       name="PorcentajeComision"
                       precision="5"
@@ -170,22 +155,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -194,7 +179,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO"
+              refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
@@ -250,7 +235,7 @@ LEFT JOIN Sales.SalesPerson sp
               </properties>
               <connections>
                 <connection
-                  refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Connections[OleDbConnection]"
+                  refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Connections[OleDbConnection]"
                   connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
                   connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
                   description="The OLE DB runtime connection used to access the database."
@@ -258,104 +243,104 @@ LEFT JOIN Sales.SalesPerson sp
               </connections>
               <outputs>
                 <output
-                  refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output]"
+                  refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[IdEmpleado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[IdEmpleado]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[IdEmpleado]"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[IdEmpleado]"
+                      externalMetadataColumnId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[IdEmpleado]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[IdEmpleado]"
                       name="IdEmpleado"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[Cargo]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[Cargo]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
+                      externalMetadataColumnId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
                       length="50"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[Cargo]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[Cargo]"
                       name="Cargo"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[EsAsalariado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[EsAsalariado]"
                       dataType="bool"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[EsAsalariado]"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[EsAsalariado]"
+                      externalMetadataColumnId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[EsAsalariado]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[EsAsalariado]"
                       name="EsAsalariado"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[PorcentajeComision]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[PorcentajeComision]"
                       dataType="cy"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[PorcentajeComision]"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[PorcentajeComision]"
+                      externalMetadataColumnId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[PorcentajeComision]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].Columns[PorcentajeComision]"
                       name="PorcentajeComision"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[IdEmpleado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[IdEmpleado]"
                       dataType="i4"
                       name="IdEmpleado" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
                       dataType="wstr"
                       length="50"
                       name="Cargo" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[EsAsalariado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[EsAsalariado]"
                       dataType="bool"
                       name="EsAsalariado" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[PorcentajeComision]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output].ExternalColumns[PorcentajeComision]"
                       dataType="cy"
                       name="PorcentajeComision" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[IdEmpleado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[IdEmpleado]"
                       dataType="i4"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[IdEmpleado]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[IdEmpleado]"
                       name="IdEmpleado" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[Cargo]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[Cargo]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[Cargo]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[Cargo]"
                       name="Cargo" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[EsAsalariado]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[EsAsalariado]"
                       dataType="bool"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[EsAsalariado]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[EsAsalariado]"
                       name="EsAsalariado" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[PorcentajeComision]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[PorcentajeComision]"
                       dataType="cy"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[PorcentajeComision]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[PorcentajeComision]"
                       name="PorcentajeComision" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -366,10 +351,220 @@ LEFT JOIN Sales.SalesPerson sp
           </components>
           <paths>
             <path
-              refId="Package\Poblar Capital Humano.Paths[OLE DB Source Output]"
-              endId="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input]"
+              refId="Package\Poblar Dim Capital Humano.Paths[OLE DB Source Output]"
+              endId="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output]" />
+              startId="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar FactCancelaciones"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{674ADF52-3D0C-48CC-A315-5976AB32E69A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar FactCancelaciones"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Poblar FactCancelaciones\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar FactCancelaciones\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destination - HefestoDW DB Connnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar FactCancelaciones\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar FactCancelaciones\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Poblar FactCancelaciones\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar FactCancelaciones\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactCancelaciones\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar FactCancelaciones\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactCancelaciones\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar FactCancelaciones\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar FactCancelaciones\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{E689F81C-6F2A-4091-BE2D-853EFF51CB7B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source - AW 2022 DB Connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Poblar FactCancelaciones\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Poblar FactCancelaciones\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar FactCancelaciones\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactCancelaciones\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar FactCancelaciones\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar FactCancelaciones\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Poblar FactCancelaciones.Paths[OLE DB Source Output]"
+              endId="Package\Poblar FactCancelaciones\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Poblar FactCancelaciones\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -380,10 +575,10 @@ LEFT JOIN Sales.SalesPerson sp
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{0A1C91B4-1AF8-466B-B21F-5161A201F84E}"
-      DTS:From="Package\Poblar Capital Humano"
+      DTS:From="Package\Poblar Dim Capital Humano"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Data Flow Task" />
+      DTS:To="Package\Poblar FactCancelaciones" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -398,27 +593,27 @@ LEFT JOIN Sales.SalesPerson sp
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="185.6,41.6"
-          Id="Package\Poblar Capital Humano"
+          Size="208,41.6"
+          Id="Package\Poblar Dim Capital Humano"
           TopLeft="364.285715061183,143.764705756337" />
         <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Data Flow Task"
-          TopLeft="382.857143672145,220.999999806285" />
+          Size="196.8,41.6"
+          Id="Package\Poblar FactCancelaciones"
+          TopLeft="372.857143650858,233.99999979489" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="457.571429366664,185.364705756337">
+          TopLeft="469.77142935602,185.364705756337">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35.6352940499478"
+              EndConnector="0,48.6352940385528"
               Start="0,0"
-              End="0,28.1352940499478">
+              End="0,41.1352940385528">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.1352940499478" />
+                    End="0,41.1352940385528" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -431,20 +626,20 @@ LEFT JOIN Sales.SalesPerson sp
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Poblar Capital Humano">
+    design-time-name="Package\Poblar Dim Capital Humano">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="260.8,41.6"
-          Id="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO"
+          Id="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO"
           TopLeft="320.000000681196,220.999999806285" />
         <NodeLayout
           Size="240,41.6"
-          Id="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO"
+          Id="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO"
           TopLeft="328.571429270871,97.8823528553788" />
         <EdgeLayout
-          Id="Package\Poblar Capital Humano.Paths[OLE DB Source Output]"
+          Id="Package\Poblar Dim Capital Humano.Paths[OLE DB Source Output]"
           TopLeft="449.485714976033,139.482352855379">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -469,7 +664,7 @@ LEFT JOIN Sales.SalesPerson sp
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Poblar Capital Humano\OLE DB Destination CAPITAL HUMANO">
+    design-time-name="Package\Poblar Dim Capital Humano\OLE DB Destination CAPITAL HUMANO">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -482,12 +677,50 @@ LEFT JOIN Sales.SalesPerson sp
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Poblar Capital Humano\OLE DB Source CAPITAL HUMANO">
+    design-time-name="Package\Poblar Dim Capital Humano\OLE DB Source CAPITAL HUMANO">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar FactCancelaciones">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Poblar FactCancelaciones\OLE DB Source"
+          TopLeft="566.999991551042,89.9999986588955" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Poblar FactCancelaciones\OLE DB Destination"
+          TopLeft="554.999991729856,211.999996840954" />
+        <EdgeLayout
+          Id="Package\Poblar FactCancelaciones.Paths[OLE DB Source Output]"
+          TopLeft="640.999991640449,131.599998658895">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80.3999981820584"
+              Start="0,0"
+              End="0,72.8999981820584">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.8999981820584" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
