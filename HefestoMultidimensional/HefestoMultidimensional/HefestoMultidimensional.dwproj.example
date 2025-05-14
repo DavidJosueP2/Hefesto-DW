@@ -20,6 +20,10 @@
   </Cubes>
   <Dimensions>
     <ProjectItem>
+      <Name>Dim Ordenes.dim</Name>
+      <FullPath>Dim Ordenes.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Dim Productos.dim</Name>
       <FullPath>Dim Productos.dim</FullPath>
     </ProjectItem>
@@ -28,16 +32,8 @@
       <FullPath>Dim Vendedores.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Dim Ordenes.dim</Name>
-      <FullPath>Dim Ordenes.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Dim Tiempo.dim</Name>
       <FullPath>Dim Tiempo.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Fact Ordenes.dim</Name>
-      <FullPath>Fact Ordenes.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Dim Territorios.dim</Name>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="96"
-  DTS:VersionGUID="{AA2CA385-A94E-4C72-97A3-C287DC8C73A7}">
+  DTS:VersionBuild="98"
+  DTS:VersionGUID="{B532C8C7-006E-479B-83E7-2F7A97B682A9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -4503,9 +4503,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43.2"
-          IsExpanded="True"
+          IsExpanded="False"
           PanelSize="256,320"
-          Size="256,363.2"
+          Size="256,43.2"
           Id="Package\Población de Geografía"
           TopLeft="187.857143257041,123.882352832589" />
         <NodeLayout
@@ -4598,9 +4598,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43.2"
-          IsExpanded="False"
+          IsExpanded="True"
           PanelSize="437.6,223.2"
-          Size="437.6,43.2"
+          Size="437.6,266.4"
           Id="Package\Poblar Dimensiones Compartidas"
           TopLeft="327.857143555064,230.176470386477" />
         <NodeLayout
@@ -4797,24 +4797,30 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="443.857143257041,305.482352832589">
+          TopLeft="315.857143257041,167.082352832589">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="59.8400002980231,-32.105882446112"
+              EndConnector="123.400000298023,63.0941175538879"
               Start="0,0"
-              End="59.8400002980231,-24.605882446112">
+              End="123.400000298023,55.5941175538879">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="55.8400002980231,0" />
+                    End="0,37.8079737152958" />
                   <mssgle:CubicBezierSegment
-                    Point1="55.8400002980231,0"
-                    Point2="59.8400002980231,0"
-                    Point3="59.8400002980231,-4" />
+                    Point1="0,37.8079737152958"
+                    Point2="0,41.8079737152958"
+                    Point3="4,41.8079737152958" />
                   <mssgle:LineSegment
-                    End="59.8400002980231,-24.605882446112" />
+                    End="119.400000298023,41.8079737152958" />
+                  <mssgle:CubicBezierSegment
+                    Point1="119.400000298023,41.8079737152958"
+                    Point2="123.400000298023,41.8079737152958"
+                    Point3="123.400000298023,45.8079737152958" />
+                  <mssgle:LineSegment
+                    End="123.400000298023,55.5941175538879" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4859,18 +4865,18 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="544.700000814242,273.376470386477">
+          TopLeft="544.700000814242,496.576470386477">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.694117645047"
+              EndConnector="0,-162.505882354953"
               Start="0,0"
-              End="0,53.194117645047">
+              End="0,-155.005882354953">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.194117645047" />
+                    End="0,-155.005882354953" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4881,30 +4887,24 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="439.257143555064,273.376470386477">
+          TopLeft="327.857143555064,363.376470386477">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-168.400000351241,62.223529408413"
+              EndConnector="-57.0000003512411,-27.776470591587"
               Start="0,0"
-              End="-168.400000351241,54.723529408413">
+              End="-57.0000003512411,-20.276470591587">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.9924323927838" />
+                    End="-53.0000003512411,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.9924323927838"
-                    Point2="0,20.9924323927838"
-                    Point3="-4,20.9924323927838" />
+                    Point1="-53.0000003512411,0"
+                    Point2="-57.0000003512411,0"
+                    Point3="-57.0000003512411,-4" />
                   <mssgle:LineSegment
-                    End="-164.400000351241,20.9924323927838" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-164.400000351241,20.9924323927838"
-                    Point2="-168.400000351241,20.9924323927838"
-                    Point3="-168.400000351241,24.9924323927838" />
-                  <mssgle:LineSegment
-                    End="-168.400000351241,54.723529408413" />
+                    End="-57.0000003512411,-20.276470591587" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4915,30 +4915,24 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="654.057143555064,273.376470386477">
+          TopLeft="765.457143555064,350.111764504794">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="169.000000872782,57.635294118317"
+              EndConnector="84.6666675394487,22.5"
               Start="0,0"
-              End="169.000000872782,50.135294118317">
+              End="84.6666675394487,15">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.444493533557" />
+                    End="80.6666675394487,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15.444493533557"
-                    Point2="0,19.444493533557"
-                    Point3="4,19.444493533557" />
+                    Point1="80.6666675394487,0"
+                    Point2="84.6666675394487,0"
+                    Point3="84.6666675394487,4" />
                   <mssgle:LineSegment
-                    End="165.000000872782,19.444493533557" />
-                  <mssgle:CubicBezierSegment
-                    Point1="165.000000872782,19.444493533557"
-                    Point2="169.000000872782,19.444493533557"
-                    Point3="169.000000872782,23.444493533557" />
-                  <mssgle:LineSegment
-                    End="169.000000872782,50.135294118317" />
+                    End="84.6666675394487,15" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
