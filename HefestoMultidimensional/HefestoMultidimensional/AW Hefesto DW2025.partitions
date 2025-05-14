@@ -1,17 +1,17 @@
-﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="98228fec-75c3-4ed6-8c3c-4e54bc485236" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="74523e95-4635-4ed8-860e-0a064c6589c5" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>AW Hefesto DW2025</ID>
   <MeasureGroups>
     <MeasureGroup>
       <ID>Fact Diferencia Ventas</ID>
       <Partitions>
-        <Partition dwd:design-time-name="1b22c660-0796-4328-9a18-4033fdd2c0d8">
+        <Partition dwd:design-time-name="4452db6f-e17e-4ae8-8243-03695a2851c3">
           <ID>Fact Diferencia Ventas</ID>
           <Name>Fact Diferencia Ventas</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="e56dfbc7-f605-4df2-94c9-2d01cf63b91c">
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="1e263a41-6ee5-4cec-8a0e-95f57399b50d">
             <DataSourceViewID>AW Hefesto DW2025</DataSourceViewID>
             <TableID>dbo_FactDiferenciaVentas</TableID>
           </Source>
@@ -24,16 +24,16 @@
     <MeasureGroup>
       <ID>Fact Ordenes</ID>
       <Partitions>
-        <Partition dwd:design-time-name="c781ac7f-b27d-45e0-bef6-3d705e87cd1f">
+        <Partition dwd:design-time-name="5ac8adbf-0c61-4282-92fb-2ccb43bedb82">
           <ID>Fact Ordenes</ID>
           <Name>Fact Ordenes</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="0f7d7cd2-81a2-40b6-acad-eb0ceea83aad">
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="c6ace3de-a193-4e50-9e2e-6881de821eac">
             <DataSourceViewID>AW Hefesto DW2025</DataSourceViewID>
-            <TableID>dbo_factOrdenes</TableID>
+            <TableID>dbo_FactOrdenes</TableID>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
@@ -44,16 +44,16 @@
     <MeasureGroup>
       <ID>Fact Ventas Monedas</ID>
       <Partitions>
-        <Partition dwd:design-time-name="6467de5d-6016-4c2f-9118-324c02156a3b">
+        <Partition dwd:design-time-name="0bfe1c9d-71d0-41a8-9e5a-7cbe534a631d">
           <ID>Fact Ventas Monedas</ID>
           <Name>Fact Ventas Monedas</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="626256f2-16ac-4ecd-8fe6-58c9c559bd61">
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="609d48ff-a34e-4308-b883-477dabfb9719">
             <DataSourceViewID>AW Hefesto DW2025</DataSourceViewID>
-            <TableID>dbo_factVentasMonedas</TableID>
+            <TableID>dbo_FactVentasMonedas</TableID>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>

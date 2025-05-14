@@ -1,3 +1,4 @@
+
 -- Crear base de datos
 CREATE DATABASE AW_HefestoDW2025;
 GO
@@ -8,27 +9,24 @@ GO
 -- Dimensiones de ubicación geográfica
 -- ==================================
 
-CREATE TABLE dimPaises (
-    idPais INT PRIMARY KEY,
-    pais NVARCHAR(100)
+-- Nuevo modelo jerárquico
+CREATE TABLE dimPais (
+    PaisID NVARCHAR(3) PRIMARY KEY,
+    Nombre NVARCHAR(50) NOT NULL
 );
 
-CREATE TABLE dimProvincias (
-    idProvincia INT PRIMARY KEY,
-    idPais INT FOREIGN KEY REFERENCES dimPaises(idPais),
-    provincia NVARCHAR(100)
+CREATE TABLE dimEstado (
+    EstadoID INT PRIMARY KEY,
+    EstadoCode NCHAR(3) NOT NULL,
+    Nombre NVARCHAR(50) NOT NULL,
+    PaisID NVARCHAR(3) FOREIGN KEY REFERENCES dimPais(PaisID)
 );
 
-CREATE TABLE dimCiudades (
-    idCiudad INT PRIMARY KEY,
-    idProvincia INT FOREIGN KEY REFERENCES dimProvincias(idProvincia),
-    ciudad NVARCHAR(100)
-);
-
-CREATE TABLE dimUbicaciones (
-    idUbicacion INT PRIMARY KEY,
-    idCiudad INT FOREIGN KEY REFERENCES dimCiudades(idCiudad),
-    barrio NVARCHAR(100)
+CREATE TABLE dimCiudad (
+    CiudadID INT PRIMARY KEY,
+    Nombre NVARCHAR(30) NOT NULL,
+    CodigoPostal NVARCHAR(15) NOT NULL,
+    EstadoID INT FOREIGN KEY REFERENCES dimEstado(EstadoID)
 );
 
 -- ============================
@@ -40,11 +38,6 @@ CREATE TABLE dimProductos (
     Producto NVARCHAR(100),
     NumeroProducto NVARCHAR(50),
     EsFabricado BIT
-);
-
-CREATE TABLE dimOrdenes (
-    OrdenID INT PRIMARY KEY,
-    Estado NVARCHAR(15) -- Enviado, Cancelado, etc.
 );
 
 CREATE TABLE dimMonedas (
@@ -70,13 +63,24 @@ CREATE TABLE dimTiempo (
 -- =========================================
 
 CREATE TABLE dimVendedores (
-    VendedorID INT PRIMARY KEY, -- BusinessEntityID
-    NombreCompleto NVARCHAR(100),
-    Cargo NVARCHAR(100),
+    VendedorID INT PRIMARY KEY,
+    NombreCompleto NVARCHAR(101),  -- Campo combinado
+    CiudadID INT FOREIGN KEY REFERENCES dimCiudad(CiudadID),
+    Cargo NVARCHAR(101),
     EsAsalariado BIT,
     PorcentajeComision DECIMAL(5,2),
-    idUbicacion INT FOREIGN KEY REFERENCES dimUbicaciones(idUbicacion),
     Tipo NCHAR(2)
+);
+
+CREATE TABLE dimOrdenes (
+    OrdenID INT PRIMARY KEY,
+    VendedorID INT,  -- FK hacia dimVendedores
+    FechaID INT,     -- FK hacia dimTiempo (OrderDate → FechaID formato YYYYMMDD)
+    Estado NVARCHAR(15), -- Enviado, Cancelado, etc.
+    Canal NVARCHAR(20),  -- Internet, Presencial, Ambos
+    TotalPagado DECIMAL(10,2), -- TotalDue
+    FOREIGN KEY (VendedorID) REFERENCES dimVendedores(VendedorID),
+    FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID)
 );
 
 -- ============================
@@ -99,7 +103,7 @@ CREATE TABLE FactDiferenciaVentas (
 );
 
 -- Pregunta 2: Ventas en moneda extranjera
-CREATE TABLE factVentasMonedas (
+CREATE TABLE FactVentasMonedas (
     MonedaID nchar(3),
     TerritorioID INT,
     VendedorID INT,
@@ -117,14 +121,13 @@ CREATE TABLE factVentasMonedas (
 
 
 -- Refactor de Pregunta 3: Todas las órdenes (no solo canceladas)
-CREATE TABLE factOrdenes (
+CREATE TABLE FactOrdenes (
     OrdenID INT PRIMARY KEY,
     VendedorID INT,
     FechaID INT,
-    Estado NVARCHAR(15),
-    Canal NVARCHAR(20), -- Internet, Presencial, Ambos
     TotalOrden DECIMAL(10,2), -- TotalDue
     FOREIGN KEY (VendedorID) REFERENCES dimVendedores(VendedorID),
     FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID),
     FOREIGN KEY (OrdenID) REFERENCES dimOrdenes(OrdenID)
 );
+
