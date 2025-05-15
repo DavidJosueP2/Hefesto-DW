@@ -20,24 +20,20 @@
   </Cubes>
   <Dimensions>
     <ProjectItem>
-      <Name>Dim Ordenes.dim</Name>
-      <FullPath>Dim Ordenes.dim</FullPath>
+      <Name>Dim Vendedores.dim</Name>
+      <FullPath>Dim Vendedores.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Dim Productos.dim</Name>
       <FullPath>Dim Productos.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Dim Vendedores.dim</Name>
-      <FullPath>Dim Vendedores.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Dim Tiempo.dim</Name>
       <FullPath>Dim Tiempo.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Dim Territorios.dim</Name>
-      <FullPath>Dim Territorios.dim</FullPath>
+      <Name>Dim Ordenes.dim</Name>
+      <FullPath>Dim Ordenes.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Dim Monedas.dim</Name>
@@ -56,6 +52,12 @@
       <FullPath>AW Hefesto DW2025.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
+  <Roles>
+    <ProjectItem>
+      <Name>Admins.role</Name>
+      <FullPath>Admins.role</FullPath>
+    </ProjectItem>
+  </Roles>
   <Configurations>
     <Configuration>
       <Name>Development</Name>

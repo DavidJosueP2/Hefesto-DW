@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="98"
-  DTS:VersionGUID="{B532C8C7-006E-479B-83E7-2F7A97B682A9}">
+  DTS:VersionBuild="167"
+  DTS:VersionGUID="{3075BCD8-AE81-46E5-AC9E-458F96646C17}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -67,7 +67,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}"
-          SQLTask:SqlStatementSource="-- Paso 1: Eliminar datos de tablas de hechos (en orden por dependencias)&#xA;DELETE FROM FactDiferenciaVentas;&#xA;DELETE FROM FactVentasMonedas;&#xA;DELETE FROM FactOrdenes;&#xA;&#xA;-- Paso 2: Eliminar datos de dimensiones hijas primero&#xA;DELETE FROM dimOrdenes;&#xA;DELETE FROM dimVendedores;&#xA;DELETE FROM dimProductos;&#xA;DELETE FROM dimMonedas;&#xA;DELETE FROM dimTerritorios;&#xA;DELETE FROM dimTiempo;&#xA;&#xA;-- Paso 3: Borrar jerarquía geográfica desde lo más bajo&#xA;DELETE FROM dimCiudad;&#xA;DELETE FROM dimEstado;&#xA;DELETE FROM dimPais;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="-- Paso 1: Eliminar datos de tablas de hechos (en orden por dependencias)&#xA;DELETE FROM FactDiferenciaVentas;&#xA;DELETE FROM FactVentasMonedas;&#xA;DELETE FROM FactOrdenes;&#xA;&#xA;-- Paso 2: Eliminar datos de dimensiones hijas primero&#xA;DELETE FROM dimOrdenes;&#xA;DELETE FROM dimVendedores;&#xA;DELETE FROM dimProductos;&#xA;DELETE FROM dimMonedas;&#xA;DELETE FROM dimTerritorios;&#xA;DELETE FROM dimTiempo;&#xA;&#xA;-- Paso 3: Borrar jerarquía geográfica desde lo más bajo&#xA;DELETE FROM dimCiudad;&#xA;DELETE FROM dimEstado;&#xA;DELETE FROM dimPais;&#xA;&#xA;-- Territorio genérico&#xA;INSERT INTO dimTerritorios (TerritorioID, NombreTerritorio, Grupo, Pais, Region)&#xA;VALUES (-1, 'Sin territorio asignado', 'No definido', 'No definido', 'No definido');&#xA;&#xA;-- País genérico&#xA;INSERT INTO dimPais (PaisID, Nombre)&#xA;VALUES ('-1', 'Sin país asignado');&#xA;&#xA;-- Estado genérico&#xA;INSERT INTO dimEstado (EstadoID, EstadoCode, Nombre, PaisID)&#xA;VALUES (-1, 'XXX', 'Sin estado asignado', '-1');&#xA;&#xA;-- Ciudad genérica&#xA;INSERT INTO dimCiudad (CiudadID, Nombre, CodigoPostal, EstadoID)&#xA;VALUES (-1, 'Sin ciudad asignada', '00000', -1);&#xA;&#xA;-- Vendedor genérico (para ventas online)&#xA;INSERT INTO dimVendedores &#xA;(VendedorID, NombreCompleto, CiudadID, TerritorioID, Cargo, TipoContrato, PorcentajeComision, Tipo)&#xA;VALUES (-1, 'Venta en línea', -1, -1, 'No aplica', 'No Asalariado', 0.00, 'IN');&#xA;&#xA;-- === 1. dimOrdenes ===&#xA;INSERT INTO dimOrdenes (OrdenID, Estado, Canal, FechaID, VendedorID, TotalPagado)&#xA;VALUES &#xA;(-1, 'En proceso', 'Internet', NULL, -1, 0),&#xA;(-2, 'Aprobado', 'Internet', NULL, -1, 0),&#xA;(-3, 'En espera', 'Internet', NULL, -1, 0),&#xA;(-4, 'Rechazado', 'Internet', NULL, -1, 0),&#xA;(-6, 'Cancelado', 'Internet', NULL, -1, 0);&#xA;&#xA;-- === 2. FactOrdenes ===&#xA;INSERT INTO FactOrdenes (OrdenID, VendedorID, FechaID, TotalOrden)&#xA;VALUES &#xA;(-1, -1, NULL, 0),&#xA;(-2, -1, NULL, 0),&#xA;(-3, -1, NULL, 0),&#xA;(-4, -1, NULL, 0),&#xA;(-6, -1, NULL, 0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1078,6 +1078,153 @@ FROM Person.StateProvince;</property>
               version="1">
               <components>
                 <component
+                  refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Inputs[Derived Column Input].Columns[NombreTerritorio]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="NombreTerritorio"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[NombreTerritorio]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[NombreTerritorio]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">NombreTerritorio</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Inputs[Derived Column Input].Columns[Grupo]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Grupo"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Grupo]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Grupo]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">Grupo</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Inputs[Derived Column Input].Columns[Pais]"
+                          cachedDataType="wstr"
+                          cachedLength="14"
+                          cachedName="Pais"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Pais]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Pais]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">Pais</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Inputs[Derived Column Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="Region"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Region]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Region]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">Region</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -1150,18 +1297,39 @@ FROM Person.StateProvince;</property>
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].Columns[Territorio]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="Territorio"
-                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Territorio]"
-                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Territorio]" />
-                        <inputColumn
                           refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
                           cachedDataType="i4"
                           cachedName="TerritoryID"
                           externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
                           lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
+                        <inputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].Columns[NombreTerritorio]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="NombreTerritorio"
+                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[NombreTerritorio]"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[NombreTerritorio]" />
+                        <inputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].Columns[Grupo]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Grupo"
+                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Grupo]"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Grupo]" />
+                        <inputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].Columns[Pais]"
+                          cachedDataType="wstr"
+                          cachedLength="14"
+                          cachedName="Pais"
+                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Pais]"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Pais]" />
+                        <inputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="Region"
+                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Region]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1170,10 +1338,25 @@ FROM Person.StateProvince;</property>
                           dataType="i4"
                           name="TerritorioID" />
                         <externalMetadataColumn
-                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Territorio]"
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[NombreTerritorio]"
                           dataType="wstr"
                           length="100"
-                          name="Territorio" />
+                          name="NombreTerritorio" />
+                        <externalMetadataColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Grupo]"
+                          dataType="wstr"
+                          length="50"
+                          name="Grupo" />
+                        <externalMetadataColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Pais]"
+                          dataType="wstr"
+                          length="50"
+                          name="Pais" />
+                        <externalMetadataColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="50"
+                          name="Region" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1229,8 +1412,38 @@ FROM Person.StateProvince;</property>
                       name="SqlCommand"
                       UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
     st.TerritoryID,
-    st.Name AS Territorio
-FROM Sales.SalesTerritory st</property>
+    CASE st.Name
+        WHEN 'Northwest' THEN 'Noroeste'
+        WHEN 'Northeast' THEN 'Noreste'
+        WHEN 'Central' THEN 'Centro'
+        WHEN 'Southwest' THEN 'Suroeste'
+        WHEN 'Southeast' THEN 'Sureste'
+        WHEN 'Canada' THEN 'Canadá'
+        WHEN 'France' THEN 'Francia'
+        WHEN 'Germany' THEN 'Alemania'
+        WHEN 'Australia' THEN 'Australia'
+        WHEN 'United Kingdom' THEN 'Reino Unido'
+        ELSE st.Name
+    END AS NombreTerritorio,
+    CASE st.[Group]
+        WHEN 'North America' THEN 'América del Norte'
+        WHEN 'Europe' THEN 'Europa'
+        WHEN 'Pacific' THEN 'Pacífico'
+        ELSE st.[Group]
+    END AS Grupo,
+    CASE st.CountryRegionCode
+        WHEN 'US' THEN 'Estados Unidos'
+        WHEN 'CA' THEN 'Canadá'
+        WHEN 'FR' THEN 'Francia'
+        WHEN 'DE' THEN 'Alemania'
+        WHEN 'GB' THEN 'Reino Unido'
+        WHEN 'AU' THEN 'Australia'
+        ELSE st.CountryRegionCode
+    END AS Pais,
+
+    CAST(st.CountryRegionCode AS NVARCHAR(10)) AS Region
+
+FROM Sales.SalesTerritory st;</property>
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
@@ -1276,14 +1489,44 @@ FROM Sales.SalesTerritory st</property>
                           name="TerritoryID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Territorio]"
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[NombreTerritorio]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Territorio]"
+                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[NombreTerritorio]"
                           length="50"
-                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Territorio]"
-                          name="Territorio"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[NombreTerritorio]"
+                          name="NombreTerritorio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Grupo]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Grupo]"
+                          length="50"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Grupo]"
+                          name="Grupo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Pais]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Pais]"
+                          length="14"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Pais]"
+                          name="Pais"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          length="10"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].Columns[Region]"
+                          name="Region"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
@@ -1293,10 +1536,25 @@ FROM Sales.SalesTerritory st</property>
                           dataType="i4"
                           name="TerritoryID" />
                         <externalMetadataColumn
-                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Territorio]"
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[NombreTerritorio]"
                           dataType="wstr"
                           length="50"
-                          name="Territorio" />
+                          name="NombreTerritorio" />
+                        <externalMetadataColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Grupo]"
+                          dataType="wstr"
+                          length="50"
+                          name="Grupo" />
+                        <externalMetadataColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Pais]"
+                          dataType="wstr"
+                          length="14"
+                          name="Pais" />
+                        <externalMetadataColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="10"
+                          name="Region" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -1310,11 +1568,29 @@ FROM Sales.SalesTerritory st</property>
                           lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
                           name="TerritoryID" />
                         <outputColumn
-                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Territorio]"
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[NombreTerritorio]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Territorio]"
-                          name="Territorio" />
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[NombreTerritorio]"
+                          name="NombreTerritorio" />
+                        <outputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Grupo]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Grupo]"
+                          name="Grupo" />
+                        <outputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Pais]"
+                          dataType="wstr"
+                          length="14"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Pais]"
+                          name="Pais" />
+                        <outputColumn
+                          refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          name="Region" />
                         <outputColumn
                           refId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
@@ -1335,8 +1611,13 @@ FROM Sales.SalesTerritory st</property>
               </components>
               <paths>
                 <path
-                  refId="Package\Población de Geografía\Poblar Dim Territorios.Paths[OLE DB Source Output]"
+                  refId="Package\Población de Geografía\Poblar Dim Territorios.Paths[Derived Column Output]"
                   endId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Población de Geografía\Poblar Dim Territorios.Paths[OLE DB Source Output]"
+                  endId="Package\Población de Geografía\Poblar Dim Territorios\Derived Column.Inputs[Derived Column Input]"
                   name="OLE DB Source Output"
                   startId="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios.Outputs[OLE DB Source Output]" />
               </paths>
@@ -1663,6 +1944,89 @@ FROM Sales.Currency c</property>
           version="1">
           <components>
             <component
+              refId="Package\Poblar Dim Productos\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Poblar Dim Productos\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar Dim Productos\Derived Column.Inputs[Derived Column Input].Columns[TipoProduccion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="TipoProduccion"
+                      lineageId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].Columns[TipoProduccion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Poblar Dim Productos\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Output].Columns[TipoProduccion Fixed]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Output].Columns[TipoProduccion Fixed]"
+                      name="TipoProduccion Fixed"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].Columns[TipoProduccion]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TipoProduccion</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Poblar Dim Productos\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Poblar Dim Productos\OLE DB Destination Productos"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -1755,11 +2119,12 @@ FROM Sales.Currency c</property>
                       externalMetadataColumnId="Package\Poblar Dim Productos\OLE DB Destination Productos.Inputs[OLE DB Destination Input].ExternalColumns[NumeroProducto]"
                       lineageId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].Columns[NumeroProducto]" />
                     <inputColumn
-                      refId="Package\Poblar Dim Productos\OLE DB Destination Productos.Inputs[OLE DB Destination Input].Columns[EsFabricado]"
-                      cachedDataType="bool"
-                      cachedName="EsFabricado"
-                      externalMetadataColumnId="Package\Poblar Dim Productos\OLE DB Destination Productos.Inputs[OLE DB Destination Input].ExternalColumns[EsFabricado]"
-                      lineageId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].Columns[EsFabricado]" />
+                      refId="Package\Poblar Dim Productos\OLE DB Destination Productos.Inputs[OLE DB Destination Input].Columns[TipoProduccion Fixed]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="TipoProduccion Fixed"
+                      externalMetadataColumnId="Package\Poblar Dim Productos\OLE DB Destination Productos.Inputs[OLE DB Destination Input].ExternalColumns[TipoProduccion]"
+                      lineageId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Output].Columns[TipoProduccion Fixed]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1778,9 +2143,10 @@ FROM Sales.Currency c</property>
                       length="50"
                       name="NumeroProducto" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Dim Productos\OLE DB Destination Productos.Inputs[OLE DB Destination Input].ExternalColumns[EsFabricado]"
-                      dataType="bool"
-                      name="EsFabricado" />
+                      refId="Package\Poblar Dim Productos\OLE DB Destination Productos.Inputs[OLE DB Destination Input].ExternalColumns[TipoProduccion]"
+                      dataType="wstr"
+                      length="20"
+                      name="TipoProduccion" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1838,8 +2204,11 @@ FROM Sales.Currency c</property>
     p.ProductID AS ProductoID,
     p.Name AS Producto,
     p.ProductNumber AS NumeroProducto,
-    p.MakeFlag AS EsFabricado
-FROM Production.Product p</property>
+    CASE 
+        WHEN p.MakeFlag = 1 THEN 'Fabricado'
+        ELSE 'Comprado'
+    END AS TipoProduccion
+FROM Production.Product p;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -1905,13 +2274,15 @@ FROM Production.Product p</property>
                       name="NumeroProducto"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].Columns[EsFabricado]"
-                      dataType="bool"
+                      refId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].Columns[TipoProduccion]"
+                      codePage="1252"
+                      dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].ExternalColumns[EsFabricado]"
-                      lineageId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].Columns[EsFabricado]"
-                      name="EsFabricado"
+                      externalMetadataColumnId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].ExternalColumns[TipoProduccion]"
+                      length="9"
+                      lineageId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].Columns[TipoProduccion]"
+                      name="TipoProduccion"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -1931,9 +2302,11 @@ FROM Production.Product p</property>
                       length="25"
                       name="NumeroProducto" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].ExternalColumns[EsFabricado]"
-                      dataType="bool"
-                      name="EsFabricado" />
+                      refId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output].ExternalColumns[TipoProduccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="TipoProduccion" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1959,10 +2332,12 @@ FROM Production.Product p</property>
                       lineageId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Error Output].Columns[NumeroProducto]"
                       name="NumeroProducto" />
                     <outputColumn
-                      refId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Error Output].Columns[EsFabricado]"
-                      dataType="bool"
-                      lineageId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Error Output].Columns[EsFabricado]"
-                      name="EsFabricado" />
+                      refId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Error Output].Columns[TipoProduccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Error Output].Columns[TipoProduccion]"
+                      name="TipoProduccion" />
                     <outputColumn
                       refId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -1983,8 +2358,13 @@ FROM Production.Product p</property>
           </components>
           <paths>
             <path
-              refId="Package\Poblar Dim Productos.Paths[OLE DB Source Output]"
+              refId="Package\Poblar Dim Productos.Paths[Derived Column Output]"
               endId="Package\Poblar Dim Productos\OLE DB Destination Productos.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Poblar Dim Productos\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Poblar Dim Productos.Paths[OLE DB Source Output]"
+              endId="Package\Poblar Dim Productos\Derived Column.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
               startId="Package\Poblar Dim Productos\OLE DB Source Productos.Outputs[OLE DB Source Output]" />
           </paths>
@@ -2571,7 +2951,39 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
                           cachedDataType="wstr"
                           cachedLength="101"
                           cachedName="NombreCompleto"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]" />
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">NombreCompleto</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Inputs[Derived Column Input].Columns[TipoContrato]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="13"
+                          cachedName="TipoContrato"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[TipoContrato]" />
+                        <inputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Inputs[Derived Column Input].Columns[Cargo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="38"
+                          cachedName="Cargo"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]" />
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -2585,26 +2997,49 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
                       synchronousInputId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Inputs[Derived Column Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[NombreCompletoFixed]"
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[TipoContratoFixed]"
                           dataType="wstr"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          length="100"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[NombreCompletoFixed]"
-                          name="NombreCompletoFixed"
+                          length="13"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[TipoContratoFixed]"
+                          name="TipoContratoFixed"
                           truncationRowDisposition="FailComponent">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[SUBSTRING]((DT_WSTR,100)#{Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]},1,100)</property>
+                              name="Expression">#{Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[TipoContrato]}</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">SUBSTRING((DT_WSTR,100)NombreCompleto,1,100)</property>
+                              name="FriendlyExpression">TipoContrato</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[Cargo Fixed]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="38"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[Cargo Fixed]"
+                          name="Cargo Fixed"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">Cargo</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -2714,19 +3149,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
                           externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
                           lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[VendedorID]" />
                         <inputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[Cargo]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="Cargo"
-                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]" />
-                        <inputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[EsAsalariado]"
-                          cachedDataType="bool"
-                          cachedName="EsAsalariado"
-                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[EsAsalariado]" />
-                        <inputColumn
                           refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[PorcentajeComision]"
                           cachedDataType="cy"
                           cachedName="PorcentajeComision"
@@ -2746,12 +3168,32 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
                           externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[CiudadID]"
                           lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[CiudadID]" />
                         <inputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[NombreCompletoFixed]"
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[NombreCompleto]"
                           cachedDataType="wstr"
-                          cachedLength="100"
-                          cachedName="NombreCompletoFixed"
+                          cachedLength="101"
+                          cachedName="NombreCompleto"
                           externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[NombreCompleto]"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[NombreCompletoFixed]" />
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]" />
+                        <inputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[TerritorioID]"
+                          cachedDataType="i4"
+                          cachedName="TerritorioID"
+                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[TerritorioID]" />
+                        <inputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[TipoContratoFixed]"
+                          cachedDataType="wstr"
+                          cachedLength="13"
+                          cachedName="TipoContratoFixed"
+                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[TipoContrato]"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[TipoContratoFixed]" />
+                        <inputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].Columns[Cargo Fixed]"
+                          cachedDataType="wstr"
+                          cachedLength="38"
+                          cachedName="Cargo Fixed"
+                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column.Outputs[Derived Column Output].Columns[Cargo Fixed]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -2760,14 +3202,28 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
                           dataType="i4"
                           name="VendedorID" />
                         <externalMetadataColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[NombreCompleto]"
+                          dataType="wstr"
+                          length="101"
+                          name="NombreCompleto" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[CiudadID]"
+                          dataType="i4"
+                          name="CiudadID" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
+                          dataType="i4"
+                          name="TerritorioID" />
+                        <externalMetadataColumn
                           refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
                           dataType="wstr"
                           length="101"
                           name="Cargo" />
                         <externalMetadataColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[EsAsalariado]"
-                          dataType="bool"
-                          name="EsAsalariado" />
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[TipoContrato]"
+                          dataType="wstr"
+                          length="20"
+                          name="TipoContrato" />
                         <externalMetadataColumn
                           refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[PorcentajeComision]"
                           dataType="numeric"
@@ -2779,15 +3235,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
                           dataType="wstr"
                           length="2"
                           name="Tipo" />
-                        <externalMetadataColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[CiudadID]"
-                          dataType="i4"
-                          name="CiudadID" />
-                        <externalMetadataColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores.Inputs[OLE DB Destination Input].ExternalColumns[NombreCompleto]"
-                          dataType="wstr"
-                          length="100"
-                          name="NombreCompleto" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -2842,17 +3289,32 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
                       description="The SQL command to be executed."
                       name="SqlCommand"
                       UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
-    p.BusinessEntityID AS VendedorID,
+    sp.BusinessEntityID AS VendedorID,
     p.FirstName + ' ' + p.LastName AS NombreCompleto,
     a.AddressID AS CiudadID,
-    e.JobTitle AS Cargo,
-    e.SalariedFlag AS EsAsalariado,
+
+    -- Traducción del cargo
+    CASE e.JobTitle
+        WHEN 'Sales Representative' THEN 'Representante de Ventas'
+        WHEN 'North American Sales Manager' THEN 'Gerente de Ventas en América del Norte'
+        WHEN 'Pacific Sales Manager' THEN 'Gerente de Ventas del Pacífico'
+        WHEN 'European Sales Manager' THEN 'Gerente de Ventas de Europa'
+        ELSE 'No aplica'
+    END AS Cargo,
+
+    CASE 
+        WHEN e.SalariedFlag = 1 THEN 'Asalariado'
+        ELSE 'No Asalariado'
+    END AS TipoContrato,
+    
     ISNULL(sp.CommissionPct, 0.00) AS PorcentajeComision,
-    CAST(p.PersonType AS NCHAR(2)) AS Tipo
-FROM Person.Person p
+    CAST(p.PersonType AS NCHAR(2)) AS Tipo,
+    ISNULL(sp.TerritoryID, -1) AS TerritorioID
+
+FROM Sales.SalesPerson sp
 INNER JOIN HumanResources.Employee e
-    ON p.BusinessEntityID = e.BusinessEntityID
-LEFT JOIN Sales.SalesPerson sp
+    ON sp.BusinessEntityID = e.BusinessEntityID
+INNER JOIN Person.Person p
     ON p.BusinessEntityID = sp.BusinessEntityID
 LEFT JOIN Person.BusinessEntityAddress bea
     ON p.BusinessEntityID = bea.BusinessEntityID
@@ -2904,23 +3366,45 @@ WHERE a.AddressID IS NOT NULL;</property>
                           name="VendedorID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]"
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[NombreCompleto]"
+                          length="101"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
+                          name="NombreCompleto"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[CiudadID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[CiudadID]"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[CiudadID]"
+                          name="CiudadID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
-                          length="50"
+                          length="38"
                           lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[Cargo]"
                           name="Cargo"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[EsAsalariado]"
-                          dataType="bool"
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[TipoContrato]"
+                          codePage="1252"
+                          dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[EsAsalariado]"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[EsAsalariado]"
-                          name="EsAsalariado"
+                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[TipoContrato]"
+                          length="13"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[TipoContrato]"
+                          name="TipoContrato"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[PorcentajeComision]"
@@ -2942,23 +3426,13 @@ WHERE a.AddressID IS NOT NULL;</property>
                           name="Tipo"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[CiudadID]"
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[TerritorioID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[CiudadID]"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[CiudadID]"
-                          name="CiudadID"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[NombreCompleto]"
-                          length="101"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[NombreCompleto]"
-                          name="NombreCompleto"
+                          externalMetadataColumnId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].Columns[TerritorioID]"
+                          name="TerritorioID"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
@@ -2968,14 +3442,26 @@ WHERE a.AddressID IS NOT NULL;</property>
                           dataType="i4"
                           name="VendedorID" />
                         <externalMetadataColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[NombreCompleto]"
                           dataType="wstr"
-                          length="50"
+                          length="101"
+                          name="NombreCompleto" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[CiudadID]"
+                          dataType="i4"
+                          name="CiudadID" />
+                        <externalMetadataColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[Cargo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="38"
                           name="Cargo" />
                         <externalMetadataColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[EsAsalariado]"
-                          dataType="bool"
-                          name="EsAsalariado" />
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[TipoContrato]"
+                          codePage="1252"
+                          dataType="str"
+                          length="13"
+                          name="TipoContrato" />
                         <externalMetadataColumn
                           refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[PorcentajeComision]"
                           dataType="cy"
@@ -2986,14 +3472,9 @@ WHERE a.AddressID IS NOT NULL;</property>
                           length="2"
                           name="Tipo" />
                         <externalMetadataColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[CiudadID]"
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
                           dataType="i4"
-                          name="CiudadID" />
-                        <externalMetadataColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Output].ExternalColumns[NombreCompleto]"
-                          dataType="wstr"
-                          length="101"
-                          name="NombreCompleto" />
+                          name="TerritorioID" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -3019,15 +3500,18 @@ WHERE a.AddressID IS NOT NULL;</property>
                           name="CiudadID" />
                         <outputColumn
                           refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[Cargo]"
-                          dataType="wstr"
-                          length="50"
+                          codePage="1252"
+                          dataType="str"
+                          length="38"
                           lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[Cargo]"
                           name="Cargo" />
                         <outputColumn
-                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[EsAsalariado]"
-                          dataType="bool"
-                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[EsAsalariado]"
-                          name="EsAsalariado" />
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[TipoContrato]"
+                          codePage="1252"
+                          dataType="str"
+                          length="13"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[TipoContrato]"
+                          name="TipoContrato" />
                         <outputColumn
                           refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[PorcentajeComision]"
                           dataType="cy"
@@ -3039,6 +3523,11 @@ WHERE a.AddressID IS NOT NULL;</property>
                           length="2"
                           lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[Tipo]"
                           name="Tipo" />
+                        <outputColumn
+                          refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[TerritorioID]"
+                          dataType="i4"
+                          lineageId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[TerritorioID]"
+                          name="TerritorioID" />
                         <outputColumn
                           refId="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
@@ -3086,7 +3575,7 @@ WHERE a.AddressID IS NOT NULL;</property>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}"
-              SQLTask:SqlStatementSource="-- Insertar registros en dimTiempo&#xA;WITH FechaSerie AS (&#xA;    SELECT CAST('2011-05-31' AS DATE) AS Fecha&#xA;    UNION ALL&#xA;    SELECT DATEADD(DAY, 1, Fecha)&#xA;    FROM FechaSerie&#xA;    WHERE Fecha &lt; '2014-06-30'&#xA;)&#xA;INSERT INTO dimTiempo (FechaID, Año, Mes, NumeroMes, Trimestre)&#xA;SELECT &#xA;    CONVERT(INT, FORMAT(Fecha, 'yyyyMMdd')) AS FechaId,&#xA;    DATEPART(YEAR, Fecha) AS Año,&#xA;    DATENAME(MONTH, Fecha) AS Mes,&#xA;    DATEPART(MONTH, Fecha) AS NumeroMes,&#xA;    DATEPART(QUARTER, Fecha) AS Trimestre&#xA;FROM FechaSerie&#xA;OPTION (MAXRECURSION 32767);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="SET LANGUAGE Spanish;&#xA;&#xA;DECLARE @f DATE = '2011-01-01'; &#xA;DECLARE @idTiempo INT;&#xA;DECLARE @anio INT; &#xA;DECLARE @trimestre VARCHAR(20); &#xA;DECLARE @semestre VARCHAR(20); &#xA;DECLARE @mes VARCHAR(20);&#xA;DECLARE @numeroMes INT;&#xA;DECLARE @numeroDia INT;&#xA;DECLARE @nombreDia NVARCHAR(20);&#xA;DECLARE @numTrimestre INT;&#xA;&#xA;WHILE(@f &lt;= '2014-12-31')&#xA;BEGIN&#xA;    SET @idTiempo = CONVERT(INT, FORMAT(@f, 'yyyyMMdd'));&#xA;    SET @anio = YEAR(@f);&#xA;    SET @mes = DATENAME(MONTH, @f);&#xA;    SET @numeroMes = MONTH(@f);&#xA;    SET @numeroDia = DAY(@f);&#xA;    SET @nombreDia = DATENAME(WEEKDAY, @f);&#xA;    SET @numTrimestre = DATEPART(QUARTER, @f);&#xA;&#xA;    -- Nombre del Trimestre&#xA;    SET @trimestre = &#xA;        CASE @numTrimestre&#xA;            WHEN 1 THEN '1er Trimestre'&#xA;            WHEN 2 THEN '2do Trimestre'&#xA;            WHEN 3 THEN '3er Trimestre'&#xA;            WHEN 4 THEN '4to Trimestre'&#xA;        END;&#xA;&#xA;    -- Nombre del Semestre&#xA;    SET @semestre = &#xA;        CASE &#xA;            WHEN @numeroMes BETWEEN 1 AND 6 THEN '1er Semestre'&#xA;            ELSE '2do Semestre'&#xA;        END;&#xA;&#xA;    INSERT INTO dimTiempo (&#xA;        FechaID, FechaCompleta, Año, Mes, NumeroMes, Trimestre,&#xA;        NombreTrimestre, NombreSemestre, NumeroDia, NombreDia&#xA;    )&#xA;    VALUES (&#xA;        @idTiempo, @f, @anio, @mes, @numeroMes, @numTrimestre,&#xA;        @trimestre, @semestre, @numeroDia, @nombreDia&#xA;    );&#xA;&#xA;    SET @f = DATEADD(DAY, 1, @f);&#xA;END&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -3220,17 +3709,23 @@ WHERE a.AddressID IS NOT NULL;</property>
                       externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[PrecioUnitario]"
                       lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]" />
                     <inputColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].Columns[Cantidad]"
-                      cachedDataType="i2"
-                      cachedName="Cantidad"
-                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
-                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[Cantidad]" />
-                    <inputColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].Columns[FechaID]"
                       cachedDataType="i4"
-                      cachedName="ProductID"
+                      cachedName="FechaID"
+                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[FechaID]"
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[FechaID]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].Columns[CantidadUnidadesProducto]"
+                      cachedDataType="i2"
+                      cachedName="CantidadUnidadesProducto"
+                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[CantidadUnidadesProducto]"
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[CantidadUnidadesProducto]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].Columns[ProductoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductoID"
                       externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[ProductoID]"
-                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[ProductoID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3247,6 +3742,10 @@ WHERE a.AddressID IS NOT NULL;</property>
                       dataType="i4"
                       name="OrdenID" />
                     <externalMetadataColumn
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[FechaID]"
+                      dataType="i4"
+                      name="FechaID" />
+                    <externalMetadataColumn
                       refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[PrecioLista]"
                       dataType="numeric"
                       name="PrecioLista"
@@ -3259,15 +3758,21 @@ WHERE a.AddressID IS NOT NULL;</property>
                       precision="10"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
-                      dataType="i4"
-                      name="Cantidad" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[TotalDiferencia]"
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[DiferenciaUnitario]"
                       dataType="numeric"
-                      name="TotalDiferencia"
+                      name="DiferenciaUnitario"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[DiferenciaTotal]"
+                      dataType="numeric"
+                      name="DiferenciaTotal"
                       precision="22"
                       scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas.Inputs[OLE DB Destination Input].ExternalColumns[CantidadUnidadesProducto]"
+                      dataType="i4"
+                      name="CantidadUnidadesProducto" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3322,13 +3827,13 @@ WHERE a.AddressID IS NOT NULL;</property>
                   description="The SQL command to be executed."
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
-    sod.ProductID,
+    sod.ProductID as ProductoID,
     soh.SalesPersonID AS VendedorID,
     sod.SalesOrderID AS OrdenID,
+    CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS FechaID,
     ISNULL(plph.ListPrice, p.ListPrice) AS PrecioLista,
-    sod.UnitPrice AS PrecioUnitario,
-    sod.OrderQty AS Cantidad,
-    (ISNULL(plph.ListPrice, p.ListPrice) - sod.UnitPrice) * sod.OrderQty AS TotalDiferencia
+    sod.UnitPrice * (1 - sod.UnitPriceDiscount) AS PrecioUnitario,
+    sod.OrderQty AS CantidadUnidadesProducto
 FROM Sales.SalesOrderDetail sod
 INNER JOIN Sales.SalesOrderHeader soh
     ON soh.SalesOrderID = sod.SalesOrderID
@@ -3379,15 +3884,6 @@ WHERE soh.SalesPersonID IS NOT NULL
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[ProductID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
-                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[ProductID]"
-                      name="ProductID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[VendedorID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -3424,30 +3920,35 @@ WHERE soh.SalesPersonID IS NOT NULL
                       name="PrecioUnitario"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[Cantidad]"
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[FechaID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[FechaID]"
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[FechaID]"
+                      name="FechaID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[CantidadUnidadesProducto]"
                       dataType="i2"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
-                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[Cantidad]"
-                      name="Cantidad"
+                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[CantidadUnidadesProducto]"
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[CantidadUnidadesProducto]"
+                      name="CantidadUnidadesProducto"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[TotalDiferencia]"
-                      dataType="cy"
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[ProductoID]"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[TotalDiferencia]"
-                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[TotalDiferencia]"
-                      name="TotalDiferencia"
+                      externalMetadataColumnId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[ProductoID]"
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].Columns[ProductoID]"
+                      name="ProductoID"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
-                      dataType="i4"
-                      name="ProductID" />
                     <externalMetadataColumn
                       refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
                       dataType="i4"
@@ -3465,13 +3966,17 @@ WHERE soh.SalesPersonID IS NOT NULL
                       dataType="cy"
                       name="PrecioUnitario" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
-                      dataType="i2"
-                      name="Cantidad" />
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[FechaID]"
+                      dataType="i4"
+                      name="FechaID" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[TotalDiferencia]"
-                      dataType="cy"
-                      name="TotalDiferencia" />
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[CantidadUnidadesProducto]"
+                      dataType="i2"
+                      name="CantidadUnidadesProducto" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Output].ExternalColumns[ProductoID]"
+                      dataType="i4"
+                      name="ProductoID" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -3480,10 +3985,10 @@ WHERE soh.SalesPersonID IS NOT NULL
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[ProductoID]"
                       dataType="i4"
-                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[ProductID]"
-                      name="ProductID" />
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[ProductoID]"
+                      name="ProductoID" />
                     <outputColumn
                       refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
                       dataType="i4"
@@ -3495,6 +4000,11 @@ WHERE soh.SalesPersonID IS NOT NULL
                       lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[OrdenID]"
                       name="OrdenID" />
                     <outputColumn
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[FechaID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[FechaID]"
+                      name="FechaID" />
+                    <outputColumn
                       refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[PrecioLista]"
                       dataType="cy"
                       lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[PrecioLista]"
@@ -3505,15 +4015,10 @@ WHERE soh.SalesPersonID IS NOT NULL
                       lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
                       name="PrecioUnitario" />
                     <outputColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
+                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[CantidadUnidadesProducto]"
                       dataType="i2"
-                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
-                      name="Cantidad" />
-                    <outputColumn
-                      refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[TotalDiferencia]"
-                      dataType="cy"
-                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[TotalDiferencia]"
-                      name="TotalDiferencia" />
+                      lineageId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[CantidadUnidadesProducto]"
+                      name="CantidadUnidadesProducto" />
                     <outputColumn
                       refId="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -3572,7 +4077,7 @@ WHERE soh.SalesPersonID IS NOT NULL
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[factVentasMonedas]</property>
+                  name="OpenRowset">[dbo].[FactVentasMonedas]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -3648,12 +4153,6 @@ WHERE soh.SalesPersonID IS NOT NULL
                       externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[FechaID]"
                       lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[FechaID]" />
                     <inputColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[Cantidad]"
-                      cachedDataType="i2"
-                      cachedName="Cantidad"
-                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
-                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[Cantidad]" />
-                    <inputColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[PrecioUnitario]"
                       cachedDataType="cy"
                       cachedName="PrecioUnitario"
@@ -3666,11 +4165,17 @@ WHERE soh.SalesPersonID IS NOT NULL
                       externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[TasaCambioPromedio]"
                       lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TasaCambioPromedio]" />
                     <inputColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[OrdenID]"
                       cachedDataType="i4"
-                      cachedName="TerritoryID"
-                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
-                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
+                      cachedName="OrdenID"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[OrdenID]" />
+                    <inputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].Columns[CantidadUnidadesVendidas]"
+                      cachedDataType="i2"
+                      cachedName="CantidadUnidadesVendidas"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[CantidadUnidadesVendidas]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[CantidadUnidadesVendidas]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3680,9 +4185,9 @@ WHERE soh.SalesPersonID IS NOT NULL
                       length="3"
                       name="MonedaID" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[TerritorioID]"
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[OrdenID]"
                       dataType="i4"
-                      name="TerritorioID" />
+                      name="OrdenID" />
                     <externalMetadataColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
                       dataType="i4"
@@ -3691,10 +4196,6 @@ WHERE soh.SalesPersonID IS NOT NULL
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[FechaID]"
                       dataType="i4"
                       name="FechaID" />
-                    <externalMetadataColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
-                      dataType="i4"
-                      name="Cantidad" />
                     <externalMetadataColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[PrecioUnitario]"
                       dataType="numeric"
@@ -3713,6 +4214,10 @@ WHERE soh.SalesPersonID IS NOT NULL
                       name="VentaMoneda"
                       precision="32"
                       scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas.Inputs[OLE DB Destination Input].ExternalColumns[CantidadUnidadesVendidas]"
+                      dataType="i4"
+                      name="CantidadUnidadesVendidas" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3766,25 +4271,22 @@ WHERE soh.SalesPersonID IS NOT NULL
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
-    cr.ToCurrencyCode AS MonedaID,
-    soh.TerritoryID,
-    soh.SalesPersonID AS VendedorID,
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    sod.SalesOrderDetailID AS VentaID,
     CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS FechaID,
-    SUM(sod.OrderQty) AS Cantidad,
-    AVG(sod.UnitPrice) AS PrecioUnitario,
-    AVG(cr.AverageRate) AS TasaCambioPromedio
+    soh.SalesOrderID AS OrdenID,
+    ISNULL(cr.ToCurrencyCode, 'USD') AS MonedaID,
+    soh.SalesPersonID AS VendedorID,
+    sod.OrderQty AS CantidadUnidadesVendidas,
+    sod.UnitPrice * (1 - sod.UnitPriceDiscount) AS PrecioUnitario,
+    ISNULL(cr.AverageRate, 1.0) AS TasaCambioPromedio,
+    (sod.OrderQty * sod.UnitPrice * ISNULL(cr.AverageRate, 1.0)) AS VentaMoneda
 FROM Sales.SalesOrderHeader soh
-INNER JOIN Sales.SalesOrderDetail sod
+JOIN Sales.SalesOrderDetail sod 
     ON soh.SalesOrderID = sod.SalesOrderID
-INNER JOIN Sales.CurrencyRate cr
+LEFT JOIN Sales.CurrencyRate cr 
     ON soh.CurrencyRateID = cr.CurrencyRateID
-WHERE soh.SalesPersonID IS NOT NULL
-GROUP BY
-    cr.ToCurrencyCode,
-    soh.TerritoryID,
-    soh.SalesPersonID,
-    soh.OrderDate</property>
+WHERE soh.SalesPersonID IS NOT NULL;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -3831,15 +4333,6 @@ GROUP BY
                       name="MonedaID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TerritoryID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
-                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TerritoryID]"
-                      name="TerritoryID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[VendedorID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -3856,15 +4349,6 @@ GROUP BY
                       externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[FechaID]"
                       lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[FechaID]"
                       name="FechaID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[Cantidad]"
-                      dataType="i2"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
-                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[Cantidad]"
-                      name="Cantidad"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
@@ -3884,6 +4368,42 @@ GROUP BY
                       lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[TasaCambioPromedio]"
                       name="TasaCambioPromedio"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[VentaID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[VentaID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[VentaID]"
+                      name="VentaID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[VentaMoneda]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[VentaMoneda]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[VentaMoneda]"
+                      name="VentaMoneda"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[OrdenID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[OrdenID]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[OrdenID]"
+                      name="OrdenID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[CantidadUnidadesVendidas]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[CantidadUnidadesVendidas]"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].Columns[CantidadUnidadesVendidas]"
+                      name="CantidadUnidadesVendidas"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3893,10 +4413,6 @@ GROUP BY
                       length="3"
                       name="MonedaID" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
-                      dataType="i4"
-                      name="TerritoryID" />
-                    <externalMetadataColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
                       dataType="i4"
                       name="VendedorID" />
@@ -3905,10 +4421,6 @@ GROUP BY
                       dataType="i4"
                       name="FechaID" />
                     <externalMetadataColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
-                      dataType="i4"
-                      name="Cantidad" />
-                    <externalMetadataColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
                       dataType="cy"
                       name="PrecioUnitario" />
@@ -3916,6 +4428,22 @@ GROUP BY
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[TasaCambioPromedio]"
                       dataType="cy"
                       name="TasaCambioPromedio" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[VentaID]"
+                      dataType="i4"
+                      name="VentaID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[VentaMoneda]"
+                      dataType="cy"
+                      name="VentaMoneda" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[OrdenID]"
+                      dataType="i4"
+                      name="OrdenID" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Output].ExternalColumns[CantidadUnidadesVendidas]"
+                      dataType="i2"
+                      name="CantidadUnidadesVendidas" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -3924,16 +4452,21 @@ GROUP BY
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[VentaID]"
+                      name="VentaID" />
+                    <outputColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
                       dataType="wstr"
                       length="3"
                       lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[MonedaID]"
                       name="MonedaID" />
                     <outputColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[OrdenID]"
                       dataType="i4"
-                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
-                      name="TerritoryID" />
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[OrdenID]"
+                      name="OrdenID" />
                     <outputColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
                       dataType="i4"
@@ -3945,10 +4478,10 @@ GROUP BY
                       lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[FechaID]"
                       name="FechaID" />
                     <outputColumn
-                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
-                      dataType="i4"
-                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
-                      name="Cantidad" />
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[CantidadUnidadesVendidas]"
+                      dataType="i2"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[CantidadUnidadesVendidas]"
+                      name="CantidadUnidadesVendidas" />
                     <outputColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
                       dataType="cy"
@@ -3959,6 +4492,11 @@ GROUP BY
                       dataType="cy"
                       lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[TasaCambioPromedio]"
                       name="TasaCambioPromedio" />
+                    <outputColumn
+                      refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[VentaMoneda]"
+                      dataType="cy"
+                      lineageId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[VentaMoneda]"
+                      name="VentaMoneda" />
                     <outputColumn
                       refId="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -4173,7 +4711,7 @@ GROUP BY
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     soh.SalesOrderID AS OrdenID,
-    soh.SalesPersonID AS VendedorID,
+    ISNULL(soh.SalesPersonID, -1) AS VendedorID,  -- Vendedor ficticio si no existe
     CONVERT(INT, FORMAT(soh.OrderDate, 'yyyyMMdd')) AS FechaID,
     soh.TotalDue AS TotalOrden
 FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
@@ -4505,7 +5043,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           HeaderHeight="43.2"
           IsExpanded="False"
           PanelSize="256,320"
-          Size="256,43.2"
+          Size="210.4,43.2"
           Id="Package\Población de Geografía"
           TopLeft="187.857143257041,123.882352832589" />
         <NodeLayout
@@ -4530,30 +5068,30 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           TopLeft="25.6000008940705,11.6117644706079" />
         <EdgeLayout
           Id="Package\Poblar Dimensiones Compartidas.PrecedenceConstraints[Constraint]"
-          TopLeft="108.00000089407,53.2117644706079">
+          TopLeft="108.000000894071,53.2117644706079">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="105.514285907392,44.1058823549532"
+              EndConnector="78.1809525740592,44.1058823549532"
               Start="0,0"
-              End="105.514285907392,36.6058823549532">
+              End="78.1809525740592,36.6058823549532">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.0529411774766" />
+                    End="0,22.2196259160782" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,18.0529411774766"
-                    Point2="0,22.0529411774766"
-                    Point3="4,22.0529411774766" />
+                    Point1="0,22.2196259160782"
+                    Point2="0,26.2196259160782"
+                    Point3="4,26.2196259160782" />
                   <mssgle:LineSegment
-                    End="101.514285907392,22.0529411774766" />
+                    End="74.1809525740592,26.2196259160782" />
                   <mssgle:CubicBezierSegment
-                    Point1="101.514285907392,22.0529411774766"
-                    Point2="105.514285907392,22.0529411774766"
-                    Point3="105.514285907392,26.0529411774766" />
+                    Point1="74.1809525740592,26.2196259160782"
+                    Point2="78.1809525740592,26.2196259160782"
+                    Point3="78.1809525740592,30.2196259160782" />
                   <mssgle:LineSegment
-                    End="105.514285907392,36.6058823549532" />
+                    End="78.1809525740592,36.6058823549532" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4598,9 +5136,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43.2"
-          IsExpanded="True"
+          IsExpanded="False"
           PanelSize="437.6,223.2"
-          Size="437.6,266.4"
+          Size="256.8,43.2"
           Id="Package\Poblar Dimensiones Compartidas"
           TopLeft="327.857143555064,230.176470386477" />
         <NodeLayout
@@ -4745,9 +5283,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-175.285714816378,50.1647058019178"
+              EndConnector="-198.085714816378,50.1647058019178"
               Start="0,0"
-              End="-175.285714816378,42.6647058019178">
+              End="-198.085714816378,42.6647058019178">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -4758,13 +5296,13 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
                     Point2="0,17.1448994512884"
                     Point3="-4,17.1448994512884" />
                   <mssgle:LineSegment
-                    End="-171.285714816378,17.1448994512884" />
+                    End="-194.085714816378,17.1448994512884" />
                   <mssgle:CubicBezierSegment
-                    Point1="-171.285714816378,17.1448994512884"
-                    Point2="-175.285714816378,17.1448994512884"
-                    Point3="-175.285714816378,21.1448994512884" />
+                    Point1="-194.085714816378,17.1448994512884"
+                    Point2="-198.085714816378,17.1448994512884"
+                    Point3="-198.085714816378,21.1448994512884" />
                   <mssgle:LineSegment
-                    End="-175.285714816378,42.6647058019178" />
+                    End="-198.085714816378,42.6647058019178" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4775,18 +5313,30 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="545.271429403916,169.19999997721">
+          TopLeft="543.885715252769,169.19999997721">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.976470409267"
+              EndConnector="-87.628571697705,60.976470409267"
               Start="0,0"
-              End="0,53.476470409267">
+              End="-87.628571697705,53.476470409267">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.476470409267" />
+                    End="0,26.4882352046335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.4882352046335"
+                    Point2="0,30.4882352046335"
+                    Point3="-4,30.4882352046335" />
+                  <mssgle:LineSegment
+                    End="-83.628571697705,30.4882352046335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-83.628571697705,30.4882352046335"
+                    Point2="-87.628571697705,30.4882352046335"
+                    Point3="-87.628571697705,34.4882352046335" />
+                  <mssgle:LineSegment
+                    End="-87.628571697705,53.476470409267" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4797,30 +5347,30 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="315.857143257041,167.082352832589">
+          TopLeft="293.057143257041,167.082352832589">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="123.400000298023,63.0941175538879"
+              EndConnector="101.000000298023,63.0941175538879"
               Start="0,0"
-              End="123.400000298023,55.5941175538879">
+              End="101.000000298023,55.5941175538879">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.8079737152958" />
+                    End="0,37.6304454980432" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,37.8079737152958"
-                    Point2="0,41.8079737152958"
-                    Point3="4,41.8079737152958" />
+                    Point1="0,37.6304454980432"
+                    Point2="0,41.6304454980432"
+                    Point3="4,41.6304454980432" />
                   <mssgle:LineSegment
-                    End="119.400000298023,41.8079737152958" />
+                    End="97.0000002980231,41.6304454980432" />
                   <mssgle:CubicBezierSegment
-                    Point1="119.400000298023,41.8079737152958"
-                    Point2="123.400000298023,41.8079737152958"
-                    Point3="123.400000298023,45.8079737152958" />
+                    Point1="97.0000002980231,41.6304454980432"
+                    Point2="101.000000298023,41.6304454980432"
+                    Point3="101.000000298023,45.6304454980432" />
                   <mssgle:LineSegment
-                    End="123.400000298023,55.5941175538879" />
+                    End="101.000000298023,55.5941175538879" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4835,26 +5385,26 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-76.8571435337769,61.670588054315"
+              EndConnector="-212.457143533777,61.670588054315"
               Start="0,0"
-              End="-76.8571435337769,54.170588054315">
+              End="-212.457143533777,54.170588054315">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.8647021995279" />
+                    End="0,36.6911793739673" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,36.8647021995279"
-                    Point2="0,40.8647021995279"
-                    Point3="-4,40.8647021995279" />
+                    Point1="0,36.6911793739673"
+                    Point2="0,40.6911793739673"
+                    Point3="-4,40.6911793739673" />
                   <mssgle:LineSegment
-                    End="-72.8571435337769,40.8647021995279" />
+                    End="-208.457143533777,40.6911793739673" />
                   <mssgle:CubicBezierSegment
-                    Point1="-72.8571435337769,40.8647021995279"
-                    Point2="-76.8571435337769,40.8647021995279"
-                    Point3="-76.8571435337769,44.8647021995279" />
+                    Point1="-208.457143533777,40.6911793739673"
+                    Point2="-212.457143533777,40.6911793739673"
+                    Point3="-212.457143533777,44.6911793739673" />
                   <mssgle:LineSegment
-                    End="-76.8571435337769,54.170588054315" />
+                    End="-212.457143533777,54.170588054315" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4865,18 +5415,30 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="544.700000814242,496.576470386477">
+          TopLeft="456.257143555064,273.376470386477">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-162.505882354953"
+              EndConnector="86.4857145183549,60.694117645047"
               Start="0,0"
-              End="0,-155.005882354953">
+              End="86.4857145183549,53.194117645047">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-155.005882354953" />
+                    End="0,26.3470588225235" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.3470588225235"
+                    Point2="0,30.3470588225235"
+                    Point3="4,30.3470588225235" />
+                  <mssgle:LineSegment
+                    End="82.4857145183549,30.3470588225235" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82.4857145183549,30.3470588225235"
+                    Point2="86.4857145183549,30.3470588225235"
+                    Point3="86.4857145183549,34.3470588225235" />
+                  <mssgle:LineSegment
+                    End="86.4857145183549,53.194117645047" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4887,24 +5449,30 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="327.857143555064,363.376470386477">
+          TopLeft="394.057143555064,273.376470386477">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-57.0000003512411,-27.776470591587"
+              EndConnector="-123.200000351241,62.223529408413"
               Start="0,0"
-              End="-57.0000003512411,-20.276470591587">
+              End="-123.200000351241,54.723529408413">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-53.0000003512411,0" />
+                    End="0,17.1675110320501" />
                   <mssgle:CubicBezierSegment
-                    Point1="-53.0000003512411,0"
-                    Point2="-57.0000003512411,0"
-                    Point3="-57.0000003512411,-4" />
+                    Point1="0,17.1675110320501"
+                    Point2="0,21.1675110320501"
+                    Point3="-4,21.1675110320501" />
                   <mssgle:LineSegment
-                    End="-57.0000003512411,-20.276470591587" />
+                    End="-119.200000351241,21.1675110320501" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-119.200000351241,21.1675110320501"
+                    Point2="-123.200000351241,21.1675110320501"
+                    Point3="-123.200000351241,25.1675110320501" />
+                  <mssgle:LineSegment
+                    End="-123.200000351241,54.723529408413" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4915,24 +5483,30 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="765.457143555064,350.111764504794">
+          TopLeft="518.457143555064,273.376470386477">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="84.6666675394487,22.5"
+              EndConnector="304.600000872782,57.635294118317"
               Start="0,0"
-              End="84.6666675394487,15">
+              End="304.600000872782,50.135294118317">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="80.6666675394487,0" />
+                    End="0,15.6066622334665" />
                   <mssgle:CubicBezierSegment
-                    Point1="80.6666675394487,0"
-                    Point2="84.6666675394487,0"
-                    Point3="84.6666675394487,4" />
+                    Point1="0,15.6066622334665"
+                    Point2="0,19.6066622334665"
+                    Point3="4,19.6066622334665" />
                   <mssgle:LineSegment
-                    End="84.6666675394487,15" />
+                    End="300.600000872782,19.6066622334665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="300.600000872782,19.6066622334665"
+                    Point2="304.600000872782,19.6066622334665"
+                    Point3="304.600000872782,23.6066622334665" />
+                  <mssgle:LineSegment
+                    End="304.600000872782,50.135294118317" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4974,7 +5548,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Población de Geografía\Poblar Dim Ciudades">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="195.2,41.6"
           Id="Package\Población de Geografía\Poblar Dim Ciudades\OLE DB Source Ciudades"
@@ -5002,9 +5576,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5153,29 +5725,79 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Población de Geografía\Poblar Dim Territorios">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="200.8,41.6"
-          Id="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios"
-          TopLeft="570.999991491437,161.999997586012" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="221.6,41.6"
           Id="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios"
-          TopLeft="560.999991640449,319.999995231628" />
+          TopLeft="173.499990815563,292.279407020632" />
+        <NodeLayout
+          Size="200.8,41.6"
+          Id="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios"
+          TopLeft="186.999997213483,132.999998018146" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Población de Geografía\Poblar Dim Territorios\Derived Column"
+          TopLeft="455.999993205071,240.99999640882" />
         <EdgeLayout
           Id="Package\Población de Geografía\Poblar Dim Territorios.Paths[OLE DB Source Output]"
-          TopLeft="671.599991565943,203.599997586012">
+          TopLeft="287.399997213483,174.599998018146">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,116.399997645616"
+              EndConnector="244.999995991588,66.3999983906746"
               Start="0,0"
-              End="0,108.899997645616">
+              End="244.999995991588,58.8999983906746">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,108.899997645616" />
+                    End="0,29.1999991953373" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.1999991953373"
+                    Point2="0,33.1999991953373"
+                    Point3="4,33.1999991953373" />
+                  <mssgle:LineSegment
+                    End="240.999995991588,33.1999991953373" />
+                  <mssgle:CubicBezierSegment
+                    Point1="240.999995991588,33.1999991953373"
+                    Point2="244.999995991588,33.1999991953373"
+                    Point3="244.999995991588,37.1999991953373" />
+                  <mssgle:LineSegment
+                    End="244.999995991588,58.8999983906746" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Población de Geografía\Poblar Dim Territorios.Paths[Derived Column Output]"
+          TopLeft="455.999993205071,261.79999640882">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-60.9000023895077,51.2794106118118"
+              Start="0,0"
+              End="-53.4000023895077,51.2794106118118">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-26.4500011947538,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-26.4500011947538,0"
+                    Point2="-30.4500011947538,0"
+                    Point3="-30.4500011947538,4" />
+                  <mssgle:LineSegment
+                    End="-30.4500011947538,47.2794106118118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-30.4500011947538,47.2794106118118"
+                    Point2="-30.4500011947538,51.2794106118118"
+                    Point3="-34.4500011947538,51.2794106118118" />
+                  <mssgle:LineSegment
+                    End="-53.4000023895077,51.2794106118118" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5187,11 +5809,24 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Poblar Dim Moneda">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="189.6,41.6"
           Id="Package\Poblar Dim Moneda\OLE DB Source Moneda"
@@ -5208,52 +5843,12 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
               StartConnector="{assembly:Null}"
               EndConnector="0,102.164705756338"
               Start="0,0"
-              End="0,94.6647057563376">
+              End="0,94.6647057563378">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,94.6647057563376" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Poblar Dim Productos">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="199.2,41.6"
-          Id="Package\Poblar Dim Productos\OLE DB Source Productos"
-          TopLeft="407.857143725364,62.7058822979771" />
-        <NodeLayout
-          Size="220,41.6"
-          Id="Package\Poblar Dim Productos\OLE DB Destination Productos"
-          TopLeft="403.571429430526,177.411764550374" />
-        <EdgeLayout
-          Id="Package\Poblar Dim Productos.Paths[OLE DB Source Output]"
-          TopLeft="510.514286577945,104.305882297977">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,73.105882252397"
-              Start="0,0"
-              End="0,65.605882252397">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,65.605882252397" />
+                    End="0,94.6647057563378" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5265,6 +5860,115 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <TaskHost
+    design-time-name="Package\Poblar Dim Productos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\Poblar Dim Productos\OLE DB Destination Productos"
+          TopLeft="403.571429430526,177.411764550374" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Poblar Dim Productos\Derived Column"
+          TopLeft="689.999989718199,128.99999807775" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Poblar Dim Productos\OLE DB Source Productos"
+          TopLeft="407.857143725364,62.7058822979771" />
+        <EdgeLayout
+          Id="Package\Poblar Dim Productos.Paths[OLE DB Source Output]"
+          TopLeft="507.457143725364,104.305882297977">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="258.942845992835,24.6941157797731"
+              Start="0,0"
+              End="258.942845992835,17.1941157797731">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.34705788988656" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.34705788988656"
+                    Point2="0,12.3470578898866"
+                    Point3="4,12.3470578898866" />
+                  <mssgle:LineSegment
+                    End="254.942845992835,12.3470578898866" />
+                  <mssgle:CubicBezierSegment
+                    Point1="254.942845992835,12.3470578898866"
+                    Point2="258.942845992835,12.3470578898866"
+                    Point3="258.942845992835,16.3470578898866" />
+                  <mssgle:LineSegment
+                    End="258.942845992835,17.1941157797731" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Poblar Dim Productos.Paths[Derived Column Output]"
+          TopLeft="689.999989718199,149.79999807775">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-66.4285602876729,48.4117664726238"
+              Start="0,0"
+              End="-58.9285602876729,48.4117664726238">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-29.2142801438364,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.2142801438364,0"
+                    Point2="-33.2142801438364,0"
+                    Point3="-33.2142801438364,4" />
+                  <mssgle:LineSegment
+                    End="-33.2142801438364,44.4117664726238" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-33.2142801438364,44.4117664726238"
+                    Point2="-33.2142801438364,48.4117664726238"
+                    Point3="-37.2142801438364,48.4117664726238" />
+                  <mssgle:LineSegment
+                    End="-58.9285602876729,48.4117664726238" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Productos\OLE DB Destination Productos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dim Productos\OLE DB Source Productos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Poblar Dimensiones Compartidas\Poblar Dim Ordenes">
     <LayoutInfo>
@@ -5384,43 +6088,39 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="228.8,41.6"
-          Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores"
-          TopLeft="176.000000357628,239.941175769408" />
-        <NodeLayout
           Size="152.8,41.6"
           Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\Derived Column"
-          TopLeft="514.999992325902,162.999997571111" />
+          TopLeft="491.999992668629,170.999997451901" />
         <NodeLayout
-          Size="208,41.6"
-          Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores"
-          TopLeft="190.00000040446,85.6470587484564" />
+          Size="228.8,41.6"
+          Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Destination Vendedores"
+          TopLeft="167.999997496605,234.999996498227" />
         <EdgeLayout
-          Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores.Paths[OLE DB Source Output]"
-          TopLeft="294.00000040446,127.247058748456">
+          Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores.Paths[Derived Column Output]"
+          TopLeft="491.999992668629,191.799997451901">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="297.399991921442,35.7529388226543"
+              EndConnector="-95.199995172024,63.999999046326"
               Start="0,0"
-              End="297.399991921442,28.2529388226543">
+              End="-87.699995172024,63.999999046326">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.8764694113272" />
+                    End="-43.599997586012,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.8764694113272"
-                    Point2="0,17.8764694113272"
-                    Point3="4,17.8764694113272" />
+                    Point1="-43.599997586012,0"
+                    Point2="-47.599997586012,0"
+                    Point3="-47.599997586012,4" />
                   <mssgle:LineSegment
-                    End="293.399991921442,17.8764694113272" />
+                    End="-47.599997586012,59.999999046326" />
                   <mssgle:CubicBezierSegment
-                    Point1="293.399991921442,17.8764694113272"
-                    Point2="297.399991921442,17.8764694113272"
-                    Point3="297.399991921442,21.8764694113272" />
+                    Point1="-47.599997586012,59.999999046326"
+                    Point2="-47.599997586012,63.999999046326"
+                    Point3="-51.599997586012,63.999999046326" />
                   <mssgle:LineSegment
-                    End="297.399991921442,28.2529388226543" />
+                    End="-87.699995172024,63.999999046326" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5429,32 +6129,36 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores"
+          TopLeft="200.999997004867,56.9999991506338" />
         <EdgeLayout
-          Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores.Paths[Derived Column Output]"
-          TopLeft="591.399992325902,204.599997571111">
+          Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores.Paths[OLE DB Source Output]"
+          TopLeft="304.999997004867,98.5999991506338">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-300.999991968274,35.3411781982976"
+              EndConnector="263.399995663762,72.3999983012672"
               Start="0,0"
-              End="-300.999991968274,27.8411781982976">
+              End="263.399995663762,64.8999983012672">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.6705890991488" />
+                    End="0,32.1999991506336" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.6705890991488"
-                    Point2="0,17.6705890991488"
-                    Point3="-4,17.6705890991488" />
+                    Point1="0,32.1999991506336"
+                    Point2="0,36.1999991506336"
+                    Point3="4,36.1999991506336" />
                   <mssgle:LineSegment
-                    End="-296.999991968274,17.6705890991488" />
+                    End="259.399995663762,36.1999991506336" />
                   <mssgle:CubicBezierSegment
-                    Point1="-296.999991968274,17.6705890991488"
-                    Point2="-300.999991968274,17.6705890991488"
-                    Point3="-300.999991968274,21.6705890991488" />
+                    Point1="259.399995663762,36.1999991506336"
+                    Point2="263.399995663762,36.1999991506336"
+                    Point3="263.399995663762,40.1999991506336" />
                   <mssgle:LineSegment
-                    End="-300.999991968274,27.8411781982976" />
+                    End="263.399995663762,64.8999983012672" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5476,14 +6180,6 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -5525,6 +6221,19 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Poblar Fact Diferencia Ventas\OLE DB Source Fact Diferencia Ventas">
     <Properties>
@@ -5571,6 +6280,19 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Fact Ventas Monedas\OLE DB Destination Fact Monedas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas">
     <Properties>
@@ -5632,6 +6354,22 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Poblar FactOrdenes\OLE DB Source Fact Ordenes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Source Territorios">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

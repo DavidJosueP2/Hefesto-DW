@@ -243,3 +243,260 @@ Select pro.ProductID from
 AdventureWorks2022.Production.Product as pro
 where pro.ListPrice = 0 or pro.ListPrice is null
 );
+
+
+SELECT COUNT(*) AS VentasConVendedorSinDireccion
+FROM AdventureWorks2022.Sales.SalesOrderHeader AS soh
+JOIN AdventureWorks2022.Sales.SalesPerson AS sp
+    ON soh.SalesPersonID = sp.BusinessEntityID
+LEFT JOIN AdventureWorks2022.Person.BusinessEntityAddress AS bea
+    ON sp.BusinessEntityID = bea.BusinessEntityID
+LEFT JOIN AdventureWorks2022.Person.Address AS a
+    ON bea.AddressID = a.AddressID
+WHERE soh.SalesPersonID IS NOT NULL
+  AND a.AddressID IS NULL;
+
+  SELECT COUNT(*) AS VentasConTerritorioSinDireccion
+FROM AdventureWorks2022.Sales.SalesOrderHeader AS soh
+JOIN AdventureWorks2022.Sales.SalesTerritory AS t
+    ON soh.TerritoryID = t.TerritoryID
+LEFT JOIN AdventureWorks2022.Person.StateProvince AS sp
+    ON t.TerritoryID = sp.TerritoryID
+WHERE soh.TerritoryID IS NOT NULL
+  AND sp.StateProvinceCode IS NULL;
+
+-------------------------------------------------------------------------
+------ Cosas 2da Pregunta ----------
+-------------------------------------------------------------------------
+SELECT 
+    DISTINCT FromCurrencyCode, ToCurrencyCode
+FROM 
+    Sales.CurrencyRate
+WHERE 
+    FromCurrencyCode <> 'USD';
+-- Todas las conversiones registradas en Sales.CurrencyRate tienen como moneda de origen USD.
+-- En Sales.SalesOrderHeader existe el campo CurrencyRateID null cuando no tiene conversión, e id
+-- cuando se dice que la venta tiene una tasa de conversión
+-- No existe converisión de USD a USD
+SELECT 
+    ToCurrencyCode,
+    AVG(AverageRate) AS PromedioTasa,
+    MIN(AverageRate) AS TasaMin,
+    MAX(AverageRate) AS TasaMax,
+    COUNT(*) AS TotalTasas
+FROM Sales.CurrencyRate
+GROUP BY ToCurrencyCode
+ORDER BY PromedioTasa DESC;
+
+SELECT 
+    MonedaID,
+    COUNT(*) AS NumRegistros,
+    AVG(TasaCambioPromedio) AS TasaPromedioCalculada,
+    MIN(TasaCambioPromedio) AS TasaMinima,
+    MAX(TasaCambioPromedio) AS TasaMaxima
+FROM AW_HefestoDW2025.dbo.FactVentasMonedas
+WHERE MonedaID = 'EUR'
+GROUP BY MonedaID;
+
+-------------------------------------------------------------------------
+------ Cosas 3ra Pregunta ----------
+-------------------------------------------------------------------------
+SELECT 
+    soh.SalesOrderID,
+    soh.CurrencyRateID,
+    soh.SubTotal,
+    soh.TaxAmt,
+    soh.Freight,
+    soh.TotalDue,
+    ISNULL((soh.SubTotal + soh.TaxAmt + soh.Freight), 0) AS TotalCalculadoManual,
+    CASE 
+        WHEN ISNULL((soh.SubTotal + soh.TaxAmt + soh.Freight), 0) = soh.TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END AS Comparacion
+FROM Sales.SalesOrderHeader soh
+WHERE soh.CurrencyRateID IS NOT NULL;
+
+SELECT 
+    COUNT(*) AS OrdenesConDiferencia
+FROM Sales.SalesOrderHeader soh
+WHERE soh.CurrencyRateID IS NOT NULL
+  AND ISNULL((soh.SubTotal + soh.TaxAmt + soh.Freight), 0) <> soh.TotalDue;
+
+WITH TotalesPorOrden AS (
+    SELECT 
+        soh.SalesOrderID,
+        soh.CurrencyRateID,
+        soh.TotalDue,
+        soh.TaxAmt,
+        soh.Freight,
+        SUM(sod.LineTotal) AS SubTotalManual
+    FROM Sales.SalesOrderHeader soh
+    JOIN Sales.SalesOrderDetail sod 
+        ON soh.SalesOrderID = sod.SalesOrderID
+    WHERE soh.CurrencyRateID IS NOT NULL
+    GROUP BY 
+        soh.SalesOrderID,
+        soh.CurrencyRateID,
+        soh.TotalDue,
+        soh.TaxAmt,
+        soh.Freight
+)
+SELECT 
+    CASE 
+        WHEN SubTotalManual + TaxAmt + Freight = TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END AS Comparacion,
+    COUNT(*) AS CantidadOrdenes
+FROM TotalesPorOrden
+GROUP BY 
+    CASE 
+        WHEN SubTotalManual + TaxAmt + Freight = TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END;
+
+select COUNT(*)
+from AdventureWorks2022.Sales.SalesOrderHeader;
+
+WITH TotalesUSD AS (
+    SELECT 
+        soh.SalesOrderID,
+        soh.TotalDue,
+        soh.TaxAmt,
+        soh.Freight,
+        SUM(sod.LineTotal) AS SubTotalManual
+    FROM Sales.SalesOrderHeader soh
+    JOIN Sales.SalesOrderDetail sod 
+        ON soh.SalesOrderID = sod.SalesOrderID
+    WHERE soh.CurrencyRateID IS NULL
+    GROUP BY 
+        soh.SalesOrderID,
+        soh.TotalDue,
+        soh.TaxAmt,
+        soh.Freight
+)
+SELECT 
+    CASE 
+        WHEN SubTotalManual + TaxAmt + Freight = TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END AS Comparacion,
+    COUNT(*) AS CantidadOrdenes
+FROM TotalesUSD
+GROUP BY 
+    CASE 
+        WHEN SubTotalManual + TaxAmt + Freight = TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END;
+
+SELECT 
+    CASE 
+        WHEN CurrencyRateID IS NULL THEN 'SIN CurrencyRateID (USD)'
+        ELSE 'CON CurrencyRateID (Moneda extranjera)'
+    END AS TipoOrden,
+    COUNT(*) AS CantidadOrdenes
+FROM Sales.SalesOrderHeader
+GROUP BY 
+    CASE 
+        WHEN CurrencyRateID IS NULL THEN 'SIN CurrencyRateID (USD)'
+        ELSE 'CON CurrencyRateID (Moneda extranjera)'
+    END;
+
+WITH TotalesConDescuento AS (
+    SELECT 
+        soh.SalesOrderID,
+        soh.TotalDue,
+        soh.TaxAmt,
+        soh.Freight,
+        SUM(
+            sod.OrderQty * sod.UnitPrice * (1 - sod.UnitPriceDiscount)
+        ) AS SubTotalCalculado
+    FROM Sales.SalesOrderHeader soh
+    JOIN Sales.SalesOrderDetail sod 
+        ON soh.SalesOrderID = sod.SalesOrderID
+    WHERE soh.CurrencyRateID IS NOT NULL
+    GROUP BY 
+        soh.SalesOrderID,
+        soh.TotalDue,
+        soh.TaxAmt,
+        soh.Freight
+)
+SELECT 
+    CASE 
+        WHEN SubTotalCalculado + TaxAmt + Freight = TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END AS Comparacion,
+    COUNT(*) AS CantidadOrdenes
+FROM TotalesConDescuento
+GROUP BY 
+    CASE 
+        WHEN SubTotalCalculado + TaxAmt + Freight = TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END;
+
+WITH TotalesUSD AS (
+    SELECT 
+        soh.SalesOrderID,
+        soh.TotalDue,
+        soh.TaxAmt,
+        soh.Freight,
+        SUM(
+            sod.OrderQty * sod.UnitPrice * (1 - sod.UnitPriceDiscount)
+        ) AS SubTotalCalculado
+    FROM Sales.SalesOrderHeader soh
+    JOIN Sales.SalesOrderDetail sod 
+        ON soh.SalesOrderID = sod.SalesOrderID
+    WHERE soh.CurrencyRateID IS NULL
+    GROUP BY 
+        soh.SalesOrderID,
+        soh.TotalDue,
+        soh.TaxAmt,
+        soh.Freight
+)
+SELECT 
+    CASE 
+        WHEN SubTotalCalculado + TaxAmt + Freight = TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END AS Comparacion,
+    COUNT(*) AS CantidadOrdenes
+FROM TotalesUSD
+GROUP BY 
+    CASE 
+        WHEN SubTotalCalculado + TaxAmt + Freight = TotalDue THEN 'IGUAL'
+        ELSE 'DIFERENTE'
+    END;
+
+
+---------------- Calculos Iniciales que funcan ----------------------------------
+/*
+The CALCULATE command controls the aggregation of leaf cells in the cube.
+If the CALCULATE command is deleted or modified, the data within the cube is affected.
+You should edit this command only if you manually specify how the cube is aggregated.
+*/
+CALCULATE;
+
+-- Total global de órdenes (sin slicers)
+CREATE MEMBER CURRENTCUBE.[Measures].[Total Ordenes Global]
+AS ([Measures].[Cantidad Ordenes], [Dim Ordenes].[Estado].[All]), VISIBLE = 0;
+
+-- Porcentaje de órdenes por estado
+CREATE MEMBER CURRENTCUBE.[Measures].[% Ordenes por Estado]
+AS 
+IIF(
+  [Measures].[Total Ordenes Global] = 0,
+  NULL,
+  [Measures].[Cantidad Ordenes] / [Measures].[Total Ordenes Global]
+), 
+FORMAT_STRING = "Percent", VISIBLE = 1;
+
+-- Total global de valor
+CREATE MEMBER CURRENTCUBE.[Measures].[Total Valor Global]
+AS ([Measures].[Total Orden], [Dim Ordenes].[Estado].[All]), VISIBLE = 0;
+
+-- Porcentaje de valor por estado
+CREATE MEMBER CURRENTCUBE.[Measures].[% Valor por Estado]
+AS 
+IIF(
+  [Measures].[Total Valor Global] = 0,
+  NULL,
+  [Measures].[Total Orden] / [Measures].[Total Valor Global]
+), 
+FORMAT_STRING = "Percent", VISIBLE = 1;

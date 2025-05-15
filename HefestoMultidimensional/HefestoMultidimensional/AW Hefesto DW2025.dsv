@@ -1,8 +1,8 @@
-﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="a871d5fa-cde8-4523-bca7-c57fb338ae74" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="ef9db492-754d-4903-819a-d4739d85d36a" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>AW Hefesto DW2025</ID>
   <Name>AW Hefesto DW2025</Name>
-  <CreatedTimestamp>0001-01-01T05:00:00Z</CreatedTimestamp>
-  <LastSchemaUpdate>0001-01-01T05:00:00Z</LastSchemaUpdate>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
   <Annotations>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
@@ -14,6 +14,7 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
@@ -27,7 +28,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="56" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5004" scrolltop="528" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="25061" y="16933" backcolor="2632246" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="30" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4356" scrolltop="175" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="25061" y="16214" backcolor="2632246" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
                   </font>
@@ -38,7 +39,7 @@
                 <layoutmanager>
                   <ddsxmlobj />
                 </layoutmanager>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimCiudad" left="5400" top="27135" logicalid="28" controlid="1" masterid="0" hint1="0" hint2="0" width="3000" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimCiudad" left="21385" top="21353" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3000" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobjectstreaminitwrapper binary="000e0000b80b000003090000" />
                   </control>
@@ -49,7 +50,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimEstado" left="0" top="27135" logicalid="29" controlid="2" masterid="0" hint1="0" hint2="0" width="3000" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimEstado" left="20115" top="26653" logicalid="2" controlid="2" masterid="0" hint1="0" hint2="0" width="3000" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobjectstreaminitwrapper binary="000e0000b80b000003090000" />
                   </control>
@@ -60,7 +61,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimMonedas" left="19262" top="6147" logicalid="30" controlid="3" masterid="0" hint1="0" hint2="0" width="3000" height="1588" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimMonedas" left="20" top="10478" logicalid="3" controlid="3" masterid="0" hint1="0" hint2="0" width="3000" height="1588" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobjectstreaminitwrapper binary="000e0000b80b000034060000" />
                   </control>
@@ -71,7 +72,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimOrdenes" left="14117" top="11214" logicalid="31" controlid="4" masterid="0" hint1="0" hint2="0" width="3000" height="3027" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimOrdenes" left="12604" top="9759" logicalid="4" controlid="4" masterid="0" hint1="0" hint2="0" width="3000" height="3027" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobjectstreaminitwrapper binary="000e0000b80b0000d30b0000" />
                   </control>
@@ -82,7 +83,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" left="0" top="31842" logicalid="32" controlid="5" masterid="0" hint1="0" hint2="0" width="3000" height="1588" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimPais" left="25027" top="27014" logicalid="5" controlid="5" masterid="0" hint1="0" hint2="0" width="3000" height="1588" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobjectstreaminitwrapper binary="000e0000b80b000034060000" />
                   </control>
@@ -93,7 +94,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimProductos" left="13945" top="22428" logicalid="33" controlid="6" masterid="0" hint1="0" hint2="0" width="3344" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimProductos" left="30545" top="12472" logicalid="6" controlid="6" masterid="0" hint1="0" hint2="0" width="3344" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobjectstreaminitwrapper binary="000e0000100d000003090000" />
                   </control>
@@ -104,9 +105,9 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimTerritorios" left="19773" top="1079" logicalid="34" controlid="7" masterid="0" hint1="0" hint2="0" width="3000" height="1588" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimTerritorios" left="15270" top="27854" logicalid="7" controlid="7" masterid="0" hint1="0" hint2="0" width="3366" height="2667" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
-                    <ddsxmlobjectstreaminitwrapper binary="000e0000b80b000034060000" />
+                    <ddsxmlobjectstreaminitwrapper binary="000e0000260d00006b0a0000" />
                   </control>
                   <layoutobject>
                     <ddsxmlobj>
@@ -115,9 +116,9 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimTiempo" left="13862" top="6147" logicalid="35" controlid="8" masterid="0" hint1="0" hint2="0" width="3000" height="2667" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimTiempo" left="15250" top="0" logicalid="8" controlid="8" masterid="0" hint1="0" hint2="0" width="3408" height="4466" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
-                    <ddsxmlobjectstreaminitwrapper binary="000e0000b80b00006b0a0000" />
+                    <ddsxmlobjectstreaminitwrapper binary="000e0000500d000072110000" />
                   </control>
                   <layoutobject>
                     <ddsxmlobj>
@@ -126,9 +127,9 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimVendedores" left="2337" top="10674" logicalid="36" controlid="9" masterid="0" hint1="0" hint2="0" width="3725" height="3387" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="dimVendedores" left="15091" top="21707" logicalid="9" controlid="9" masterid="0" hint1="0" hint2="0" width="3725" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
-                    <ddsxmlobjectstreaminitwrapper binary="000e00008d0e00003b0d0000" />
+                    <ddsxmlobjectstreaminitwrapper binary="000e00008d0e0000a30e0000" />
                   </control>
                   <layoutobject>
                     <ddsxmlobj>
@@ -137,9 +138,9 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FactDiferenciaVentas" left="14061" top="16641" logicalid="37" controlid="10" masterid="0" hint1="0" hint2="0" width="4269" height="3387" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FactDiferenciaVentas" left="23404" top="11573" logicalid="10" controlid="10" masterid="0" hint1="0" hint2="0" width="4741" height="4106" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
-                    <ddsxmlobjectstreaminitwrapper binary="000e0000ad1000003b0d0000" />
+                    <ddsxmlobjectstreaminitwrapper binary="000e0000851200000a100000" />
                   </control>
                   <layoutobject>
                     <ddsxmlobj>
@@ -148,7 +149,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FactOrdenes" left="8462" top="6327" logicalid="38" controlid="11" masterid="0" hint1="0" hint2="0" width="3000" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FactOrdenes" left="18004" top="6866" logicalid="11" controlid="11" masterid="0" hint1="0" hint2="0" width="3000" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobjectstreaminitwrapper binary="000e0000b80b000003090000" />
                   </control>
@@ -159,9 +160,9 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FactVentasMonedas" left="13351" top="0" logicalid="39" controlid="12" masterid="0" hint1="0" hint2="0" width="4022" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="FactVentasMonedas" left="5420" top="9399" logicalid="12" controlid="12" masterid="0" hint1="0" hint2="0" width="4784" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
-                    <ddsxmlobjectstreaminitwrapper binary="000e0000b60f0000a30e0000" />
+                    <ddsxmlobjectstreaminitwrapper binary="000e0000b0120000a30e0000" />
                   </control>
                   <layoutobject>
                     <ddsxmlobj>
@@ -170,279 +171,7 @@
                   </layoutobject>
                   <shape groupshapeid="0" groupnode="0" />
                 </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="15612" top="3447" logicalid="40" controlid="13" masterid="0" hint1="0" hint2="0" width="5550" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactVenta__Moned__52593CB8]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="12" sourceattachpoint="4" destattachpoint="9" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="20762" y="6147" />
-                    <point x="20762" y="4947" />
-                    <point x="15912" y="4947" />
-                    <point x="15912" y="3747" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="13863" top="3447" logicalid="41" controlid="14" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactVenta__Fecha__5535A963]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="8" destid="12" sourceattachpoint="0" destattachpoint="3" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="14262" y="6147" />
-                    <point x="14262" y="3747" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="5762" top="1573" logicalid="42" controlid="15" masterid="0" hint1="0" hint2="0" width="7889" height="10644" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactVenta__Vende__5441852A]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="9" destid="12" sourceattachpoint="17" destattachpoint="20" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="6062" y="11817" />
-                    <point x="9706" y="11817" />
-                    <point x="9706" y="1873" />
-                    <point x="13351" y="1873" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="17073" top="1474" logicalid="43" controlid="16" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactVenta__Terri__534D60F1]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="7" destid="12" sourceattachpoint="12" destattachpoint="21" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="19773" y="1873" />
-                    <point x="17373" y="1873" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="11162" top="7081" logicalid="44" controlid="17" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactOrden__Fecha__59063A47]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="8" destid="11" sourceattachpoint="14" destattachpoint="13" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="13862" y="7480" />
-                    <point x="11462" y="7480" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="9662" top="8334" logicalid="45" controlid="18" masterid="0" hint1="0" hint2="0" width="5805" height="3380" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactOrden__Orden__59FA5E80]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="11" sourceattachpoint="2" destattachpoint="5" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="15067" y="11214" />
-                    <point x="15067" y="9924" />
-                    <point x="9962" y="9924" />
-                    <point x="9962" y="8634" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="5762" top="7180" logicalid="46" controlid="19" masterid="0" hint1="0" hint2="0" width="3000" height="5037" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactOrden__Vende__5812160E]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="9" destid="11" sourceattachpoint="17" destattachpoint="12" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="6062" y="11817" />
-                    <point x="7262" y="11817" />
-                    <point x="7262" y="7480" />
-                    <point x="8462" y="7480" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="5762" top="12518" logicalid="47" controlid="20" masterid="0" hint1="0" hint2="0" width="8599" height="6116" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactDifer__Vende__4E88ABD4]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="9" destid="10" sourceattachpoint="21" destattachpoint="18" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="6062" y="12917" />
-                    <point x="10061" y="12917" />
-                    <point x="10061" y="18334" />
-                    <point x="14061" y="18334" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="14118" top="19728" logicalid="48" controlid="21" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactDifer__Produ__4D94879B]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="6" destid="10" sourceattachpoint="0" destattachpoint="1" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="14517" y="22428" />
-                    <point x="14517" y="21228" />
-                    <point x="14545" y="21228" />
-                    <point x="14545" y="20028" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="14118" top="13742" logicalid="49" controlid="22" masterid="0" hint1="0" hint2="0" width="799" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__FactDifer__Orden__4F7CD00D]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="10" sourceattachpoint="1" destattachpoint="0" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="14517" y="14241" />
-                    <point x="14517" y="15441" />
-                    <point x="14545" y="15441" />
-                    <point x="14545" y="16641" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="3899" top="13761" logicalid="50" controlid="23" masterid="0" hint1="0" hint2="0" width="3401" height="13874" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__dimVended__Ciuda__46E78A0C]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="9" sourceattachpoint="4" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="6900" y="27135" />
-                    <point x="6900" y="20598" />
-                    <point x="4199" y="20598" />
-                    <point x="4199" y="14061" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="14963" top="8315" logicalid="51" controlid="24" masterid="0" hint1="0" hint2="0" width="1504" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__dimOrdene__Fecha__4AB81AF0]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="8" destid="4" sourceattachpoint="5" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="15362" y="8814" />
-                    <point x="15362" y="10014" />
-                    <point x="16167" y="10014" />
-                    <point x="16167" y="11214" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="5762" top="11968" logicalid="52" controlid="25" masterid="0" hint1="0" hint2="0" width="8655" height="1059" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__dimOrdene__Vende__49C3F6B7]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="9" destid="4" sourceattachpoint="19" destattachpoint="14" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="6062" y="12367" />
-                    <point x="10089" y="12367" />
-                    <point x="10089" y="12727" />
-                    <point x="14117" y="12727" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="1101" top="29142" logicalid="53" controlid="26" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[FK__dimEstado__PaisI__398D8EEE]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="2" sourceattachpoint="4" destattachpoint="5" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="1500" y="31842" />
-                    <point x="1500" y="29442" />
-                  </connector>
-                </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="2700" top="27889" logicalid="54" controlid="27" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="20116" top="23360" logicalid="13" controlid="13" masterid="0" hint1="0" hint2="0" width="1969" height="3793" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobj>
                       <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
@@ -455,17 +184,333 @@
                       <property name="VisibleAP" value="0" vartype="3" />
                     </ddsxmlobj>
                   </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="1" sourceattachpoint="13" destattachpoint="12" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="3000" y="28288" />
-                    <point x="5400" y="28288" />
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="1" sourceattachpoint="0" destattachpoint="1" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="20515" y="26653" />
+                    <point x="20515" y="24080" />
+                    <point x="21785" y="24080" />
+                    <point x="21785" y="23660" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="22815" top="26859" logicalid="14" controlid="14" masterid="0" hint1="0" hint2="0" width="2512" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__dimEstado__PaisI__398D8EEE]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="2" sourceattachpoint="10" destattachpoint="11" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="25027" y="27258" />
+                    <point x="24071" y="27258" />
+                    <point x="24071" y="27256" />
+                    <point x="23115" y="27256" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="13804" top="3967" logicalid="15" controlid="15" masterid="0" hint1="0" hint2="0" width="3000" height="6092" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__dimOrdene__Fecha__4BAC3F29]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="8" destid="4" sourceattachpoint="3" destattachpoint="4" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="16404" y="4466" />
+                    <point x="16404" y="7112" />
+                    <point x="14104" y="7112" />
+                    <point x="14104" y="9759" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="13804" top="12486" logicalid="16" controlid="16" masterid="0" hint1="0" hint2="0" width="2999" height="9721" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__dimOrdene__Vende__4AB81AF0]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="9" destid="4" sourceattachpoint="4" destattachpoint="5" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="16403" y="21707" />
+                    <point x="16403" y="17247" />
+                    <point x="14104" y="17247" />
+                    <point x="14104" y="12786" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="16554" top="25154" logicalid="17" controlid="17" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__dimVended__Terri__47DBAE45]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="7" destid="9" sourceattachpoint="4" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="16953" y="27854" />
+                    <point x="16953" y="25454" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="18516" top="22107" logicalid="18" controlid="18" masterid="0" hint1="0" hint2="0" width="3169" height="1773" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__dimVended__Ciuda__46E78A0C]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="9" sourceattachpoint="12" destattachpoint="21" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="21385" y="22506" />
+                    <point x="20016" y="22506" />
+                    <point x="20016" y="23580" />
+                    <point x="18816" y="23580" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="17104" top="15379" logicalid="19" controlid="19" masterid="0" hint1="0" hint2="0" width="8970" height="6828" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactDifer__Vende__4F7CD00D]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="9" destid="10" sourceattachpoint="8" destattachpoint="9" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="17503" y="21707" />
+                    <point x="17503" y="18693" />
+                    <point x="25774" y="18693" />
+                    <point x="25774" y="15679" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="27845" top="13226" logicalid="20" controlid="20" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactDifer__Produ__4E88ABD4]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="6" destid="10" sourceattachpoint="12" destattachpoint="25" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="30545" y="13625" />
+                    <point x="29345" y="13625" />
+                    <point x="29345" y="13626" />
+                    <point x="28145" y="13626" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="17105" top="3967" logicalid="21" controlid="21" masterid="0" hint1="0" hint2="0" width="8969" height="7906" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactDifer__Fecha__5165187F]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="8" destid="10" sourceattachpoint="7" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="17504" y="4466" />
+                    <point x="17504" y="8019" />
+                    <point x="25774" y="8019" />
+                    <point x="25774" y="11573" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="15304" top="11423" logicalid="22" controlid="22" masterid="0" hint1="0" hint2="0" width="8400" height="2503" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactDifer__Orden__5070F446]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="10" sourceattachpoint="17" destattachpoint="24" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="15604" y="11822" />
+                    <point x="19504" y="11822" />
+                    <point x="19504" y="13626" />
+                    <point x="23404" y="13626" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="15304" top="7719" logicalid="23" controlid="23" masterid="0" hint1="0" hint2="0" width="3000" height="2853" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactOrden__Orden__5AEE82B9]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="11" sourceattachpoint="11" destattachpoint="12" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="15604" y="10172" />
+                    <point x="16804" y="10172" />
+                    <point x="16804" y="8019" />
+                    <point x="18004" y="8019" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="16554" top="8873" logicalid="24" controlid="24" masterid="0" hint1="0" hint2="0" width="3250" height="13334" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactOrden__Vende__59063A47]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="9" destid="11" sourceattachpoint="6" destattachpoint="5" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="16953" y="21707" />
+                    <point x="16953" y="15440" />
+                    <point x="19504" y="15440" />
+                    <point x="19504" y="9173" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="16555" top="3967" logicalid="25" controlid="25" masterid="0" hint1="0" hint2="0" width="3249" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactOrden__Fecha__59FA5E80]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="8" destid="11" sourceattachpoint="5" destattachpoint="4" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="16954" y="4466" />
+                    <point x="16954" y="5666" />
+                    <point x="19504" y="5666" />
+                    <point x="19504" y="6866" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7512" top="12846" logicalid="26" controlid="26" masterid="0" hint1="0" hint2="0" width="8741" height="9361" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactVenta__Vende__5535A963]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="9" destid="12" sourceattachpoint="2" destattachpoint="9" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="15853" y="21707" />
+                    <point x="15853" y="17427" />
+                    <point x="7812" y="17427" />
+                    <point x="7812" y="13146" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="2720" top="10873" logicalid="27" controlid="27" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactVenta__Moned__5441852A]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="12" sourceattachpoint="13" destattachpoint="24" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="3020" y="11272" />
+                    <point x="5420" y="11272" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="9904" top="10873" logicalid="28" controlid="28" masterid="0" hint1="0" hint2="0" width="3000" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactVenta__Orden__534D60F1]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="12" sourceattachpoint="14" destattachpoint="25" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="12604" y="11272" />
+                    <point x="10204" y="11272" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7512" top="3967" logicalid="29" controlid="29" masterid="0" hint1="0" hint2="0" width="8742" height="5732" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="16316658" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK__FactVenta__Fecha__5629CD9C]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="8" destid="12" sourceattachpoint="1" destattachpoint="8" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="15854" y="4466" />
+                    <point x="15854" y="6932" />
+                    <point x="7812" y="6932" />
+                    <point x="7812" y="9399" />
                   </connector>
                 </ddscontrol>
               </dds>
 </DiagramLayout>
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
-            <DiagramViewPortLeft>-5004</DiagramViewPortLeft>
-            <DiagramViewPortTop>528</DiagramViewPortTop>
+            <DiagramViewPortLeft>-4356</DiagramViewPortLeft>
+            <DiagramViewPortTop>175</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
             <DiagramZoom>75</DiagramZoom>
@@ -477,70 +522,84 @@
   <DataSourceID>AW Hefesto DW2025</DataSourceID>
   <Schema>
     <xs:schema id="AW_x0020_Hefesto_x0020_DW2025" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
-      <xs:element name="AW_x0020_Hefesto_x0020_DW2025" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="3e9d12c4-c9e4-4be8-a0a1-77d453c9a4e9">
+      <xs:element name="AW_x0020_Hefesto_x0020_DW2025" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="dc8e2a4d-b634-44c6-a9c3-157599a1172f">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_dimCiudad" msprop:design-time-name="366c0d3b-6437-4b1e-900d-5808437fd876" msprop:FriendlyName="dimCiudad" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimCiudad">
+            <xs:element name="dbo_dimCiudad" msprop:design-time-name="596afb5a-6db2-4e22-a5f2-a5a2444a9008" msprop:FriendlyName="dimCiudad" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimCiudad">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="CiudadID" msprop:FriendlyName="CiudadID" msprop:DbColumnName="CiudadID" msprop:design-time-name="0bc3eee7-4eeb-4989-b550-e30e4e167e43" type="xs:int" />
-                  <xs:element name="Nombre" msprop:FriendlyName="Nombre" msprop:DbColumnName="Nombre" msprop:design-time-name="1f923fed-d414-45b7-ba33-e7cdaa0b222f">
+                  <xs:element name="CiudadID" msprop:FriendlyName="CiudadID" msprop:DbColumnName="CiudadID" msprop:design-time-name="14cb2457-f376-4bfb-9c43-3ae382d00444" type="xs:int" />
+                  <xs:element name="Nombre" msprop:FriendlyName="Nombre" msprop:DbColumnName="Nombre" msprop:design-time-name="445a0d96-4d95-4547-abaf-99586dbf25b4">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="30" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="CodigoPostal" msprop:FriendlyName="CodigoPostal" msprop:DbColumnName="CodigoPostal" msprop:design-time-name="7df44ff8-48ad-40a3-b014-18073a48c66e">
+                  <xs:element name="CodigoPostal" msprop:FriendlyName="CodigoPostal" msprop:DbColumnName="CodigoPostal" msprop:design-time-name="9acd7a3e-9169-4051-a355-cdc73f8131c3">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="15" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="EstadoID" msprop:FriendlyName="EstadoID" msprop:DbColumnName="EstadoID" msprop:design-time-name="bfe80ab4-897a-441b-b2a1-0683a9a0e09d" type="xs:int" minOccurs="0" />
+                  <xs:element name="EstadoID" msprop:FriendlyName="EstadoID" msprop:DbColumnName="EstadoID" msprop:design-time-name="82e682a7-1334-48f4-a3e2-72d8b193ff38" type="xs:int" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dimEstado" msprop:design-time-name="b8ed893f-9b27-4a36-a287-6a9c131a364a" msprop:FriendlyName="dimEstado" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimEstado">
+            <xs:element name="dbo_dimEstado" msprop:design-time-name="eaefba0d-6aa2-4828-bb73-337783e778d3" msprop:FriendlyName="dimEstado" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimEstado">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="EstadoID" msprop:FriendlyName="EstadoID" msprop:DbColumnName="EstadoID" msprop:design-time-name="3887cef7-b65c-4dea-84cd-419ccedeaa28" type="xs:int" />
-                  <xs:element name="EstadoCode" msprop:FriendlyName="EstadoCode" msprop:DbColumnName="EstadoCode" msprop:design-time-name="aeb46998-043b-45c3-91ac-e88de8668716">
+                  <xs:element name="EstadoID" msprop:FriendlyName="EstadoID" msprop:DbColumnName="EstadoID" msprop:design-time-name="20cda453-4f5d-4407-860b-6ab91f6b06dd" type="xs:int" />
+                  <xs:element name="EstadoCode" msprop:FriendlyName="EstadoCode" msprop:DbColumnName="EstadoCode" msprop:design-time-name="dccfd59f-e93c-40e7-8c4b-0a8c2958d953">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="3" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="Nombre" msprop:FriendlyName="Nombre" msprop:DbColumnName="Nombre" msprop:design-time-name="e4d42c04-9ce6-4b4e-b02f-9432c838f595">
+                  <xs:element name="Nombre" msprop:FriendlyName="Nombre" msprop:DbColumnName="Nombre" msprop:design-time-name="41b8bc86-c203-43df-a73b-0c53bfece23d">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="PaisID" msprop:FriendlyName="PaisID" msprop:DbColumnName="PaisID" msprop:design-time-name="fe63c257-c641-4d36-b3cc-81452821893d" minOccurs="0">
+                  <xs:element name="PaisID" msprop:FriendlyName="PaisID" msprop:DbColumnName="PaisID" msprop:design-time-name="2d0fc20c-39de-4148-8051-3b8fbcd8490a" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Estado_x0020_Spanish" msdata:ReadOnly="true" msprop:DbColumnName="Estado Spanish" msprop:IsLogical="True" msprop:ComputedColumnExpression="CASE &#xD;&#xA;   WHEN Nombre = 'Alberta' THEN 'Alberta'&#xD;&#xA;   WHEN Nombre = 'Alaska' THEN 'Alaska'&#xD;&#xA;   WHEN Nombre = 'Alabama' THEN 'Alabama'&#xD;&#xA;   WHEN Nombre = 'Arkansas' THEN 'Arkansas'&#xD;&#xA;   WHEN Nombre = 'American Samoa' THEN 'Samoa Americana'&#xD;&#xA;   WHEN Nombre = 'Arizona' THEN 'Arizona'&#xD;&#xA;   WHEN Nombre = 'British Columbia' THEN 'Columbia Británica'&#xD;&#xA;   WHEN Nombre = 'Bayern' THEN 'Baviera'&#xD;&#xA;   WHEN Nombre = 'California' THEN 'California'&#xD;&#xA;   WHEN Nombre = 'Colorado' THEN 'Colorado'&#xD;&#xA;   WHEN Nombre = 'Connecticut' THEN 'Connecticut'&#xD;&#xA;   WHEN Nombre = 'District of Columbia' THEN 'Distrito de Columbia'&#xD;&#xA;   WHEN Nombre = 'Delaware' THEN 'Delaware'&#xD;&#xA;   WHEN Nombre = 'England' THEN 'Inglaterra'&#xD;&#xA;   WHEN Nombre = 'Florida' THEN 'Florida'&#xD;&#xA;   WHEN Nombre = 'Micronesia' THEN 'Micronesia'&#xD;&#xA;   WHEN Nombre = 'Georgia' THEN 'Georgia'&#xD;&#xA;   WHEN Nombre = 'Guam' THEN 'Guam'&#xD;&#xA;   WHEN Nombre = 'Hessen' THEN 'Hesse'&#xD;&#xA;   WHEN Nombre = 'Hamburg' THEN 'Hamburgo'&#xD;&#xA;   WHEN Nombre = 'Hawaii' THEN 'Hawái'&#xD;&#xA;   WHEN Nombre = 'Iowa' THEN 'Iowa'&#xD;&#xA;   WHEN Nombre = 'Idaho' THEN 'Idaho'&#xD;&#xA;   WHEN Nombre = 'Illinois' THEN 'Illinois'&#xD;&#xA;   WHEN Nombre = 'Indiana' THEN 'Indiana'&#xD;&#xA;   WHEN Nombre = 'Kansas' THEN 'Kansas'&#xD;&#xA;   WHEN Nombre = 'Kentucky' THEN 'Kentucky'&#xD;&#xA;   WHEN Nombre = 'Louisiana' THEN 'Luisiana'&#xD;&#xA;   WHEN Nombre = 'Labrador' THEN 'Labrador'&#xD;&#xA;   WHEN Nombre = 'Massachusetts' THEN 'Massachusetts'&#xD;&#xA;   WHEN Nombre = 'Manitoba' THEN 'Manitoba'&#xD;&#xA;   WHEN Nombre = 'Maryland' THEN 'Maryland'&#xD;&#xA;   WHEN Nombre = 'Maine' THEN 'Maine'&#xD;&#xA;   WHEN Nombre = 'Marshall Islands' THEN 'Islas Marshall'&#xD;&#xA;   WHEN Nombre = 'Michigan' THEN 'Míchigan'&#xD;&#xA;   WHEN Nombre = 'Minnesota' THEN 'Minnesota'&#xD;&#xA;   WHEN Nombre = 'Missouri' THEN 'Misuri'&#xD;&#xA;   WHEN Nombre = 'Northern Mariana Islands' THEN 'Islas Marianas del Norte'&#xD;&#xA;   WHEN Nombre = 'Mississippi' THEN 'Misisipi'&#xD;&#xA;   WHEN Nombre = 'Montana' THEN 'Montana'&#xD;&#xA;   WHEN Nombre = 'Brunswick' THEN 'Brunswick'&#xD;&#xA;   WHEN Nombre = 'North Carolina' THEN 'Carolina del Norte'&#xD;&#xA;   WHEN Nombre = 'North Dakota' THEN 'Dakota del Norte'&#xD;&#xA;   WHEN Nombre = 'Nebraska' THEN 'Nebraska'&#xD;&#xA;   WHEN Nombre = 'Newfoundland' THEN 'Terranova'&#xD;&#xA;   WHEN Nombre = 'New Hampshire' THEN 'Nuevo Hampshire'&#xD;&#xA;   WHEN Nombre = 'New Jersey' THEN 'Nueva Jersey'&#xD;&#xA;   WHEN Nombre = 'New Mexico' THEN 'Nuevo México'&#xD;&#xA;   WHEN Nombre = 'Nova Scotia' THEN 'Nueva Escocia'&#xD;&#xA;   WHEN Nombre = 'New South Wales' THEN 'Nueva Gales del Sur'&#xD;&#xA;   WHEN Nombre = 'Northwest Territories' THEN 'Territorios del Noroeste'&#xD;&#xA;   WHEN Nombre = 'Nevada' THEN 'Nevada'&#xD;&#xA;   WHEN Nombre = 'Nordrhein-Westfalen' THEN 'Renania del Norte-Westfalia'&#xD;&#xA;   WHEN Nombre = 'New York' THEN 'Nueva York'&#xD;&#xA;   WHEN Nombre = 'Ohio' THEN 'Ohio'&#xD;&#xA;   WHEN Nombre = 'Oklahoma' THEN 'Oklahoma'&#xD;&#xA;   WHEN Nombre = 'Ontario' THEN 'Ontario'&#xD;&#xA;   WHEN Nombre = 'Oregon' THEN 'Oregón'&#xD;&#xA;   WHEN Nombre = 'Pennsylvania' THEN 'Pensilvania'&#xD;&#xA;   WHEN Nombre = 'Prince Edward Island' THEN 'Isla del Príncipe Eduardo'&#xD;&#xA;   WHEN Nombre = 'Puerto Rico' THEN 'Puerto Rico'&#xD;&#xA;   WHEN Nombre = 'Palau' THEN 'Palaos'&#xD;&#xA;   WHEN Nombre = 'Quebec' THEN 'Quebec'&#xD;&#xA;   WHEN Nombre = 'Queensland' THEN 'Queensland'&#xD;&#xA;   WHEN Nombre = 'Rhode Island' THEN 'Rhode Island'&#xD;&#xA;   WHEN Nombre = 'South Australia' THEN 'Australia Meridional'&#xD;&#xA;   WHEN Nombre = 'South Carolina' THEN 'Carolina del Sur'&#xD;&#xA;   WHEN Nombre = 'South Dakota' THEN 'Dakota del Sur'&#xD;&#xA;   WHEN Nombre = 'Saskatchewan' THEN 'Saskatchewan'&#xD;&#xA;   WHEN Nombre = 'Saarland' THEN 'Sarre'&#xD;&#xA;   WHEN Nombre = 'Tasmania' THEN 'Tasmania'&#xD;&#xA;   WHEN Nombre = 'Tennessee' THEN 'Tennessee'&#xD;&#xA;   WHEN Nombre = 'Texas' THEN 'Texas'&#xD;&#xA;   WHEN Nombre = 'Utah' THEN 'Utah'&#xD;&#xA;   WHEN Nombre = 'Virginia' THEN 'Virginia'&#xD;&#xA;   WHEN Nombre = 'Virgin Islands' THEN 'Islas Vírgenes'&#xD;&#xA;   WHEN Nombre = 'Victoria' THEN 'Victoria'&#xD;&#xA;   WHEN Nombre = 'Vermont' THEN 'Vermont'&#xD;&#xA;   WHEN Nombre = 'Washington' THEN 'Washington'&#xD;&#xA;   WHEN Nombre = 'Wisconsin' THEN 'Wisconsin'&#xD;&#xA;   WHEN Nombre = 'West Virginia' THEN 'Virginia Occidental'&#xD;&#xA;   WHEN Nombre = 'Wyoming' THEN 'Wyoming'&#xD;&#xA;   WHEN Nombre = 'Yukon Territory' THEN 'Territorio del Yukón'&#xD;&#xA;   WHEN Nombre = 'France' THEN 'Francia'&#xD;&#xA;   WHEN Nombre = 'Brandenburg' THEN 'Brandeburgo'&#xD;&#xA;   WHEN Nombre = 'Saxony' THEN 'Sajonia'&#xD;&#xA;   WHEN Nombre = 'Ain' THEN 'Ain'&#xD;&#xA;   WHEN Nombre = 'Aisne' THEN 'Aisne'&#xD;&#xA;   WHEN Nombre = 'Allier' THEN 'Allier'&#xD;&#xA;   WHEN Nombre = 'Alpes-de-Haute Provence' THEN 'Alpes de Alta Provenza'&#xD;&#xA;   WHEN Nombre = 'Alpes (Haute)' THEN 'Altos Alpes'&#xD;&#xA;   WHEN Nombre = 'Alpes-Maritimes' THEN 'Alpes Marítimos'&#xD;&#xA;   WHEN Nombre = 'Ardèche' THEN 'Ardèche'&#xD;&#xA;   WHEN Nombre = 'Ardennes' THEN 'Ardenas'&#xD;&#xA;   WHEN Nombre = 'Ariège' THEN 'Ariège'&#xD;&#xA;   WHEN Nombre = 'Aube' THEN 'Aube'&#xD;&#xA;   WHEN Nombre = 'Aude' THEN 'Aude'&#xD;&#xA;   WHEN Nombre = 'Aveyron' THEN 'Aveyron'&#xD;&#xA;   WHEN Nombre = 'Bouches du Rhône' THEN 'Bocas del Ródano'&#xD;&#xA;   WHEN Nombre = 'Calvados' THEN 'Calvados'&#xD;&#xA;   WHEN Nombre = 'Cantal' THEN 'Cantal'&#xD;&#xA;   WHEN Nombre = 'Charente' THEN 'Charente'&#xD;&#xA;   WHEN Nombre = 'Charente-Maritime' THEN 'Charente Marítimo'&#xD;&#xA;   WHEN Nombre = 'Cher' THEN 'Cher'&#xD;&#xA;   WHEN Nombre = 'Corrèze' THEN 'Corrèze'&#xD;&#xA;   WHEN Nombre = 'Corse' THEN 'Córcega'&#xD;&#xA;   WHEN Nombre = 'Côte d''Or' THEN 'Costa de Oro'&#xD;&#xA;   WHEN Nombre = 'Côtes-d''Armor' THEN 'Costas de Armor'&#xD;&#xA;   WHEN Nombre = 'Creuse' THEN 'Creuse'&#xD;&#xA;   WHEN Nombre = 'Dordogne' THEN 'Dordoña'&#xD;&#xA;   WHEN Nombre = 'Toubs' THEN 'Toubs'&#xD;&#xA;   WHEN Nombre = 'Drôme' THEN 'Drôme'&#xD;&#xA;   WHEN Nombre = 'Eure' THEN 'Eure'&#xD;&#xA;   WHEN Nombre = 'Eure et Loir' THEN 'Eure y Loir'&#xD;&#xA;   WHEN Nombre = 'Finistère' THEN 'Finisterre'&#xD;&#xA;   WHEN Nombre = 'Gard' THEN 'Gard'&#xD;&#xA;   WHEN Nombre = 'Garonne (Haute)' THEN 'Alto Garona'&#xD;&#xA;   WHEN Nombre = 'Gers' THEN 'Gers'&#xD;&#xA;   WHEN Nombre = 'Gironde' THEN 'Gironda'&#xD;&#xA;   WHEN Nombre = 'Hérault' THEN 'Hérault'&#xD;&#xA;   WHEN Nombre = 'Ille et Vilaine' THEN 'Ille y Vilaine'&#xD;&#xA;   WHEN Nombre = 'Indre' THEN 'Indre'&#xD;&#xA;   WHEN Nombre = 'Indre et Loire' THEN 'Indre y Loira'&#xD;&#xA;   WHEN Nombre = 'Isère' THEN 'Isère'&#xD;&#xA;   WHEN Nombre = 'Jura' THEN 'Jura'&#xD;&#xA;   WHEN Nombre = 'Landes' THEN 'Landas'&#xD;&#xA;   WHEN Nombre = 'Loir et Cher' THEN 'Loir y Cher'&#xD;&#xA;   WHEN Nombre = 'Loire' THEN 'Loira'&#xD;&#xA;   WHEN Nombre = 'Loire (Haute)' THEN 'Alto Loira'&#xD;&#xA;   WHEN Nombre = 'Loire Atlantique' THEN 'Loira Atlántico'&#xD;&#xA;   WHEN Nombre = 'Loiret' THEN 'Loiret'&#xD;&#xA;   WHEN Nombre = 'Lot' THEN 'Lot'&#xD;&#xA;   WHEN Nombre = 'Lot et Garonne' THEN 'Lot y Garona'&#xD;&#xA;   WHEN Nombre = 'Lozère' THEN 'Lozère'&#xD;&#xA;   WHEN Nombre = 'Maine et Loire' THEN 'Maine y Loira'&#xD;&#xA;   WHEN Nombre = 'Manche' THEN 'Mancha'&#xD;&#xA;   WHEN Nombre = 'Marne' THEN 'Marne'&#xD;&#xA;   WHEN Nombre = 'Marne (Haute)' THEN 'Alto Marne'&#xD;&#xA;   WHEN Nombre = 'Mayenne' THEN 'Mayenne'&#xD;&#xA;   WHEN Nombre = 'Meurthe et Moselle' THEN 'Meurthe y Mosela'&#xD;&#xA;   WHEN Nombre = 'Meuse' THEN 'Mosa'&#xD;&#xA;   WHEN Nombre = 'Morbihan' THEN 'Morbihan'&#xD;&#xA;   WHEN Nombre = 'Moselle' THEN 'Mosela'&#xD;&#xA;   WHEN Nombre = 'Nièvre' THEN 'Nièvre'&#xD;&#xA;   WHEN Nombre = 'Nord' THEN 'Norte'&#xD;&#xA;   WHEN Nombre = 'Oise' THEN 'Oise'&#xD;&#xA;   WHEN Nombre = 'Orne' THEN 'Orne'&#xD;&#xA;   WHEN Nombre = 'Pas de Calais' THEN 'Paso de Calais'&#xD;&#xA;   WHEN Nombre = 'Puy de Dôme' THEN 'Puy de Dôme'&#xD;&#xA;   WHEN Nombre = 'Pyrénées Atlantiques' THEN 'Pirineos Atlánticos'&#xD;&#xA;   WHEN Nombre = 'Pyrénées (Hautes)' THEN 'Altos Pirineos'&#xD;&#xA;   WHEN Nombre = 'Pyrénées Orientales' THEN 'Pirineos Orientales'&#xD;&#xA;   WHEN Nombre = 'Rhin (Bas)' THEN 'Bajo Rin'&#xD;&#xA;   WHEN Nombre = 'Rhin (Haut)' THEN 'Alto Rin'&#xD;&#xA;   WHEN Nombre = 'Rhône' THEN 'Ródano'&#xD;&#xA;   WHEN Nombre = 'Saône (Haute)' THEN 'Alta Saona'&#xD;&#xA;   WHEN Nombre = 'Saône et Loire' THEN 'Saona y Loira'&#xD;&#xA;   WHEN Nombre = 'Sarthe' THEN 'Sarthe'&#xD;&#xA;   WHEN Nombre = 'Savoie' THEN 'Saboya'&#xD;&#xA;   WHEN Nombre = 'Savoie Haute' THEN 'Alta Saboya'&#xD;&#xA;   WHEN Nombre = 'Seine (Paris)' THEN 'Sena (París)'&#xD;&#xA;   WHEN Nombre = 'Seine Maritime' THEN 'Sena Marítimo'&#xD;&#xA;   WHEN Nombre = 'Seine et Marne' THEN 'Sena y Marne'&#xD;&#xA;   WHEN Nombre = 'Yveline' THEN 'Yvelines'&#xD;&#xA;   WHEN Nombre = 'Sèvres (Deux)' THEN 'Dos Sèvres'&#xD;&#xA;   WHEN Nombre = 'Somme' THEN 'Somme'&#xD;&#xA;   WHEN Nombre = 'Tarne' THEN 'Tarn'&#xD;&#xA;   WHEN Nombre = 'Tarne et Garonne' THEN 'Tarn y Garona'&#xD;&#xA;   WHEN Nombre = 'Var' THEN 'Var'&#xD;&#xA;   WHEN Nombre = 'Vaucluse' THEN 'Vaucluse'&#xD;&#xA;   WHEN Nombre = 'La Vendée' THEN 'Vandea'&#xD;&#xA;   WHEN Nombre = 'Vienne' THEN 'Viena'&#xD;&#xA;   WHEN Nombre = 'Vienne (Haute)' THEN 'Alta Viena'&#xD;&#xA;   WHEN Nombre = 'Vosges' THEN 'Vosgos'&#xD;&#xA;   WHEN Nombre = 'Yonne' THEN 'Yonne'&#xD;&#xA;   WHEN Nombre = 'Belford (Territoire de)' THEN 'Territorio de Belfort'&#xD;&#xA;   WHEN Nombre = 'Essonne' THEN 'Essonne'&#xD;&#xA;   WHEN Nombre = 'Hauts de Seine' THEN 'Altos del Sena'&#xD;&#xA;   WHEN Nombre = 'Seine Saint Denis' THEN 'Sena-Saint-Denis'&#xD;&#xA;   WHEN Nombre = 'Val de Marne' THEN 'Valle del Marne'&#xD;&#xA;   WHEN Nombre = 'Val d''Oise' THEN 'Valle del Oise'&#xD;&#xA;END" msprop:design-time-name="fabeeb02-7d17-4bfe-889b-a23f95f86ad0" msprop:Description="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="27" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dimMonedas" msprop:design-time-name="9bfd1bc6-666e-4a6c-8acd-f4f9f1f4038a" msprop:FriendlyName="dimMonedas" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimMonedas">
+            <xs:element name="dbo_dimMonedas" msprop:design-time-name="67569d44-fc25-4044-b2a9-4929284c32eb" msprop:FriendlyName="dimMonedas" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimMonedas">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="MonedaID" msprop:FriendlyName="MonedaID" msprop:DbColumnName="MonedaID" msprop:design-time-name="b7ef96df-35f7-4d53-a7f7-a184dc85c920">
+                  <xs:element name="MonedaID" msprop:FriendlyName="MonedaID" msprop:DbColumnName="MonedaID" msprop:design-time-name="f9097fb3-1864-4f27-a9f9-567b300b930e">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="3" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="Moneda" msprop:FriendlyName="Moneda" msprop:DbColumnName="Moneda" msprop:design-time-name="f5f596e3-93ba-47d2-ad6d-896e0c245f9a" minOccurs="0">
+                  <xs:element name="Moneda" msprop:FriendlyName="Moneda" msprop:DbColumnName="Moneda" msprop:design-time-name="d67941c0-7e2c-4bd7-84c8-d6200844671e" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Moneda_x0020_Spanish" msdata:ReadOnly="true" msprop:Description="" msprop:design-time-name="54dc8f62-5669-4cbf-8920-873c3a9c2683" msprop:IsLogical="True" msprop:DbColumnName="Moneda Spanish" msprop:ComputedColumnExpression="--Moneda&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;CASE &#xD;&#xA;  WHEN Moneda = 'Emirati Dirham' THEN 'Dírham emiratí'&#xD;&#xA;  WHEN Moneda = 'Afghani' THEN 'Afgani'&#xD;&#xA;  WHEN Moneda = 'Armenian Dram' THEN 'Dram armenio'&#xD;&#xA;  WHEN Moneda = 'Netherlands Antillian Guilder' THEN 'Florín antilliano de los Países Bajos'&#xD;&#xA;  WHEN Moneda = 'Argentine Peso' THEN 'Peso Argentino'&#xD;&#xA;  WHEN Moneda = 'Shilling' THEN 'Chelín'&#xD;&#xA;  WHEN Moneda = 'Australian Dollar' THEN 'Dólar australiano'&#xD;&#xA;  WHEN Moneda = 'Aruban Guilder' THEN 'Florín de Aruba'&#xD;&#xA;  WHEN Moneda = 'Azerbaijanian Manat' THEN 'Manat azerbaiyano'&#xD;&#xA;  WHEN Moneda = 'Barbados Dollar' THEN 'Dólar de Barbados'&#xD;&#xA;  WHEN Moneda = 'Belgian Franc' THEN 'Franco belga'&#xD;&#xA;  WHEN Moneda = 'Bulgarian Lev' THEN 'Lev búlgaro'&#xD;&#xA;  WHEN Moneda = 'Bahraini Dinar' THEN 'Dinar bahreiní'&#xD;&#xA;  WHEN Moneda = 'Brunei Dollar' THEN 'Dólar de Brunéi'&#xD;&#xA;  WHEN Moneda = 'Brazilian Real' THEN 'Real brasileño'&#xD;&#xA;  WHEN Moneda = 'Bahamian Dollar' THEN 'Dólar bahameño'&#xD;&#xA;  WHEN Moneda = 'Canadian Dollar' THEN 'Dólar canadiense'&#xD;&#xA;  WHEN Moneda = 'Swiss Franc' THEN 'Franco suizo'&#xD;&#xA;  WHEN Moneda = 'Chilean Peso' THEN 'Peso Chileno'&#xD;&#xA;  WHEN Moneda = 'Colombian Peso' THEN 'Peso Colombiano'&#xD;&#xA;  WHEN Moneda = 'Costa Rican Colon' THEN 'Colón costarricense'&#xD;&#xA;  WHEN Moneda = 'Cyprus Pound' THEN 'Libra chipriota'&#xD;&#xA;  WHEN Moneda = 'Czech Koruna' THEN 'Corona checa'&#xD;&#xA;  WHEN Moneda = 'Deutsche Mark' THEN 'Marco alemán'&#xD;&#xA;  WHEN Moneda = 'Danish Krone' THEN 'Corona danesa'&#xD;&#xA;  WHEN Moneda = 'Dominican Peso' THEN 'Peso Dominicano'&#xD;&#xA;  WHEN Moneda = 'Algerian Dinar' THEN 'Dinar argelino'&#xD;&#xA;  WHEN Moneda = 'Egyptian Pound' THEN 'Libra egipcia'&#xD;&#xA;  WHEN Moneda = 'Spanish Peseta' THEN 'Peseta española'&#xD;&#xA;  WHEN Moneda = 'Fiji Dollar' THEN 'Dólar fiyiano'&#xD;&#xA;  WHEN Moneda = 'French Franc' THEN 'Franco francés'&#xD;&#xA;  WHEN Moneda = 'United Kingdom Pound' THEN 'Libra Esterlina'&#xD;&#xA;  WHEN Moneda = 'Drachma' THEN 'Dracma'&#xD;&#xA;  WHEN Moneda = 'Hong Kong Dollar' THEN 'Dólar de Hong Kong'&#xD;&#xA;  WHEN Moneda = 'Croatian Kuna' THEN 'Kuna croata'&#xD;&#xA;  WHEN Moneda = 'Irish Pound' THEN 'Libra irlandesa'&#xD;&#xA;  WHEN Moneda = 'New Israeli Shekel' THEN 'Nuevo shekel israelí'&#xD;&#xA;  WHEN Moneda = 'Indian Rupee' THEN 'Rupia india'&#xD;&#xA;  WHEN Moneda = 'Iceland Krona' THEN 'Corona islandesa'&#xD;&#xA;  WHEN Moneda = 'Italian Lira' THEN 'Lira italiana'&#xD;&#xA;  WHEN Moneda = 'Jamaican Dollar' THEN 'Dólar jamaiquino'&#xD;&#xA;  WHEN Moneda = 'Jordanian Dinar' THEN 'Dinar jordano'&#xD;&#xA;  WHEN Moneda = 'Kenyan Shilling' THEN 'Chelín keniano'&#xD;&#xA;  WHEN Moneda = 'Lebanese Pound' THEN 'Libra libanesa'&#xD;&#xA;  WHEN Moneda = 'Sri Lankan Rupee' THEN 'Rupia de Sri Lanka'&#xD;&#xA;  WHEN Moneda = 'Lithuanian Litas' THEN 'Litas lituanas'&#xD;&#xA;  WHEN Moneda = 'Latvian Lats' THEN 'Lats letones'&#xD;&#xA;  WHEN Moneda = 'Moroccan Dirham' THEN 'Dírham marroquí'&#xD;&#xA;  WHEN Moneda = 'Maltese Lira' THEN 'Lira maltesa'&#xD;&#xA;  WHEN Moneda = 'Mauritius Rupee' THEN 'Rupia mauriciana'&#xD;&#xA;  WHEN Moneda = 'Mexican Peso' THEN 'Peso Mexicano'&#xD;&#xA;  WHEN Moneda = 'Malaysian Ringgit' THEN 'Ringgit malayo'&#xD;&#xA;  WHEN Moneda = 'Namibia Dollar' THEN 'Dólar de Namibia'&#xD;&#xA;  WHEN Moneda = 'Netherlands Guilder' THEN 'Florín de los Países Bajos'&#xD;&#xA;  WHEN Moneda = 'Norwegian Krone' THEN 'Corona noruega'&#xD;&#xA;  WHEN Moneda = 'Nepalese Rupee' THEN 'Rupia nepalí'&#xD;&#xA;  WHEN Moneda = 'New Zealand Dollar' THEN 'Dólar neozelandés'&#xD;&#xA;  WHEN Moneda = 'Omani Rial' THEN 'Rial omaní'&#xD;&#xA;  WHEN Moneda = 'Philippine Peso' THEN 'Peso filipino'&#xD;&#xA;  WHEN Moneda = 'Pakistan Rupee' THEN 'Rupia pakistaní'&#xD;&#xA;  WHEN Moneda = 'Polish Zloty(old)' THEN 'Zloty polaco (viejo)'&#xD;&#xA;  WHEN Moneda = 'Portuguese Escudo' THEN 'Escudo portugués'&#xD;&#xA;  WHEN Moneda = 'Russian Ruble' THEN 'Rublo ruso'&#xD;&#xA;  WHEN Moneda = 'Russian Ruble(old)' THEN 'Rublo ruso (antiguo)'&#xD;&#xA;  WHEN Moneda = 'Saudi Riyal' THEN 'Riyal saudí'&#xD;&#xA;  WHEN Moneda = 'Swedish Krona' THEN 'Corona sueca'&#xD;&#xA;  WHEN Moneda = 'Singapore Dollar' THEN 'Dólar de Singapur'&#xD;&#xA;  WHEN Moneda = 'Slovak Koruna' THEN 'Corona eslovaca'&#xD;&#xA;  WHEN Moneda = 'El Salvador Colon' THEN 'El Salvador Colón'&#xD;&#xA;  WHEN Moneda = 'Tunisian Dinar' THEN 'Dinar tunecino'&#xD;&#xA;  WHEN Moneda = 'Turkish Lira' THEN 'Lira turca'&#xD;&#xA;  WHEN Moneda = 'Trinidad and Tobago Dollar' THEN 'Dólar de Trinidad y Tobago'&#xD;&#xA;  WHEN Moneda = 'New Taiwan Dollar' THEN 'Nuevo dólar taiwanés'&#xD;&#xA;  WHEN Moneda = 'US Dollar' THEN 'Dólar de EE.UU'&#xD;&#xA;  WHEN Moneda = 'Uruguayan Peso' THEN 'Peso Uruguayo'&#xD;&#xA;  WHEN Moneda = 'Bolivar' THEN 'Bolívar'&#xD;&#xA;  WHEN Moneda = 'Dong' THEN 'Dong'&#xD;&#xA;  WHEN Moneda = 'CFA Franc BCEAO' THEN 'Franco CFA BCEAO'&#xD;&#xA;  WHEN Moneda = 'Rand' THEN 'Rand'&#xD;&#xA;  WHEN Moneda = 'Zimbabwe Dollar' THEN 'Dólar de Zimbabue'&#xD;&#xA;  ELSE Moneda&#xD;&#xA;END" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
@@ -550,41 +609,48 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dimOrdenes" msprop:design-time-name="f83af3a6-aa3e-4d08-ac9a-d551b0a9c25a" msprop:FriendlyName="dimOrdenes" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimOrdenes">
+            <xs:element name="dbo_dimOrdenes" msprop:design-time-name="93061487-5020-4694-bac3-1998fa99e9db" msprop:FriendlyName="dimOrdenes" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimOrdenes">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="OrdenID" msprop:FriendlyName="OrdenID" msprop:DbColumnName="OrdenID" msprop:design-time-name="33d4fd88-db2b-4143-887d-984c33655656" type="xs:int" />
-                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="9d0864bd-c074-4449-8eb9-443d39738655" type="xs:int" minOccurs="0" />
-                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="787051fa-be1b-4607-a74d-a0c88d9933fc" type="xs:int" minOccurs="0" />
-                  <xs:element name="Estado" msprop:FriendlyName="Estado" msprop:DbColumnName="Estado" msprop:design-time-name="027daea8-f805-4241-89de-f65bf7a04390" minOccurs="0">
+                  <xs:element name="OrdenID" msprop:FriendlyName="OrdenID" msprop:DbColumnName="OrdenID" msprop:design-time-name="635b07fc-c5a2-4cf1-891b-a7a646e77cce" type="xs:int" />
+                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="0b2f807c-274f-440b-8043-63a797e674b3" type="xs:int" minOccurs="0" />
+                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="8abf0687-e963-4cb4-aba1-2d32c7d50450" type="xs:int" minOccurs="0" />
+                  <xs:element name="Estado" msprop:FriendlyName="Estado" msprop:DbColumnName="Estado" msprop:design-time-name="16e39fb9-4409-4c97-a893-df331782808e" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="15" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="Canal" msprop:FriendlyName="Canal" msprop:DbColumnName="Canal" msprop:design-time-name="5a4d6650-60c0-425a-9b72-8649cddfe5d8" minOccurs="0">
+                  <xs:element name="Canal" msprop:FriendlyName="Canal" msprop:DbColumnName="Canal" msprop:design-time-name="d264dc56-e1cb-441c-b981-e14360bcfeb0" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="20" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="TotalPagado" msprop:FriendlyName="TotalPagado" msprop:DbColumnName="TotalPagado" msprop:design-time-name="0e5f04ba-bb77-4822-871a-e8c2ccd703ba" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TotalPagado" msprop:FriendlyName="TotalPagado" msprop:DbColumnName="TotalPagado" msprop:design-time-name="f3d8b252-06e3-408b-afb6-207241e284c7" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dimPais" msprop:design-time-name="07d07177-1841-4da0-8cf6-8d56e7c6e546" msprop:FriendlyName="dimPais" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimPais">
+            <xs:element name="dbo_dimPais" msprop:design-time-name="7bc4da35-ecd5-4c38-a918-d954d24e7d77" msprop:FriendlyName="dimPais" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimPais">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="PaisID" msprop:FriendlyName="PaisID" msprop:DbColumnName="PaisID" msprop:design-time-name="c88ed440-2fa4-4c53-8b23-97b1825f8690">
+                  <xs:element name="PaisID" msprop:FriendlyName="PaisID" msprop:DbColumnName="PaisID" msprop:design-time-name="b25753c2-9c32-4f7a-a5ef-8820bb269dfb">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="3" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="Nombre" msprop:FriendlyName="Nombre" msprop:DbColumnName="Nombre" msprop:design-time-name="05e0067b-61a8-42df-b9e4-6f8e762eb213">
+                  <xs:element name="Nombre" msprop:FriendlyName="Nombre" msprop:DbColumnName="Nombre" msprop:design-time-name="25c6a56c-b9a1-4656-9e9d-f9f1b90e6fe5">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Pais_x0020_Spanish" msdata:ReadOnly="true" msprop:DbColumnName="Pais Spanish" msprop:IsLogical="True" msprop:ComputedColumnExpression="CASE&#xD;&#xA;  WHEN Nombre = 'United Arab Emirates' THEN 'Emiratos Árabes Unidos'&#xD;&#xA;  WHEN Nombre = 'Afghanistan' THEN 'Afganistán'&#xD;&#xA;  WHEN Nombre = 'Antigua and Barbuda' THEN 'Antigua y Barbuda'&#xD;&#xA;  WHEN Nombre = 'Anguilla' THEN 'Anguila'&#xD;&#xA;  WHEN Nombre = 'Netherlands Antilles' THEN 'Antillas Neerlandesas'&#xD;&#xA;  WHEN Nombre = 'Antarctica' THEN 'Antártida'&#xD;&#xA;  WHEN Nombre = 'American Samoa' THEN 'Samoa Americana'&#xD;&#xA;  WHEN Nombre = 'Azerbaijan' THEN 'Azerbaiyán'&#xD;&#xA;  WHEN Nombre = 'Bosnia and Herzegovina' THEN 'Bosnia-Herzegovina'&#xD;&#xA;  WHEN Nombre = 'Belgium' THEN 'Bélgica'&#xD;&#xA;  WHEN Nombre = 'Bahrain' THEN 'Bahrein'&#xD;&#xA;  WHEN Nombre = 'Bermuda' THEN 'Bermudas'&#xD;&#xA;  WHEN Nombre = 'Brunei' THEN 'Brunéi'&#xD;&#xA;  WHEN Nombre = 'Brazil' THEN 'Brasil'&#xD;&#xA;  WHEN Nombre = 'Bahamas, The' THEN 'Bahamas, El'&#xD;&#xA;  WHEN Nombre = 'Bouvet Island' THEN 'Isla Bouvet'&#xD;&#xA;  WHEN Nombre = 'Belarus' THEN 'Bielorrusia'&#xD;&#xA;  WHEN Nombre = 'Belize' THEN 'Belice'&#xD;&#xA;  WHEN Nombre = 'Canada' THEN 'Canadá'&#xD;&#xA;  WHEN Nombre = 'Cocos (Keeling) Islands' THEN 'Islas Cocos (Keeling)'&#xD;&#xA;  WHEN Nombre = 'Congo (DRC)' THEN 'Congo (RDC)'&#xD;&#xA;  WHEN Nombre = 'Central African Republic' THEN 'República Centroafricana'&#xD;&#xA;  WHEN Nombre = 'Switzerland' THEN 'Suiza'&#xD;&#xA;  WHEN Nombre = 'Cook Islands' THEN 'Islas Cook'&#xD;&#xA;  WHEN Nombre = 'Cameroon' THEN 'Camerún'&#xD;&#xA;  WHEN Nombre = 'Cape Verde' THEN 'Cabo Verde'&#xD;&#xA;  WHEN Nombre = 'Christmas Island' THEN 'Isla de Navidad'&#xD;&#xA;  WHEN Nombre = 'Cyprus' THEN 'Chipre'&#xD;&#xA;  WHEN Nombre = 'Czech Republic' THEN 'República Checa'&#xD;&#xA;  WHEN Nombre = 'Germany' THEN 'Alemania'&#xD;&#xA;  WHEN Nombre = 'Djibouti' THEN 'Yibuti'&#xD;&#xA;  WHEN Nombre = 'Denmark' THEN 'Dinamarca'&#xD;&#xA;  WHEN Nombre = 'Dominican Republic' THEN 'República Dominicana'&#xD;&#xA;  WHEN Nombre = 'Algeria' THEN 'Argelia'&#xD;&#xA;  WHEN Nombre = 'Egypt' THEN 'Egipto'&#xD;&#xA;  WHEN Nombre = 'Spain' THEN 'España'&#xD;&#xA;  WHEN Nombre = 'Ethiopia' THEN 'Etiopía'&#xD;&#xA;  WHEN Nombre = 'Finland' THEN 'Finlandia'&#xD;&#xA;  WHEN Nombre = 'Fiji Islands' THEN 'Islas Fiyi'&#xD;&#xA;  WHEN Nombre = 'Falkland Islands (Islas Malvinas)' THEN 'Islas Malvinas'&#xD;&#xA;  WHEN Nombre = 'Faroe Islands' THEN 'Islas Faroe'&#xD;&#xA;  WHEN Nombre = 'France' THEN 'Francia'&#xD;&#xA;  WHEN Nombre = 'Gabon' THEN 'Gabón'&#xD;&#xA;  WHEN Nombre = 'United Kingdom' THEN 'Reino Unido'&#xD;&#xA;  WHEN Nombre = 'Grenada' THEN 'Granada'&#xD;&#xA;  WHEN Nombre = 'French Guiana' THEN 'Guayana Francesa'&#xD;&#xA;  WHEN Nombre = 'Greenland' THEN 'Groenlandia'&#xD;&#xA;  WHEN Nombre = 'Gambia, The' THEN 'Gambia, El'&#xD;&#xA;  WHEN Nombre = 'Guadeloupe' THEN 'Guadalupe'&#xD;&#xA;  WHEN Nombre = 'Equatorial Guinea' THEN 'Guinea Ecuatorial'&#xD;&#xA;  WHEN Nombre = 'Greece' THEN 'Grecia'&#xD;&#xA;  WHEN Nombre = 'South Georgia and the South Sandwich Islands' THEN 'Islas Georgias del Sur y Sandwich del Sur'&#xD;&#xA;  WHEN Nombre = 'Hong Kong SAR' THEN 'Región Administrativa Especial de Hong Kong'&#xD;&#xA;  WHEN Nombre = 'Heard Island and McDonald Islands' THEN 'Isla Heard e Islas McDonald'&#xD;&#xA;  WHEN Nombre = 'Croatia' THEN 'Croacia'&#xD;&#xA;  WHEN Nombre = 'Haiti' THEN 'Haití'&#xD;&#xA;  WHEN Nombre = 'Hungary' THEN 'Hungría'&#xD;&#xA;  WHEN Nombre = 'British Indian Ocean Territory' THEN 'Territorio Británico del Océano Índico'&#xD;&#xA;  WHEN Nombre = 'Iraq' THEN 'Irak'&#xD;&#xA;  WHEN Nombre = 'Iran' THEN 'Irán'&#xD;&#xA;  WHEN Nombre = 'Iceland' THEN 'Islandia'&#xD;&#xA;  WHEN Nombre = 'Italy' THEN 'Italia'&#xD;&#xA;  WHEN Nombre = 'Jordan' THEN 'Jordania'&#xD;&#xA;  WHEN Nombre = 'Japan' THEN 'Japón'&#xD;&#xA;  WHEN Nombre = 'Kenya' THEN 'Kenia'&#xD;&#xA;  WHEN Nombre = 'Kyrgyzstan' THEN 'Kirguizistán'&#xD;&#xA;  WHEN Nombre = 'Cambodia' THEN 'Camboya'&#xD;&#xA;  WHEN Nombre = 'Comoros' THEN 'Comoras'&#xD;&#xA;  WHEN Nombre = 'Saint Kitts and Nevis' THEN 'San Cristóbal y Nieves'&#xD;&#xA;  WHEN Nombre = 'North Korea' THEN 'Corea del Norte'&#xD;&#xA;  WHEN Nombre = 'Korea' THEN 'Corea'&#xD;&#xA;  WHEN Nombre = 'Cayman Islands' THEN 'Islas Caimán'&#xD;&#xA;  WHEN Nombre = 'Kazakhstan' THEN 'Kazajstán'&#xD;&#xA;  WHEN Nombre = 'Lebanon' THEN 'Líbano'&#xD;&#xA;  WHEN Nombre = 'Saint Lucia' THEN 'Santa Lucía'&#xD;&#xA;  WHEN Nombre = 'Latvia' THEN 'Letonia'&#xD;&#xA;  WHEN Nombre = 'Libya' THEN 'Libia'&#xD;&#xA;  WHEN Nombre = 'Morocco' THEN 'Marruecos'&#xD;&#xA;  WHEN Nombre = 'Monaco' THEN 'Mónaco'&#xD;&#xA;  WHEN Nombre = 'Moldova' THEN 'Moldavia'&#xD;&#xA;  WHEN Nombre = 'Marshall Islands' THEN 'Islas Marshall'&#xD;&#xA;  WHEN Nombre = 'Macedonia, Former Yugoslav Republic of' THEN 'Macedonia, Antigua República Yugoslava de'&#xD;&#xA;  WHEN Nombre = 'Macao SAR' THEN 'Región Administrativa Especial de Macao'&#xD;&#xA;  WHEN Nombre = 'Northern Mariana Islands' THEN 'Islas Marianas del Norte'&#xD;&#xA;  WHEN Nombre = 'Martinique' THEN 'Martinica'&#xD;&#xA;  WHEN Nombre = 'Mauritius' THEN 'Mauricio'&#xD;&#xA;  WHEN Nombre = 'Maldives' THEN 'Maldivas'&#xD;&#xA;  WHEN Nombre = 'Mexico' THEN 'México'&#xD;&#xA;  WHEN Nombre = 'Malaysia' THEN 'Malasia'&#xD;&#xA;  WHEN Nombre = 'New Caledonia' THEN 'Nueva Caledonia'&#xD;&#xA;  WHEN Nombre = 'Niger' THEN 'Níger'&#xD;&#xA;  WHEN Nombre = 'Norfolk Island' THEN 'Isla Norfolk'&#xD;&#xA;  WHEN Nombre = 'Netherlands' THEN 'Países Bajos'&#xD;&#xA;  WHEN Nombre = 'New Zealand' THEN 'Nueva Zelanda'&#xD;&#xA;  WHEN Nombre = 'Oman' THEN 'Omán'&#xD;&#xA;  WHEN Nombre = 'Panama' THEN 'Panamá'&#xD;&#xA;  WHEN Nombre = 'Peru' THEN 'Perú'&#xD;&#xA;  WHEN Nombre = 'French Polynesia' THEN 'Polinesia Francesa'&#xD;&#xA;  WHEN Nombre = 'Papua New Guinea' THEN 'Papúa Nueva Guinea'&#xD;&#xA;  WHEN Nombre = 'Philippines' THEN 'Filipinas'&#xD;&#xA;  WHEN Nombre = 'Poland' THEN 'Polonia'&#xD;&#xA;  WHEN Nombre = 'Saint Pierre and Miquelon' THEN 'San Pedro y Miquelón'&#xD;&#xA;  WHEN Nombre = 'Pitcairn Islands' THEN 'Islas Pitcairn'&#xD;&#xA;  WHEN Nombre = 'Palestinian Authority' THEN 'Autoridad Palestina'&#xD;&#xA;  WHEN Nombre = 'Réunion' THEN 'Reunión'&#xD;&#xA;  WHEN Nombre = 'Romania' THEN 'Rumania'&#xD;&#xA;  WHEN Nombre = 'Russia' THEN 'Rusia'&#xD;&#xA;  WHEN Nombre = 'Rwanda' THEN 'Ruanda'&#xD;&#xA;  WHEN Nombre = 'Saudi Arabia' THEN 'Arabia Saudí'&#xD;&#xA;  WHEN Nombre = 'Solomon Islands' THEN 'Islas Salomón'&#xD;&#xA;  WHEN Nombre = 'Sudan' THEN 'Sudán'&#xD;&#xA;  WHEN Nombre = 'Sweden' THEN 'Suecia'&#xD;&#xA;  WHEN Nombre = 'Singapore' THEN 'Singapur'&#xD;&#xA;  WHEN Nombre = 'Saint Helena' THEN 'Santa Elena'&#xD;&#xA;  WHEN Nombre = 'Slovenia' THEN 'Eslovenia'&#xD;&#xA;  WHEN Nombre = 'Slovakia' THEN 'Eslovaquia'&#xD;&#xA;  WHEN Nombre = 'Sierra Leone' THEN 'Sierra Leona'&#xD;&#xA;  WHEN Nombre = 'São Tomé and Príncipe' THEN 'Santo Tomé y Príncipe'&#xD;&#xA;  WHEN Nombre = 'Syria' THEN 'Siria'&#xD;&#xA;  WHEN Nombre = 'Swaziland' THEN 'Swazilandia'&#xD;&#xA;  WHEN Nombre = 'Turks and Caicos Islands' THEN 'Islas Turcas y Caicos'&#xD;&#xA;  WHEN Nombre = 'French Southern and Antarctic Lands' THEN 'Tierras Australes y Antárticas Francesas'&#xD;&#xA;  WHEN Nombre = 'Thailand' THEN 'Tailandia'&#xD;&#xA;  WHEN Nombre = 'Tajikistan' THEN 'Tayikistán'&#xD;&#xA;  WHEN Nombre = 'Turkmenistan' THEN 'Turkmenistán'&#xD;&#xA;  WHEN Nombre = 'Tunisia' THEN 'Túnez'&#xD;&#xA;  WHEN Nombre = 'Turkey' THEN 'Turquía'&#xD;&#xA;  WHEN Nombre = 'Trinidad and Tobago' THEN 'Trinidad y Tobago'&#xD;&#xA;  WHEN Nombre = 'Taiwan' THEN 'Taiwán'&#xD;&#xA;  WHEN Nombre = 'Ukraine' THEN 'Ucrania'&#xD;&#xA;  WHEN Nombre = 'U.S. Minor Outlying Islands' THEN 'Islas periféricas menores de EE. UU.'&#xD;&#xA;  WHEN Nombre = 'United States' THEN 'Estados Unidos'&#xD;&#xA;  WHEN Nombre = 'Uzbekistan' THEN 'Uzbekistán'&#xD;&#xA;  WHEN Nombre = 'Vatican City' THEN 'Ciudad del Vaticano'&#xD;&#xA;  WHEN Nombre = 'Saint Vincent and the Grenadine' THEN 'San Vicente y la Granadina'&#xD;&#xA;  WHEN Nombre = 'Virgin Islands, British' THEN 'Islas Vírgenes, Gran Bretaña'&#xD;&#xA;  WHEN Nombre = 'Virgin Islands, U.S.' THEN 'Islas Vírgenes, EE. UU.'&#xD;&#xA;  WHEN Nombre = 'Wallis and Futuna' THEN 'Wallis y Futuna'&#xD;&#xA;  WHEN Nombre = 'South Africa' THEN 'Sudáfrica'&#xD;&#xA;  WHEN Nombre = 'Zimbabwe' THEN 'Zimbabue'&#xD;&#xA;  ELSE Nombre&#xD;&#xA;END" msprop:design-time-name="a5460ffa-03d0-4162-9727-e339ebcf8e6e" msprop:Description="">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
@@ -594,81 +660,145 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dimProductos" msprop:design-time-name="bcb1ccc3-fe18-4634-84de-3b697e41f6ff" msprop:FriendlyName="dimProductos" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimProductos">
+            <xs:element name="dbo_dimProductos" msprop:design-time-name="b7e78814-413c-456d-aa53-9b164dc2a84a" msprop:FriendlyName="dimProductos" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimProductos">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="ProductoID" msprop:FriendlyName="ProductoID" msprop:DbColumnName="ProductoID" msprop:design-time-name="bf50f337-2cc3-4bb0-9e0c-75330c31c252" type="xs:int" />
-                  <xs:element name="Producto" msprop:FriendlyName="Producto" msprop:DbColumnName="Producto" msprop:design-time-name="57d283c2-c7bf-47d2-8a8c-73ebf4b89041" minOccurs="0">
+                  <xs:element name="ProductoID" msprop:FriendlyName="ProductoID" msprop:DbColumnName="ProductoID" msprop:design-time-name="54d66333-9b24-4cd4-b758-b2bf185b59ad" type="xs:int" />
+                  <xs:element name="Producto" msprop:FriendlyName="Producto" msprop:DbColumnName="Producto" msprop:design-time-name="eb1d03ef-f693-4449-b253-3dd2e80e69e7" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="100" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="NumeroProducto" msprop:FriendlyName="NumeroProducto" msprop:DbColumnName="NumeroProducto" msprop:design-time-name="c3d147bb-2c1c-4046-8843-6e6c83892cbc" minOccurs="0">
+                  <xs:element name="NumeroProducto" msprop:FriendlyName="NumeroProducto" msprop:DbColumnName="NumeroProducto" msprop:design-time-name="06bf10ac-3c27-4755-8925-5d420f954472" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="EsFabricado" msprop:FriendlyName="EsFabricado" msprop:DbColumnName="EsFabricado" msprop:design-time-name="3ea6ece2-8789-4144-ab47-9f4ff7dadf14" type="xs:boolean" minOccurs="0" />
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="dbo_dimTerritorios" msprop:design-time-name="075b8c86-e83b-487c-b261-cab0faca372f" msprop:FriendlyName="dimTerritorios" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimTerritorios">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="TerritorioID" msprop:FriendlyName="TerritorioID" msprop:DbColumnName="TerritorioID" msprop:design-time-name="b5791398-d65a-48ee-a746-8c85dcc4e2b2" type="xs:int" />
-                  <xs:element name="Territorio" msprop:FriendlyName="Territorio" msprop:DbColumnName="Territorio" msprop:design-time-name="9e6bf643-636d-4dc1-8b5c-65bfb91f32a6" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="100" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="dbo_dimTiempo" msprop:design-time-name="8e448cd1-781e-441c-afc6-af1e762da4c0" msprop:FriendlyName="dimTiempo" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimTiempo">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="1ae39b7e-6338-41e0-96c8-bfea1d32bf54" type="xs:int" />
-                  <xs:element name="Año" msprop:FriendlyName="Año" msprop:DbColumnName="Año" msprop:design-time-name="c429e654-52dd-481a-9c6d-df1665559642" type="xs:int" minOccurs="0" />
-                  <xs:element name="Mes" msprop:FriendlyName="Mes" msprop:DbColumnName="Mes" msprop:design-time-name="717588c9-d40a-4f29-bdeb-d1d7ac3ecdad" minOccurs="0">
+                  <xs:element name="TipoProduccion" msprop:FriendlyName="TipoProduccion" msprop:DbColumnName="TipoProduccion" msprop:design-time-name="6a4edc8c-aed5-46bc-b660-531aaf5e47f8" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="20" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="NumeroMes" msprop:FriendlyName="NumeroMes" msprop:DbColumnName="NumeroMes" msprop:design-time-name="bdd7cdaf-0fe8-4b30-b413-d047b7906561" type="xs:int" minOccurs="0" />
-                  <xs:element name="Trimestre" msprop:FriendlyName="Trimestre" msprop:DbColumnName="Trimestre" msprop:design-time-name="638cf6ab-025a-42bf-93a7-49532be9197f" type="xs:int" minOccurs="0" />
+                  <xs:element name="Producto_x0020_Spanish" msdata:ReadOnly="true" msprop:DbColumnName="Producto Spanish" msprop:IsLogical="True" msprop:ComputedColumnExpression="CASE&#xD;&#xA;    WHEN producto = 'AWC Logo Cap' THEN 'Gorra con logo AWC'&#xD;&#xA;    WHEN producto = 'Bike Wash - Dissolver' THEN 'Lavado de bicicleta - Dissolver'&#xD;&#xA;    WHEN producto = 'Cable Lock' THEN 'Candado de cable'&#xD;&#xA;    WHEN producto = 'Chain' THEN 'Cadena'&#xD;&#xA;    WHEN producto = 'Classic Vest, L' THEN 'Chaleco clásico, L'&#xD;&#xA;    WHEN producto = 'Classic Vest, M' THEN 'Chaleco clásico, M'&#xD;&#xA;    WHEN producto = 'Classic Vest, S' THEN 'Chaleco clásico, S'&#xD;&#xA;    WHEN producto = 'Fender Set - Mountain' THEN 'Juego de guardabarros - Montaña'&#xD;&#xA;    WHEN producto = 'Front Brakes' THEN 'Frenos delanteros'&#xD;&#xA;    WHEN producto = 'Front Derailleur' THEN 'Desviador delantero'&#xD;&#xA;    WHEN producto = 'Full-Finger Gloves, L' THEN 'Guantes de dedo completo, L'&#xD;&#xA;    WHEN producto = 'Full-Finger Gloves, M' THEN 'Guantes de dedo completo, M'&#xD;&#xA;    WHEN producto = 'Full-Finger Gloves, S' THEN 'Guantes de dedo completo, S'&#xD;&#xA;    WHEN producto = 'Half-Finger Gloves, L' THEN 'Guantes de medio dedo, L'&#xD;&#xA;    WHEN producto = 'Half-Finger Gloves, M' THEN 'Guantes de medio dedo, M'&#xD;&#xA;    WHEN producto = 'Half-Finger Gloves, S' THEN 'Guantes de medio dedo, S'&#xD;&#xA;    WHEN producto = 'Headlights - Dual-Beam' THEN 'Faros - Doble haz'&#xD;&#xA;    WHEN producto = 'Headlights - Weatherproof' THEN 'Faros - Resistente al clima'&#xD;&#xA;    WHEN producto = 'Hitch Rack - 4-Bike' THEN 'Portabicicletas - 4 bicicletas'&#xD;&#xA;    WHEN producto = 'HL Bottom Bracket' THEN 'Soporte inferior HL'&#xD;&#xA;    WHEN producto = 'HL Crankset' THEN 'Juego de bielas HL'&#xD;&#xA;    WHEN producto = 'HL Fork' THEN 'Horquilla HL'&#xD;&#xA;    WHEN producto = 'HL Headset' THEN 'Juego de dirección HL'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Black, 38' THEN 'Cuadro de montaña HL - Negro, 38'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Black, 42' THEN 'Cuadro de montaña HL - Negro, 42'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Black, 44' THEN 'Cuadro de montaña HL - Negro, 44'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Black, 46' THEN 'Cuadro de montaña HL - Negro, 46'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Black, 48' THEN 'Cuadro de montaña HL - Negro, 48'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Silver, 38' THEN 'Cuadro de montaña HL - Plata, 38'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Silver, 42' THEN 'Cuadro de montaña HL - Plata, 42'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Silver, 44' THEN 'Cuadro de montaña HL - Plata, 44'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Silver, 46' THEN 'Cuadro de montaña HL - Plata, 46'&#xD;&#xA;    WHEN producto = 'HL Mountain Frame - Silver, 48' THEN 'Cuadro de montaña HL - Plata, 48'&#xD;&#xA;    WHEN producto = 'HL Mountain Front Wheel' THEN 'Rueda delantera de montaña HL'&#xD;&#xA;    WHEN producto = 'HL Mountain Handlebars' THEN 'Manillar de montaña HL'&#xD;&#xA;    WHEN producto = 'HL Mountain Pedal' THEN 'Pedal de montaña HL'&#xD;&#xA;    WHEN producto = 'HL Mountain Rear Wheel' THEN 'Rueda trasera de montaña HL'&#xD;&#xA;    WHEN producto = 'HL Mountain Seat/Saddle' THEN 'Asiento de montaña HL'&#xD;&#xA;    WHEN producto = 'HL Mountain Tire' THEN 'Neumático de montaña HL'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Black, 44' THEN 'Cuadro de carretera HL - Negro, 44'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Black, 48' THEN 'Cuadro de carretera HL - Negro, 48'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Black, 52' THEN 'Cuadro de carretera HL - Negro, 52'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Black, 58' THEN 'Cuadro de carretera HL - Negro, 58'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Black, 62' THEN 'Cuadro de carretera HL - Negro, 62'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Red, 44' THEN 'Cuadro de carretera HL - Rojo, 44'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Red, 48' THEN 'Cuadro de carretera HL - Rojo, 48'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Red, 52' THEN 'Cuadro de carretera HL - Rojo, 52'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Red, 56' THEN 'Cuadro de carretera HL - Rojo, 56'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Red, 58' THEN 'Cuadro de carretera HL - Rojo, 58'&#xD;&#xA;    WHEN producto = 'HL Road Frame - Red, 62' THEN 'Cuadro de carretera HL - Rojo, 62'&#xD;&#xA;    WHEN producto = 'HL Road Front Wheel' THEN 'Rueda delantera de carretera HL'&#xD;&#xA;    WHEN producto = 'HL Road Handlebars' THEN 'Manillar de carretera HL'&#xD;&#xA;    WHEN producto = 'HL Road Pedal' THEN 'Pedal de carretera HL'&#xD;&#xA;    WHEN producto = 'HL Road Rear Wheel' THEN 'Rueda trasera de carretera HL'&#xD;&#xA;    WHEN producto = 'HL Road Seat/Saddle' THEN 'Asiento de carretera HL'&#xD;&#xA;    WHEN producto = 'HL Road Tire' THEN 'Neumático de carretera HL'&#xD;&#xA;    WHEN producto = 'HL Touring Frame - Blue, 46' THEN 'Cuadro de turismo HL - Azul, 46'&#xD;&#xA;    WHEN producto = 'HL Touring Frame - Blue, 50' THEN 'Cuadro de turismo HL - Azul, 50'&#xD;&#xA;    WHEN producto = 'HL Touring Frame - Blue, 54' THEN 'Cuadro de turismo HL - Azul, 54'&#xD;&#xA;    WHEN producto = 'HL Touring Frame - Blue, 60' THEN 'Cuadro de turismo HL - Azul, 60'&#xD;&#xA;    WHEN producto = 'HL Touring Frame - Yellow, 46' THEN 'Cuadro de turismo HL - Amarillo, 46'&#xD;&#xA;    WHEN producto = 'HL Touring Frame - Yellow, 50' THEN 'Cuadro de turismo HL - Amarillo, 50'&#xD;&#xA;    WHEN producto = 'HL Touring Frame - Yellow, 54' THEN 'Cuadro de turismo HL - Amarillo, 54'&#xD;&#xA;    WHEN producto = 'HL Touring Frame - Yellow, 60' THEN 'Cuadro de turismo HL - Amarillo, 60'&#xD;&#xA;    WHEN producto = 'HL Touring Handlebars' THEN 'Manillar de turismo HL'&#xD;&#xA;    WHEN producto = 'HL Touring Seat/Saddle' THEN 'Asiento de turismo HL'&#xD;&#xA;    WHEN producto = 'Hydration Pack - 70 oz.' THEN 'Mochila de hidratación - 70 oz.'&#xD;&#xA;    WHEN producto = 'LL Bottom Bracket' THEN 'Soporte inferior LL'&#xD;&#xA;    WHEN producto = 'LL Crankset' THEN 'Juego de bielas LL'&#xD;&#xA;    WHEN producto = 'LL Fork' THEN 'Horquilla LL'&#xD;&#xA;    WHEN producto = 'LL Headset' THEN 'Juego de dirección LL'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Black, 40' THEN 'Cuadro de montaña LL - Negro, 40'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Black, 42' THEN 'Cuadro de montaña LL - Negro, 42'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Black, 44' THEN 'Cuadro de montaña LL - Negro, 44'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Black, 48' THEN 'Cuadro de montaña LL - Negro, 48'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Black, 52' THEN 'Cuadro de montaña LL - Negro, 52'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Silver, 40' THEN 'Cuadro de montaña LL - Plata, 40'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Silver, 42' THEN 'Cuadro de montaña LL - Plata, 42'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Silver, 44' THEN 'Cuadro de montaña LL - Plata, 44'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Silver, 48' THEN 'Cuadro de montaña LL - Plata, 48'&#xD;&#xA;    WHEN producto = 'LL Mountain Frame - Silver, 52' THEN 'Cuadro de montaña LL - Plata, 52'&#xD;&#xA;    WHEN producto = 'LL Mountain Front Wheel' THEN 'Rueda delantera de montaña LL'&#xD;&#xA;    WHEN producto = 'LL Mountain Handlebars' THEN 'Manillar de montaña LL'&#xD;&#xA;    WHEN producto = 'LL Mountain Pedal' THEN 'Pedal de montaña LL'&#xD;&#xA;    WHEN producto = 'LL Mountain Rear Wheel' THEN 'Rueda trasera de montaña LL'&#xD;&#xA;    WHEN producto = 'LL Mountain Seat/Saddle' THEN 'Asiento de montaña LL'&#xD;&#xA;    WHEN producto = 'LL Mountain Tire' THEN 'Neumático de montaña LL'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Black, 44' THEN 'Cuadro de carretera LL - Negro, 44'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Black, 48' THEN 'Cuadro de carretera LL - Negro, 48'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Black, 52' THEN 'Cuadro de carretera LL - Negro, 52'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Black, 58' THEN 'Cuadro de carretera LL - Negro, 58'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Black, 60' THEN 'Cuadro de carretera LL - Negro, 60'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Black, 62' THEN 'Cuadro de carretera LL - Negro, 62'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Red, 44' THEN 'Cuadro de carretera LL - Rojo, 44'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Red, 48' THEN 'Cuadro de carretera LL - Rojo, 48'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Red, 52' THEN 'Cuadro de carretera LL - Rojo, 52'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Red, 58' THEN 'Cuadro de carretera LL - Rojo, 58'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Red, 60' THEN 'Cuadro de carretera LL - Rojo, 60'&#xD;&#xA;    WHEN producto = 'LL Road Frame - Red, 62' THEN 'Cuadro de carretera LL - Rojo, 62'&#xD;&#xA;    WHEN producto = 'LL Road Front Wheel' THEN 'Rueda delantera de carretera LL'&#xD;&#xA;    WHEN producto = 'LL Road Handlebars' THEN 'Manillar de carretera LL'&#xD;&#xA;    WHEN producto = 'LL Road Pedal' THEN 'Pedal de carretera LL'&#xD;&#xA;    WHEN producto = 'LL Road Rear Wheel' THEN 'Rueda trasera de carretera LL'&#xD;&#xA;    WHEN producto = 'LL Road Seat/Saddle' THEN 'Asiento de carretera LL'&#xD;&#xA;    WHEN producto = 'LL Road Tire' THEN 'Neumático de carretera LL'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Blue, 44' THEN 'Cuadro de turismo LL - Azul, 44'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Blue, 50' THEN 'Cuadro de turismo LL - Azul, 50'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Blue, 54' THEN 'Cuadro de turismo LL - Azul, 54'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Blue, 58' THEN 'Cuadro de turismo LL - Azul, 58'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Blue, 62' THEN 'Cuadro de turismo LL - Azul, 62'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Yellow, 44' THEN 'Cuadro de turismo LL - Amarillo, 44'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Yellow, 50' THEN 'Cuadro de turismo LL - Amarillo, 50'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Yellow, 54' THEN 'Cuadro de turismo LL - Amarillo, 54'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Yellow, 58' THEN 'Cuadro de turismo LL - Amarillo, 58'&#xD;&#xA;    WHEN producto = 'LL Touring Frame - Yellow, 62' THEN 'Cuadro de turismo LL - Amarillo, 62'&#xD;&#xA;    WHEN producto = 'LL Touring Handlebars' THEN 'Manillar de turismo LL'&#xD;&#xA;    WHEN producto = 'LL Touring Seat/Saddle' THEN 'Asiento de turismo LL'&#xD;&#xA;    WHEN producto = 'Long-Sleeve Logo Jersey, L' THEN 'Camiseta con logo de manga larga, L'&#xD;&#xA;    WHEN producto = 'Long-Sleeve Logo Jersey, M' THEN 'Camiseta con logo de manga larga, M'&#xD;&#xA;    WHEN producto = 'Long-Sleeve Logo Jersey, S' THEN 'Camiseta con logo de manga larga, S'&#xD;&#xA;    WHEN producto = 'Long-Sleeve Logo Jersey, XL' THEN 'Camiseta con logo de manga larga, XL'&#xD;&#xA;    WHEN producto = 'Men''s Bib-Shorts, L' THEN 'Pantalones cortos con tirantes para hombre, L'&#xD;&#xA;    WHEN producto = 'Men''s Bib-Shorts, M' THEN 'Pantalones cortos con tirantes para hombre, M'&#xD;&#xA;    WHEN producto = 'Men''s Bib-Shorts, S' THEN 'Pantalones cortos con tirantes para hombre, S'&#xD;&#xA;    WHEN producto = 'Men''s Sports Shorts, L' THEN 'Pantalones cortos deportivos para hombre, L'&#xD;&#xA;    WHEN producto = 'Men''s Sports Shorts, M' THEN 'Pantalones cortos deportivos para hombre, M'&#xD;&#xA;    WHEN producto = 'Men''s Sports Shorts, S' THEN 'Pantalones cortos deportivos para hombre, S'&#xD;&#xA;    WHEN producto = 'Men''s Sports Shorts, XL' THEN 'Pantalones cortos deportivos para hombre, XL'&#xD;&#xA;    WHEN producto = 'Minipump' THEN 'Minipump'&#xD;&#xA;    WHEN producto = 'ML Bottom Bracket' THEN 'Soporte inferior ML'&#xD;&#xA;    WHEN producto = 'ML Crankset' THEN 'Juego de bielas ML'&#xD;&#xA;    WHEN producto = 'ML Fork' THEN 'Horquilla ML'&#xD;&#xA;    WHEN producto = 'ML Headset' THEN 'Juego de dirección ML'&#xD;&#xA;    WHEN producto = 'ML Mountain Frame - Black, 38' THEN 'Cuadro de montaña ML - Negro, 38'&#xD;&#xA;    WHEN producto = 'ML Mountain Frame - Black, 40' THEN 'Cuadro de montaña ML - Negro, 40'&#xD;&#xA;    WHEN producto = 'ML Mountain Frame - Black, 44' THEN 'Cuadro de montaña ML - Negro, 44'&#xD;&#xA;    WHEN producto = 'ML Mountain Frame - Black, 48' THEN 'Cuadro de montaña ML - Negro, 48'&#xD;&#xA;    WHEN producto = 'ML Mountain Frame-W - Silver, 38' THEN 'Cuadro de montaña ML-W - Plata, 38'&#xD;&#xA;    WHEN producto = 'ML Mountain Frame-W - Silver, 40' THEN 'Cuadro de montaña ML-W - Plata, 40'&#xD;&#xA;    WHEN producto = 'ML Mountain Frame-W - Silver, 42' THEN 'Cuadro de montaña ML-W - Plata, 42'&#xD;&#xA;    WHEN producto = 'ML Mountain Frame-W - Silver, 46' THEN 'Cuadro de montaña ML-W - Plata, 46'&#xD;&#xA;    WHEN producto = 'ML Mountain Front Wheel' THEN 'Rueda delantera de montaña ML'&#xD;&#xA;    WHEN producto = 'ML Mountain Handlebars' THEN 'Manillar de montaña ML'&#xD;&#xA;    WHEN producto = 'ML Mountain Pedal' THEN 'Pedal de montaña ML'&#xD;&#xA;    WHEN producto = 'ML Mountain Rear Wheel' THEN 'Rueda trasera de montaña ML'&#xD;&#xA;    WHEN producto = 'ML Mountain Seat/Saddle' THEN 'Asiento de montaña ML'&#xD;&#xA;    WHEN producto = 'ML Mountain Tire' THEN 'Neumático de montaña ML'&#xD;&#xA;    WHEN producto = 'ML Road Frame - Red, 44' THEN 'Cuadro de carretera ML - Rojo, 44'&#xD;&#xA;    WHEN producto = 'ML Road Frame - Red, 48' THEN 'Cuadro de carretera ML - Rojo, 48'&#xD;&#xA;    WHEN producto = 'ML Road Frame - Red, 52' THEN 'Cuadro de carretera ML - Rojo, 52'&#xD;&#xA;    WHEN producto = 'ML Road Frame - Red, 58' THEN 'Cuadro de carretera ML - Rojo, 58'&#xD;&#xA;    WHEN producto = 'ML Road Frame - Red, 60' THEN 'Cuadro de carretera ML - Rojo, 60'&#xD;&#xA;    WHEN producto = 'ML Road Frame-W - Yellow, 38' THEN 'Cuadro de carretera ML-W - Amarillo, 38'&#xD;&#xA;    WHEN producto = 'ML Road Frame-W - Yellow, 40' THEN 'Cuadro de carretera ML-W - Amarillo, 40'&#xD;&#xA;    WHEN producto = 'ML Road Frame-W - Yellow, 42' THEN 'Cuadro de carretera ML-W - Amarillo, 42'&#xD;&#xA;    WHEN producto = 'ML Road Frame-W - Yellow, 44' THEN 'Cuadro de carretera ML-W - Amarillo, 44'&#xD;&#xA;    WHEN producto = 'ML Road Frame-W - Yellow, 48' THEN 'Cuadro de carretera ML-W - Amarillo, 48'&#xD;&#xA;    WHEN producto = 'ML Road Front Wheel' THEN 'Rueda delantera de carretera ML'&#xD;&#xA;    WHEN producto = 'ML Road Handlebars' THEN 'Manillar de carretera ML'&#xD;&#xA;    WHEN producto = 'ML Road Pedal' THEN 'Pedal de carretera ML'&#xD;&#xA;    WHEN producto = 'ML Road Rear Wheel' THEN 'Rueda trasera de carretera ML'&#xD;&#xA;    WHEN producto = 'ML Road Seat/Saddle' THEN 'Asiento de carretera ML'&#xD;&#xA;    WHEN producto = 'ML Road Tire' THEN 'Neumático de carretera ML'&#xD;&#xA;    WHEN producto = 'ML Touring Seat/Saddle' THEN 'Asiento de turismo ML'&#xD;&#xA;    WHEN producto = 'Mountain Bike Socks, L' THEN 'Socks de bicicleta de montaña, L'&#xD;&#xA;    WHEN producto = 'Mountain Bike Socks, M' THEN 'Socks de bicicleta de montaña, M'&#xD;&#xA;    WHEN producto = 'Mountain Bottle Cage' THEN 'Portabotellas de montaña'&#xD;&#xA;    WHEN producto = 'Mountain Pump' THEN 'Bomba de montaña'&#xD;&#xA;    WHEN producto = 'Mountain Tire Tube' THEN 'Tubo de neumático de montaña'&#xD;&#xA;WHEN producto = 'Mountain-100 Black, 38' THEN 'Montaña-100 Negro, 38'&#xD;&#xA;WHEN producto = 'Mountain-100 Black, 42' THEN 'Montaña-100 Negro, 42'&#xD;&#xA;WHEN producto = 'Mountain-100 Black, 44' THEN 'Montaña-100 Negro, 44'&#xD;&#xA;WHEN producto = 'Mountain-100 Black, 48' THEN 'Montaña-100 Negro, 48'&#xD;&#xA;WHEN producto = 'Mountain-100 Silver, 38' THEN 'Montaña-100 Plata, 38'&#xD;&#xA;WHEN producto = 'Mountain-100 Silver, 42' THEN 'Montaña-100 Plata, 42'&#xD;&#xA;WHEN producto = 'Mountain-100 Silver, 44' THEN 'Montaña-100 Plata, 44'&#xD;&#xA;WHEN producto = 'Mountain-100 Silver, 48' THEN 'Montaña-100 Plata, 48'&#xD;&#xA;WHEN producto = 'Mountain-200 Black, 38' THEN 'Montaña-200 Negro, 38'&#xD;&#xA;WHEN producto = 'Mountain-200 Black, 42' THEN 'Montaña-200 Negro, 42'&#xD;&#xA;WHEN producto = 'Mountain-200 Black, 46' THEN 'Montaña-200 Negro, 46'&#xD;&#xA;WHEN producto = 'Mountain-200 Silver, 38' THEN 'Montaña-200 Plata, 38'&#xD;&#xA;WHEN producto = 'Mountain-200 Silver, 42' THEN 'Montaña-200 Plata, 42'&#xD;&#xA;WHEN producto = 'Mountain-200 Silver, 46' THEN 'Montaña-200 Plata, 46'&#xD;&#xA;WHEN producto = 'Mountain-300 Black, 38' THEN 'Montaña-300 Negro, 38'&#xD;&#xA;WHEN producto = 'Mountain-300 Black, 40' THEN 'Montaña-300 Negro, 40'&#xD;&#xA;WHEN producto = 'Mountain-300 Black, 44' THEN 'Montaña-300 Negro, 44'&#xD;&#xA;WHEN producto = 'Mountain-300 Black, 48' THEN 'Montaña-300 Negro, 48'&#xD;&#xA;WHEN producto = 'Mountain-400-W Silver, 38' THEN 'Montaña-400 Mujer Plata, 38'&#xD;&#xA;WHEN producto = 'Mountain-400-W Silver, 40' THEN 'Montaña-400 Mujer Plata, 40'&#xD;&#xA;WHEN producto = 'Mountain-400-W Silver, 42' THEN 'Montaña-400 Mujer Plata, 42'&#xD;&#xA;WHEN producto = 'Mountain-400-W Silver, 46' THEN 'Montaña-400 Mujer Plata, 46'&#xD;&#xA;WHEN producto = 'Mountain-500 Black, 40' THEN 'Montaña-500 Negro, 40'&#xD;&#xA;WHEN producto = 'Mountain-500 Black, 42' THEN 'Montaña-500 Negro, 42'&#xD;&#xA;WHEN producto = 'Mountain-500 Black, 44' THEN 'Montaña-500 Negro, 44'&#xD;&#xA;WHEN producto = 'Mountain-500 Black, 48' THEN 'Montaña-500 Negro, 48'&#xD;&#xA;WHEN producto = 'Mountain-500 Black, 52' THEN 'Montaña-500 Negro, 52'&#xD;&#xA;WHEN producto = 'Mountain-500 Silver, 40' THEN 'Montaña-500 Plata, 40'&#xD;&#xA;WHEN producto = 'Mountain-500 Silver, 42' THEN 'Montaña-500 Plata, 42'&#xD;&#xA;WHEN producto = 'Mountain-500 Silver, 44' THEN 'Montaña-500 Plata, 44'&#xD;&#xA;WHEN producto = 'Mountain-500 Silver, 48' THEN 'Montaña-500 Plata, 48'&#xD;&#xA;WHEN producto = 'Mountain-500 Silver, 52' THEN 'Montaña-500 Plata, 52'&#xD;&#xA;    WHEN producto = 'Patch Kit/8 Patches' THEN 'Kit de reparación/8 parches'&#xD;&#xA;    WHEN producto = 'Racing Socks, L' THEN 'Calcetines de carreras, L'&#xD;&#xA;    WHEN producto = 'Racing Socks, M' THEN 'Calcetines de carreras, M'&#xD;&#xA;    WHEN producto = 'Rear Brakes' THEN 'Frenos traseros'&#xD;&#xA;    WHEN producto = 'Rear Derailleur' THEN 'Desviador trasero'&#xD;&#xA;    WHEN producto = 'Road Bottle Cage' THEN 'Portabotellas de carretera'&#xD;&#xA;    WHEN producto = 'Road Tire Tube' THEN 'Tubo de neumático de carretera'&#xD;&#xA;    WHEN producto = 'Road-150 Red, 44' THEN 'Carretera-150 Rojo, 44'&#xD;&#xA;    WHEN producto = 'Road-150 Red, 48' THEN 'Carretera-150 Rojo, 48'&#xD;&#xA;    WHEN producto = 'Road-150 Red, 52' THEN 'Carretera-150 Rojo, 52'&#xD;&#xA;    WHEN producto = 'Road-150 Red, 56' THEN 'Carretera-150 Rojo, 56'&#xD;&#xA;    WHEN producto = 'Road-150 Red, 62' THEN 'Carretera-150 Rojo, 62'&#xD;&#xA;    WHEN producto = 'Road-250 Black, 44' THEN 'Carretera-250 Negro, 44'&#xD;&#xA;    WHEN producto = 'Road-250 Black, 48' THEN 'Carretera-250 Negro, 48'&#xD;&#xA;    WHEN producto = 'Road-250 Black, 52' THEN 'Carretera-250 Negro, 52'&#xD;&#xA;    WHEN producto = 'Road-250 Black, 58' THEN 'Carretera-250 Negro, 58'&#xD;&#xA;    WHEN producto = 'Road-250 Red, 44' THEN 'Carretera-250 Rojo, 44'&#xD;&#xA;    WHEN producto = 'Road-250 Red, 48' THEN 'Carretera-250 Rojo, 48'&#xD;&#xA;    WHEN producto = 'Road-250 Red, 52' THEN 'Carretera-250 Rojo, 52'&#xD;&#xA;    WHEN producto = 'Road-250 Red, 58' THEN 'Carretera-250 Rojo, 58'&#xD;&#xA;    WHEN producto = 'Road-350-W Yellow, 40' THEN 'Carretera-350-W Amarillo, 40'&#xD;&#xA;    WHEN producto = 'Road-350-W Yellow, 42' THEN 'Carretera-350-W Amarillo, 42'&#xD;&#xA;    WHEN producto = 'Road-350-W Yellow, 44' THEN 'Carretera-350-W Amarillo, 44'&#xD;&#xA;    WHEN producto = 'Road-350-W Yellow, 48' THEN 'Carretera-350-W Amarillo, 48'&#xD;&#xA;    WHEN producto = 'Road-450 Red, 44' THEN 'Carretera-450 Rojo, 44'&#xD;&#xA;    WHEN producto = 'Road-450 Red, 48' THEN 'Carretera-450 Rojo, 48'&#xD;&#xA;    WHEN producto = 'Road-450 Red, 52' THEN 'Carretera-450 Rojo, 52'&#xD;&#xA;    WHEN producto = 'Road-450 Red, 58' THEN 'Carretera-450 Rojo, 58'&#xD;&#xA;    WHEN producto = 'Road-450 Red, 60' THEN 'Carretera-450 Rojo, 60'&#xD;&#xA;    WHEN producto = 'Road-550-W Yellow, 38' THEN 'Carretera-550-W Amarillo, 38'&#xD;&#xA;    WHEN producto = 'Road-550-W Yellow, 40' THEN 'Carretera-550-W Amarillo, 40'&#xD;&#xA;    WHEN producto = 'Road-550-W Yellow, 42' THEN 'Carretera-550-W Amarillo, 42'&#xD;&#xA;    WHEN producto = 'Road-550-W Yellow, 44' THEN 'Carretera-550-W Amarillo, 44'&#xD;&#xA;    WHEN producto = 'Road-550-W Yellow, 48' THEN 'Carretera-550-W Amarillo, 48'&#xD;&#xA;    WHEN producto = 'Road-650 Black, 44' THEN 'Carretera-650 Negro, 44'&#xD;&#xA;    WHEN producto = 'Road-650 Black, 48' THEN 'Carretera-650 Negro, 48'&#xD;&#xA;    WHEN producto = 'Road-650 Black, 52' THEN 'Carretera-650 Negro, 52'&#xD;&#xA;    WHEN producto = 'Road-650 Black, 58' THEN 'Carretera-650 Negro, 58'&#xD;&#xA;    WHEN producto = 'Road-650 Black, 60' THEN 'Carretera-650 Negro, 60'&#xD;&#xA;    WHEN producto = 'Road-650 Black, 62' THEN 'Carretera-650 Negro, 62'&#xD;&#xA;    WHEN producto = 'Road-650 Red, 44' THEN 'Carretera-650 Rojo, 44'&#xD;&#xA;    WHEN producto = 'Road-650 Red, 48' THEN 'Carretera-650 Rojo, 48'&#xD;&#xA;    WHEN producto = 'Road-650 Red, 52' THEN 'Carretera-650 Rojo, 52'&#xD;&#xA;    WHEN producto = 'Road-650 Red, 58' THEN 'Carretera-650 Rojo, 58'&#xD;&#xA;    WHEN producto = 'Road-650 Red, 60' THEN 'Carretera-650 Rojo, 60'&#xD;&#xA;    WHEN producto = 'Road-650 Red, 62' THEN 'Carretera-650 Rojo, 62'&#xD;&#xA;    WHEN producto = 'Road-750 Black, 44' THEN 'Carretera-750 Negro, 44'&#xD;&#xA;    WHEN producto = 'Road-750 Black, 48' THEN 'Carretera-750 Negro, 48'&#xD;&#xA;    WHEN producto = 'Road-750 Black, 52' THEN 'Carretera-750 Negro, 52'&#xD;&#xA;    WHEN producto = 'Road-750 Black, 58' THEN 'Carretera-750 Negro, 58'&#xD;&#xA;    WHEN producto = 'Short-Sleeve Classic Jersey, L' THEN 'Camiseta clásica de manga corta, L'&#xD;&#xA;    WHEN producto = 'Short-Sleeve Classic Jersey, M' THEN 'Camiseta clásica de manga corta, M'&#xD;&#xA;    WHEN producto = 'Short-Sleeve Classic Jersey, S' THEN 'Camiseta clásica de manga corta, S'&#xD;&#xA;    WHEN producto = 'Short-Sleeve Classic Jersey, XL' THEN 'Camiseta clásica de manga corta, XL'&#xD;&#xA;    WHEN producto = 'Sport-100 Helmet, Black' THEN 'Casco Sport-100, Negro'&#xD;&#xA;    WHEN producto = 'Sport-100 Helmet, Blue' THEN 'Casco Sport-100, Azul'&#xD;&#xA;    WHEN producto = 'Sport-100 Helmet, Red' THEN 'Casco Sport-100, Rojo'&#xD;&#xA;    WHEN producto = 'Taillights - Battery-Powered' THEN 'Luces traseras - Alimentación por batería'&#xD;&#xA;    WHEN producto = 'Touring Front Wheel' THEN 'Rueda delantera de turismo'&#xD;&#xA;    WHEN producto = 'Touring Pedal' THEN 'Pedal de turismo'&#xD;&#xA;    WHEN producto = 'Touring Rear Wheel' THEN 'Rueda trasera de turismo'&#xD;&#xA;    WHEN producto = 'Touring Tire' THEN 'Neumático de turismo'&#xD;&#xA;    WHEN producto = 'Touring Tire Tube' THEN 'Tubo de neumático de turismo'&#xD;&#xA;WHEN producto = 'Touring-1000 Blue, 46' THEN 'Turismo-1000 Azul, 46'&#xD;&#xA;WHEN producto = 'Touring-1000 Blue, 50' THEN 'Turismo-1000 Azul, 50'&#xD;&#xA;WHEN producto = 'Touring-1000 Blue, 54' THEN 'Turismo-1000 Azul, 54'&#xD;&#xA;WHEN producto = 'Touring-1000 Blue, 60' THEN 'Turismo-1000 Azul, 60'&#xD;&#xA;WHEN producto = 'Touring-1000 Yellow, 46' THEN 'Turismo-1000 Amarillo, 46'&#xD;&#xA;WHEN producto = 'Touring-1000 Yellow, 50' THEN 'Turismo-1000 Amarillo, 50'&#xD;&#xA;WHEN producto = 'Touring-1000 Yellow, 54' THEN 'Turismo-1000 Amarillo, 54'&#xD;&#xA;WHEN producto = 'Touring-1000 Yellow, 60' THEN 'Turismo-1000 Amarillo, 60'&#xD;&#xA;WHEN producto = 'Touring-2000 Blue, 46' THEN 'Turismo-2000 Azul, 46'&#xD;&#xA;WHEN producto = 'Touring-2000 Blue, 50' THEN 'Turismo-2000 Azul, 50'&#xD;&#xA;WHEN producto = 'Touring-2000 Blue, 54' THEN 'Turismo-2000 Azul, 54'&#xD;&#xA;WHEN producto = 'Touring-2000 Blue, 60' THEN 'Turismo-2000 Azul, 60'&#xD;&#xA;WHEN producto = 'Touring-3000 Blue, 44' THEN 'Turismo-3000 Azul, 44'&#xD;&#xA;WHEN producto = 'Touring-3000 Blue, 50' THEN 'Turismo-3000 Azul, 50'&#xD;&#xA;WHEN producto = 'Touring-3000 Blue, 54' THEN 'Turismo-3000 Azul, 54'&#xD;&#xA;WHEN producto = 'Touring-3000 Blue, 58' THEN 'Turismo-3000 Azul, 58'&#xD;&#xA;WHEN producto = 'Touring-3000 Blue, 62' THEN 'Turismo-3000 Azul, 62'&#xD;&#xA;WHEN producto = 'Touring-3000 Yellow, 44' THEN 'Turismo-3000 Amarillo, 44'&#xD;&#xA;WHEN producto = 'Touring-3000 Yellow, 50' THEN 'Turismo-3000 Amarillo, 50'&#xD;&#xA;WHEN producto = 'Touring-3000 Yellow, 54' THEN 'Turismo-3000 Amarillo, 54'&#xD;&#xA;WHEN producto = 'Touring-3000 Yellow, 58' THEN 'Turismo-3000 Amarillo, 58'&#xD;&#xA;WHEN producto = 'Touring-3000 Yellow, 62' THEN 'Turismo-3000 Amarillo, 62'&#xD;&#xA;    WHEN producto = 'Touring-Panniers, Large' THEN 'Alforjas de turismo, Grande'&#xD;&#xA;    WHEN producto = 'Water Bottle - 30 oz.' THEN 'Botella de agua - 30 oz.'&#xD;&#xA;    WHEN producto = 'Women''s Mountain Shorts, L' THEN 'Pantalones cortos de montaña para mujer, L'&#xD;&#xA;    WHEN producto = 'Women''s Mountain Shorts, M' THEN 'Pantalones cortos de montaña para mujer, M'&#xD;&#xA;    WHEN producto = 'Women''s Mountain Shorts, S' THEN 'Pantalones cortos de montaña para mujer, S'&#xD;&#xA;    WHEN producto = 'Women''s Tights, L' THEN 'Mallas para mujer, L'&#xD;&#xA;    WHEN producto = 'Women''s Tights, M' THEN 'Mallas para mujer, M'&#xD;&#xA;    WHEN producto = 'Women''s Tights, S' THEN 'Mallas para mujer, S'&#xD;&#xA;    ELSE 'Producto desconocido'&#xD;&#xA;END" msprop:design-time-name="2faa2e3c-c3e8-468c-b6cc-71885ed33a4f" msprop:Description="">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="45" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dimVendedores" msprop:design-time-name="b89486da-85cc-456c-9205-1269bc119d38" msprop:FriendlyName="dimVendedores" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimVendedores">
+            <xs:element name="dbo_dimTerritorios" msprop:design-time-name="08ee27c4-f33e-4810-93fa-9d2760fcd44c" msprop:FriendlyName="dimTerritorios" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimTerritorios">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="de7a3539-7124-4ab0-8919-d8684a2e23c8" type="xs:int" />
-                  <xs:element name="NombreCompleto" msprop:FriendlyName="NombreCompleto" msprop:DbColumnName="NombreCompleto" msprop:design-time-name="0da333bb-5cb3-476f-86af-9782a1808392" minOccurs="0">
+                  <xs:element name="TerritorioID" msprop:FriendlyName="TerritorioID" msprop:DbColumnName="TerritorioID" msprop:design-time-name="36fb0193-86f9-451c-9d0f-eb2f50c84724" type="xs:int" />
+                  <xs:element name="NombreTerritorio" msprop:FriendlyName="NombreTerritorio" msprop:DbColumnName="NombreTerritorio" msprop:design-time-name="6a8993c8-678d-4b21-8dd6-bd13d4ea70a9">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="100" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="CiudadID" msprop:FriendlyName="CiudadID" msprop:DbColumnName="CiudadID" msprop:design-time-name="b5f3edeb-3690-405f-9a55-a43f628b4878" type="xs:int" minOccurs="0" />
-                  <xs:element name="Cargo" msprop:FriendlyName="Cargo" msprop:DbColumnName="Cargo" msprop:design-time-name="df9a837d-5dab-428d-bf50-58161bc97be5" minOccurs="0">
+                  <xs:element name="Grupo" msprop:FriendlyName="Grupo" msprop:DbColumnName="Grupo" msprop:design-time-name="8f438ec4-9759-4048-8a15-704352212bee" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Pais" msprop:FriendlyName="Pais" msprop:DbColumnName="Pais" msprop:design-time-name="eab40285-4c68-4748-b4f3-f6041f7c9eb7" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Region" msprop:FriendlyName="Region" msprop:DbColumnName="Region" msprop:design-time-name="bebc9c28-0e05-483f-83b7-a5fe51565e78" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimTiempo" msprop:design-time-name="f70838a9-2192-4012-808f-811b5ffaa149" msprop:FriendlyName="dimTiempo" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimTiempo">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="1b0a6707-c9e9-4b29-abc5-e5e3055dfaf3" type="xs:int" />
+                  <xs:element name="FechaCompleta" msprop:FriendlyName="FechaCompleta" msprop:DbColumnName="FechaCompleta" msprop:design-time-name="270dae72-2933-4662-9106-94cb1a01e668" type="xs:dateTime" />
+                  <xs:element name="Año" msprop:FriendlyName="Año" msprop:DbColumnName="Año" msprop:design-time-name="f8f746aa-4257-4214-8900-a10e1a85a881" type="xs:int" />
+                  <xs:element name="Mes" msprop:FriendlyName="Mes" msprop:DbColumnName="Mes" msprop:design-time-name="5268f687-e0d9-4e5b-82d0-6793fa691148">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="NumeroMes" msprop:FriendlyName="NumeroMes" msprop:DbColumnName="NumeroMes" msprop:design-time-name="c0eb177a-8d96-4b17-bdd2-4535279923bc" type="xs:int" />
+                  <xs:element name="Trimestre" msprop:FriendlyName="Trimestre" msprop:DbColumnName="Trimestre" msprop:design-time-name="f3eaaf61-c536-4b0e-9eeb-39c98e360763" type="xs:int" />
+                  <xs:element name="NombreTrimestre" msprop:FriendlyName="NombreTrimestre" msprop:DbColumnName="NombreTrimestre" msprop:design-time-name="1c0c497b-2669-41a4-b633-418c0ae36899" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="NombreSemestre" msprop:FriendlyName="NombreSemestre" msprop:DbColumnName="NombreSemestre" msprop:design-time-name="564754e8-7a36-45e6-a9af-d773dfd455f8" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="NumeroDia" msprop:FriendlyName="NumeroDia" msprop:DbColumnName="NumeroDia" msprop:design-time-name="23f444ab-f6aa-4965-a903-5e62d86243cb" type="xs:int" />
+                  <xs:element name="NombreDia" msprop:FriendlyName="NombreDia" msprop:DbColumnName="NombreDia" msprop:design-time-name="62f5c859-7907-4dcd-b4c9-c20b8fd84c2c" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimVendedores" msprop:design-time-name="52b78bfc-9732-416e-9478-35f49adf5a44" msprop:FriendlyName="dimVendedores" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="dimVendedores">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="182de19b-19f9-40a7-9f53-fd89dae79894" type="xs:int" />
+                  <xs:element name="NombreCompleto" msprop:FriendlyName="NombreCompleto" msprop:DbColumnName="NombreCompleto" msprop:design-time-name="426d8eac-68ee-42c1-b436-d56aa69b0e8e" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="101" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="EsAsalariado" msprop:FriendlyName="EsAsalariado" msprop:DbColumnName="EsAsalariado" msprop:design-time-name="de9b025a-aa43-4ba0-9512-2cbd3531f243" type="xs:boolean" minOccurs="0" />
-                  <xs:element name="PorcentajeComision" msprop:FriendlyName="PorcentajeComision" msprop:DbColumnName="PorcentajeComision" msprop:design-time-name="24cb2aac-e64e-4c54-af1c-9b5f94e400f3" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="Tipo" msprop:FriendlyName="Tipo" msprop:DbColumnName="Tipo" msprop:design-time-name="c5dc8e25-b679-49dd-9c35-9d648b1989a4" minOccurs="0">
+                  <xs:element name="CiudadID" msprop:FriendlyName="CiudadID" msprop:DbColumnName="CiudadID" msprop:design-time-name="61893c7b-bc8f-40a9-95d2-ca515675d79a" type="xs:int" minOccurs="0" />
+                  <xs:element name="TerritorioID" msprop:FriendlyName="TerritorioID" msprop:DbColumnName="TerritorioID" msprop:design-time-name="742c9420-4221-4f35-b0e6-0b72c8061e25" type="xs:int" minOccurs="0" />
+                  <xs:element name="Cargo" msprop:FriendlyName="Cargo" msprop:DbColumnName="Cargo" msprop:design-time-name="7a935d4c-7e37-408e-8a2c-02b294d13c35" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="101" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="TipoContrato" msprop:FriendlyName="TipoContrato" msprop:DbColumnName="TipoContrato" msprop:design-time-name="2360d4e1-f537-4dab-83b0-29387f167422" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="PorcentajeComision" msprop:FriendlyName="PorcentajeComision" msprop:DbColumnName="PorcentajeComision" msprop:design-time-name="8df04055-2653-42dc-9d46-a9d2bc65dd00" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="Tipo" msprop:FriendlyName="Tipo" msprop:DbColumnName="Tipo" msprop:design-time-name="97480646-656b-4bc6-ad9a-41436caac0e3" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="2" />
@@ -678,46 +808,48 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_FactDiferenciaVentas" msprop:design-time-name="0a4c163d-666d-4d94-a611-42cb883795f9" msprop:FriendlyName="FactDiferenciaVentas" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="FactDiferenciaVentas">
+            <xs:element name="dbo_FactDiferenciaVentas" msprop:design-time-name="e03d8676-472d-4e0b-b348-c8edec5a9443" msprop:FriendlyName="FactDiferenciaVentas" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="FactDiferenciaVentas">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="ProductoID" msprop:FriendlyName="ProductoID" msprop:DbColumnName="ProductoID" msprop:design-time-name="b33f2ab3-8c73-49d3-b326-6c376484aa4e" type="xs:int" />
-                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="9909ac28-9d6d-40a9-bb27-29249ec4aa79" type="xs:int" />
-                  <xs:element name="OrdenID" msprop:FriendlyName="OrdenID" msprop:DbColumnName="OrdenID" msprop:design-time-name="926c0961-b09d-4974-a6b2-e4e68489fc98" type="xs:int" />
-                  <xs:element name="PrecioLista" msprop:FriendlyName="PrecioLista" msprop:DbColumnName="PrecioLista" msprop:design-time-name="c704f530-76a6-428e-a9b3-40a0d15cb621" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="PrecioUnitario" msprop:FriendlyName="PrecioUnitario" msprop:DbColumnName="PrecioUnitario" msprop:design-time-name="ce8cfe4e-bb61-4f47-ae02-16d66acc112d" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="Cantidad" msprop:FriendlyName="Cantidad" msprop:DbColumnName="Cantidad" msprop:design-time-name="2503b481-5e6e-4d53-ae18-76ab7eb0bb15" type="xs:int" minOccurs="0" />
-                  <xs:element name="TotalDiferencia" msdata:ReadOnly="true" msprop:FriendlyName="TotalDiferencia" msprop:DbColumnName="TotalDiferencia" msprop:design-time-name="f1f65ec9-3aa0-4577-b899-f21154755c73" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="ProductoID" msprop:FriendlyName="ProductoID" msprop:DbColumnName="ProductoID" msprop:design-time-name="5e60a704-5664-4b9d-94c8-218e55af95b5" type="xs:int" />
+                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="7cc47f29-1160-4bcb-96b9-7580a00e2767" type="xs:int" />
+                  <xs:element name="OrdenID" msprop:FriendlyName="OrdenID" msprop:DbColumnName="OrdenID" msprop:design-time-name="50185189-8f49-4a38-8e3e-6869241831ed" type="xs:int" />
+                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="c20b8c2c-e940-4931-9886-3412233929b9" type="xs:int" minOccurs="0" />
+                  <xs:element name="PrecioLista" msprop:FriendlyName="PrecioLista" msprop:DbColumnName="PrecioLista" msprop:design-time-name="a3a29319-703b-426f-996d-70993d4c2f25" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="PrecioUnitario" msprop:FriendlyName="PrecioUnitario" msprop:DbColumnName="PrecioUnitario" msprop:design-time-name="43ca8eb5-21dd-4474-98e4-84258572607a" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="CantidadUnidadesProducto" msprop:FriendlyName="CantidadUnidadesProducto" msprop:DbColumnName="CantidadUnidadesProducto" msprop:design-time-name="b0d64dca-ca34-4707-bde4-49b1a4cbf422" type="xs:int" minOccurs="0" />
+                  <xs:element name="DiferenciaUnitario" msdata:ReadOnly="true" msprop:FriendlyName="DiferenciaUnitario" msprop:DbColumnName="DiferenciaUnitario" msprop:design-time-name="77babb0d-896c-493a-83dc-a8089e3837dc" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="DiferenciaTotal" msdata:ReadOnly="true" msprop:FriendlyName="DiferenciaTotal" msprop:DbColumnName="DiferenciaTotal" msprop:design-time-name="f3c6fb99-695d-4d63-bf46-9e562a3ba989" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_FactOrdenes" msprop:design-time-name="6233f480-7c53-4db8-89da-cd42c93f0cdc" msprop:FriendlyName="FactOrdenes" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="FactOrdenes">
+            <xs:element name="dbo_FactOrdenes" msprop:design-time-name="4ad02958-10a5-476f-96b9-9099f5f5258e" msprop:FriendlyName="FactOrdenes" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="FactOrdenes">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="OrdenID" msprop:FriendlyName="OrdenID" msprop:DbColumnName="OrdenID" msprop:design-time-name="5aeafa3b-aa2b-4883-8170-99a965502dc3" type="xs:int" />
-                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="bc3c2b85-9392-4c08-930b-55c8416d217a" type="xs:int" minOccurs="0" />
-                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="f70aa9c7-9e8f-4f40-84c2-5dcf00795dd8" type="xs:int" minOccurs="0" />
-                  <xs:element name="TotalOrden" msprop:FriendlyName="TotalOrden" msprop:DbColumnName="TotalOrden" msprop:design-time-name="7c1f089c-ef28-4da7-9a2c-3ccfeb855b11" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="OrdenID" msprop:FriendlyName="OrdenID" msprop:DbColumnName="OrdenID" msprop:design-time-name="5aa1f680-9bfa-48d8-8bf9-5cc1780e296d" type="xs:int" />
+                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="2691d165-2bec-4e5a-a955-c052c313e476" type="xs:int" minOccurs="0" />
+                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="6c565978-2d82-4047-a7f1-0802276427cf" type="xs:int" minOccurs="0" />
+                  <xs:element name="TotalOrden" msprop:FriendlyName="TotalOrden" msprop:DbColumnName="TotalOrden" msprop:design-time-name="479837ab-f85f-4e05-8be9-28d0b9c35a11" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_FactVentasMonedas" msprop:design-time-name="c13b90bf-9ec8-4eb2-ae97-ea1626e04208" msprop:FriendlyName="FactVentasMonedas" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="FactVentasMonedas">
+            <xs:element name="dbo_FactVentasMonedas" msprop:design-time-name="970d9dc8-59a0-497e-b84a-80dbc527b1e9" msprop:FriendlyName="FactVentasMonedas" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="FactVentasMonedas">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="MonedaID" msprop:FriendlyName="MonedaID" msprop:DbColumnName="MonedaID" msprop:design-time-name="382d11c2-cee9-40e3-bf10-2a4f71f5a3ab">
+                  <xs:element name="OrdenID" msprop:FriendlyName="OrdenID" msprop:DbColumnName="OrdenID" msprop:design-time-name="e38cc5ee-14e7-4574-a408-093f49df3367" type="xs:int" minOccurs="0" />
+                  <xs:element name="MonedaID" msprop:FriendlyName="MonedaID" msprop:DbColumnName="MonedaID" msprop:design-time-name="a0b69e45-936f-4586-860e-4b4bdcb127dc" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="3" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="TerritorioID" msprop:FriendlyName="TerritorioID" msprop:DbColumnName="TerritorioID" msprop:design-time-name="cd16d3c4-d4a6-4f41-a981-68a6e95bf4b5" type="xs:int" />
-                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="248125ca-93ba-4418-a473-d2a5451fe996" type="xs:int" />
-                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="7ee223b6-7f75-474d-bbf5-8ad277b456e7" type="xs:int" />
-                  <xs:element name="Cantidad" msprop:FriendlyName="Cantidad" msprop:DbColumnName="Cantidad" msprop:design-time-name="4d5c7d8d-962d-43fe-9291-b3c72a5af23c" type="xs:int" minOccurs="0" />
-                  <xs:element name="PrecioUnitario" msprop:FriendlyName="PrecioUnitario" msprop:DbColumnName="PrecioUnitario" msprop:design-time-name="0b204269-6cbf-4f96-9b69-f00b9cde2dcd" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="TasaCambioPromedio" msprop:FriendlyName="TasaCambioPromedio" msprop:DbColumnName="TasaCambioPromedio" msprop:design-time-name="33c60ad4-1b4d-4041-a955-775253e94c2a" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="VentaMoneda" msdata:ReadOnly="true" msprop:FriendlyName="VentaMoneda" msprop:DbColumnName="VentaMoneda" msprop:design-time-name="dfed23d6-ddb9-40d2-9ac8-9c08ccc7d430" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="VendedorID" msprop:FriendlyName="VendedorID" msprop:DbColumnName="VendedorID" msprop:design-time-name="338d6772-75bd-47e7-8469-9ee0b0b8f53b" type="xs:int" minOccurs="0" />
+                  <xs:element name="FechaID" msprop:FriendlyName="FechaID" msprop:DbColumnName="FechaID" msprop:design-time-name="d3c07165-656f-4fb2-843b-872080c85d8f" type="xs:int" minOccurs="0" />
+                  <xs:element name="CantidadUnidadesVendidas" msprop:FriendlyName="CantidadUnidadesVendidas" msprop:DbColumnName="CantidadUnidadesVendidas" msprop:design-time-name="49dabae3-1c9a-4f64-952d-de89817e60b0" type="xs:int" minOccurs="0" />
+                  <xs:element name="PrecioUnitario" msprop:FriendlyName="PrecioUnitario" msprop:DbColumnName="PrecioUnitario" msprop:design-time-name="fc2ef240-44d8-4ce1-8f49-97d046be9f55" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TasaCambioPromedio" msprop:FriendlyName="TasaCambioPromedio" msprop:DbColumnName="TasaCambioPromedio" msprop:design-time-name="a8262a25-a024-435c-829b-6eeb36478c89" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="VentaMoneda" msdata:ReadOnly="true" msprop:FriendlyName="VentaMoneda" msprop:DbColumnName="VentaMoneda" msprop:design-time-name="017b2ad0-4b0a-4cdd-94c9-1a2987f50258" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -769,50 +901,47 @@
           <xs:selector xpath=".//dbo_FactOrdenes" />
           <xs:field xpath="OrdenID" />
         </xs:unique>
-        <xs:unique name="dbo_FactVentasMonedas_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-          <xs:selector xpath=".//dbo_FactVentasMonedas" />
-          <xs:field xpath="MonedaID" />
-          <xs:field xpath="TerritorioID" />
-          <xs:field xpath="VendedorID" />
-          <xs:field xpath="FechaID" />
-        </xs:unique>
-        <xs:keyref name="FK__FactVenta__Terri__534D60F1" refer="dbo_dimTerritorios_Constraint1">
-          <xs:selector xpath=".//dbo_FactVentasMonedas" />
-          <xs:field xpath="TerritorioID" />
-        </xs:keyref>
-        <xs:keyref name="FK__FactVenta__Vende__5441852A" refer="dbo_dimVendedores_Constraint1">
-          <xs:selector xpath=".//dbo_FactVentasMonedas" />
-          <xs:field xpath="VendedorID" />
-        </xs:keyref>
-        <xs:keyref name="FK__FactVenta__Fecha__5535A963" refer="dbo_dimTiempo_Constraint1">
+        <xs:keyref name="FK__FactVenta__Fecha__5629CD9C" refer="dbo_dimTiempo_Constraint1">
           <xs:selector xpath=".//dbo_FactVentasMonedas" />
           <xs:field xpath="FechaID" />
         </xs:keyref>
-        <xs:keyref name="FK__FactVenta__Moned__52593CB8" refer="dbo_dimMonedas_Constraint1">
+        <xs:keyref name="FK__FactVenta__Orden__534D60F1" refer="dbo_dimOrdenes_Constraint1">
+          <xs:selector xpath=".//dbo_FactVentasMonedas" />
+          <xs:field xpath="OrdenID" />
+        </xs:keyref>
+        <xs:keyref name="FK__FactVenta__Moned__5441852A" refer="dbo_dimMonedas_Constraint1">
           <xs:selector xpath=".//dbo_FactVentasMonedas" />
           <xs:field xpath="MonedaID" />
         </xs:keyref>
-        <xs:keyref name="FK__FactOrden__Vende__5812160E" refer="dbo_dimVendedores_Constraint1">
+        <xs:keyref name="FK__FactVenta__Vende__5535A963" refer="dbo_dimVendedores_Constraint1">
+          <xs:selector xpath=".//dbo_FactVentasMonedas" />
+          <xs:field xpath="VendedorID" />
+        </xs:keyref>
+        <xs:keyref name="FK__FactOrden__Fecha__59FA5E80" refer="dbo_dimTiempo_Constraint1">
+          <xs:selector xpath=".//dbo_FactOrdenes" />
+          <xs:field xpath="FechaID" />
+        </xs:keyref>
+        <xs:keyref name="FK__FactOrden__Vende__59063A47" refer="dbo_dimVendedores_Constraint1">
           <xs:selector xpath=".//dbo_FactOrdenes" />
           <xs:field xpath="VendedorID" />
         </xs:keyref>
-        <xs:keyref name="FK__FactOrden__Orden__59FA5E80" refer="dbo_dimOrdenes_Constraint1">
+        <xs:keyref name="FK__FactOrden__Orden__5AEE82B9" refer="dbo_dimOrdenes_Constraint1">
           <xs:selector xpath=".//dbo_FactOrdenes" />
           <xs:field xpath="OrdenID" />
         </xs:keyref>
-        <xs:keyref name="FK__FactOrden__Fecha__59063A47" refer="dbo_dimTiempo_Constraint1">
-          <xs:selector xpath=".//dbo_FactOrdenes" />
-          <xs:field xpath="FechaID" />
-        </xs:keyref>
-        <xs:keyref name="FK__FactDifer__Orden__4F7CD00D" refer="dbo_dimOrdenes_Constraint1">
+        <xs:keyref name="FK__FactDifer__Orden__5070F446" refer="dbo_dimOrdenes_Constraint1">
           <xs:selector xpath=".//dbo_FactDiferenciaVentas" />
           <xs:field xpath="OrdenID" />
         </xs:keyref>
-        <xs:keyref name="FK__FactDifer__Produ__4D94879B" refer="dbo_dimProductos_Constraint1">
+        <xs:keyref name="FK__FactDifer__Fecha__5165187F" refer="dbo_dimTiempo_Constraint1">
+          <xs:selector xpath=".//dbo_FactDiferenciaVentas" />
+          <xs:field xpath="FechaID" />
+        </xs:keyref>
+        <xs:keyref name="FK__FactDifer__Produ__4E88ABD4" refer="dbo_dimProductos_Constraint1">
           <xs:selector xpath=".//dbo_FactDiferenciaVentas" />
           <xs:field xpath="ProductoID" />
         </xs:keyref>
-        <xs:keyref name="FK__FactDifer__Vende__4E88ABD4" refer="dbo_dimVendedores_Constraint1">
+        <xs:keyref name="FK__FactDifer__Vende__4F7CD00D" refer="dbo_dimVendedores_Constraint1">
           <xs:selector xpath=".//dbo_FactDiferenciaVentas" />
           <xs:field xpath="VendedorID" />
         </xs:keyref>
@@ -820,11 +949,15 @@
           <xs:selector xpath=".//dbo_dimVendedores" />
           <xs:field xpath="CiudadID" />
         </xs:keyref>
-        <xs:keyref name="FK__dimOrdene__Vende__49C3F6B7" refer="dbo_dimVendedores_Constraint1">
+        <xs:keyref name="FK__dimVended__Terri__47DBAE45" refer="dbo_dimTerritorios_Constraint1">
+          <xs:selector xpath=".//dbo_dimVendedores" />
+          <xs:field xpath="TerritorioID" />
+        </xs:keyref>
+        <xs:keyref name="FK__dimOrdene__Vende__4AB81AF0" refer="dbo_dimVendedores_Constraint1">
           <xs:selector xpath=".//dbo_dimOrdenes" />
           <xs:field xpath="VendedorID" />
         </xs:keyref>
-        <xs:keyref name="FK__dimOrdene__Fecha__4AB81AF0" refer="dbo_dimTiempo_Constraint1">
+        <xs:keyref name="FK__dimOrdene__Fecha__4BAC3F29" refer="dbo_dimTiempo_Constraint1">
           <xs:selector xpath=".//dbo_dimOrdenes" />
           <xs:field xpath="FechaID" />
         </xs:keyref>

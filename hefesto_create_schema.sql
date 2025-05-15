@@ -37,7 +37,7 @@ CREATE TABLE dimProductos (
     ProductoID INT PRIMARY KEY,
     Producto NVARCHAR(100),
     NumeroProducto NVARCHAR(50),
-    EsFabricado BIT
+    TipoProduccion NVARCHAR(20) -- 'Fabricado' o 'Comprado'
 );
 
 CREATE TABLE dimMonedas (
@@ -47,15 +47,26 @@ CREATE TABLE dimMonedas (
 
 CREATE TABLE dimTerritorios (
     TerritorioID INT PRIMARY KEY,
-    Territorio NVARCHAR(100)
+    NombreTerritorio NVARCHAR(100) NOT NULL,         -- Nombre del territorio (ej: "Southwest")
+    Grupo NVARCHAR(50),                              -- Grupo comercial (ej: "North America")
+    Pais NVARCHAR(50),                               -- País principal relacionado (ej: "United States")
+    Region NVARCHAR(50)                              -- Región geográfica mayor o continente (ej: "América", "Europa", etc.)
 );
 
+-- ===========================
+-- Tabla de Dimensión Tiempo
+-- ===========================
 CREATE TABLE dimTiempo (
     FechaID INT PRIMARY KEY, -- formato: YYYYMMDD
-    Año INT,
-    Mes NVARCHAR(20),
-    NumeroMes INT,
-    Trimestre INT
+    FechaCompleta DATE NOT NULL,
+    Año INT NOT NULL,
+    Mes NVARCHAR(20) NOT NULL,
+    NumeroMes INT NOT NULL,
+    Trimestre INT NOT NULL,
+    NombreTrimestre NVARCHAR(20),     -- Ej: "1er Trimestre"
+    NombreSemestre NVARCHAR(20),      -- Ej: "1er Semestre"
+    NumeroDia INT NOT NULL,           -- Ej: 1-31
+    NombreDia NVARCHAR(20)            -- Ej: "Lunes"
 );
 
 -- =========================================
@@ -64,10 +75,11 @@ CREATE TABLE dimTiempo (
 
 CREATE TABLE dimVendedores (
     VendedorID INT PRIMARY KEY,
-    NombreCompleto NVARCHAR(101),  -- Campo combinado
+    NombreCompleto NVARCHAR(101),
     CiudadID INT FOREIGN KEY REFERENCES dimCiudad(CiudadID),
+    TerritorioID INT FOREIGN KEY REFERENCES dimTerritorios(TerritorioID),
     Cargo NVARCHAR(101),
-    EsAsalariado BIT,
+    TipoContrato NVARCHAR(20), -- 'Asalariado' o 'No Asalariado'
     PorcentajeComision DECIMAL(5,2),
     Tipo NCHAR(2)
 );
@@ -92,33 +104,38 @@ CREATE TABLE FactDiferenciaVentas (
     ProductoID INT,
     VendedorID INT,
     OrdenID INT,
+    FechaID INT,
     PrecioLista DECIMAL(10,2),
-    PrecioUnitario DECIMAL(10,2),
-    Cantidad INT,
-    TotalDiferencia AS ((PrecioLista - PrecioUnitario) * Cantidad) PERSISTED,
+    PrecioUnitario DECIMAL(10,2),  -- Ya con descuento aplicado
+    CantidadUnidadesProducto INT,
+    DiferenciaUnitario AS (
+        PrecioLista - PrecioUnitario
+    ) PERSISTED,
+    DiferenciaTotal AS (
+        (PrecioLista - PrecioUnitario) * CantidadUnidadesProducto
+    ) PERSISTED,
     PRIMARY KEY (ProductoID, VendedorID, OrdenID),
     FOREIGN KEY (ProductoID) REFERENCES dimProductos(ProductoID),
     FOREIGN KEY (VendedorID) REFERENCES dimVendedores(VendedorID),
-    FOREIGN KEY (OrdenID) REFERENCES dimOrdenes(OrdenID)
+    FOREIGN KEY (OrdenID) REFERENCES dimOrdenes(OrdenID),
+    FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID)
 );
 
 -- Pregunta 2: Ventas en moneda extranjera
 CREATE TABLE FactVentasMonedas (
-    MonedaID nchar(3),
-    TerritorioID INT,
+    OrdenID INT,
+    MonedaID NCHAR(3),
     VendedorID INT,
     FechaID INT,
-    Cantidad INT,
+    CantidadUnidadesVendidas INT,
     PrecioUnitario DECIMAL(10,2),
     TasaCambioPromedio DECIMAL(10,4),
-    VentaMoneda AS (Cantidad * PrecioUnitario * TasaCambioPromedio) PERSISTED,
-    PRIMARY KEY (MonedaID, TerritorioID, VendedorID, FechaID),
+    VentaMoneda AS (CantidadUnidadesVendidas * PrecioUnitario * TasaCambioPromedio) PERSISTED,
+    FOREIGN KEY (OrdenID) REFERENCES dimOrdenes(OrdenID),
     FOREIGN KEY (MonedaID) REFERENCES dimMonedas(MonedaID),
-    FOREIGN KEY (TerritorioID) REFERENCES dimTerritorios(TerritorioID),
     FOREIGN KEY (VendedorID) REFERENCES dimVendedores(VendedorID),
     FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID)
 );
-
 
 -- Refactor de Pregunta 3: Todas las órdenes (no solo canceladas)
 CREATE TABLE FactOrdenes (
@@ -130,4 +147,3 @@ CREATE TABLE FactOrdenes (
     FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID),
     FOREIGN KEY (OrdenID) REFERENCES dimOrdenes(OrdenID)
 );
-
