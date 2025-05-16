@@ -52,12 +52,6 @@
       <FullPath>AW Hefesto DW2025.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
-  <Roles>
-    <ProjectItem>
-      <Name>Admins.role</Name>
-      <FullPath>Admins.role</FullPath>
-    </ProjectItem>
-  </Roles>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
