@@ -37,7 +37,9 @@ CREATE TABLE dimProductos (
     ProductoID INT PRIMARY KEY,
     Producto NVARCHAR(100),
     NumeroProducto NVARCHAR(50),
-    TipoProduccion NVARCHAR(20) -- 'Fabricado' o 'Comprado'
+    TipoProduccion NVARCHAR(20), -- 'Fabricado' o 'Comprado'
+    Color NVARCHAR(50),
+	Tamaño NVARCHAR(50),
 );
 
 CREATE TABLE dimMonedas (
@@ -81,7 +83,8 @@ CREATE TABLE dimVendedores (
     Cargo NVARCHAR(101),
     TipoContrato NVARCHAR(20), -- 'Asalariado' o 'No Asalariado'
     PorcentajeComision DECIMAL(5,2),
-    Tipo NCHAR(2)
+    Tipo NCHAR(2),
+	Genero NVARCHAR(20)
 );
 
 CREATE TABLE dimOrdenes (

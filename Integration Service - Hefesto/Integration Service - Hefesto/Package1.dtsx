@@ -1,0 +1,72 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/18/2025 7:21:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DAVID-BARRAGAN"
+  DTS:CreatorName="DAVID-BARRAGAN\User"
+  DTS:DTSID="{0B0C7C47-1B17-4EC4-B148-63F176601E5B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{1F98B095-DA2E-4142-9F65-4415A085B877}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DAVID-BARRAGAN\MYSQLSERVER.master]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3BBEFF66-9CD3-41DD-810F-F2B48BAA163F}"
+      DTS:ObjectName="DAVID-BARRAGAN\MYSQLSERVER.master">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DAVID-BARRAGAN\MYSQLSERVER;Initial Catalog=master;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{3BBEFF66-9CD3-41DD-810F-F2B48BAA163F}DAVID-BARRAGAN\MYSQLSERVER.master;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Generate Data Base"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A50D9B8F-F5E5-44B7-833A-F9DDD1758175}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Generate Data Base"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3BBEFF66-9CD3-41DD-810F-F2B48BAA163F}"
+          SQLTask:SqlStatementSource="&#xA;-- Eliminar base de datos si ya existe&#xA;IF EXISTS (SELECT name FROM sys.databases WHERE name = 'AW_HefestoDW2025')&#xA;BEGIN&#xA;    ALTER DATABASE AW_HefestoDW2025 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;&#xA;    DROP DATABASE AW_HefestoDW2025;&#xA;END&#xA;GO&#xA;&#xA;-- Crear base de datos&#xA;CREATE DATABASE AW_HefestoDW2025;&#xA;GO&#xA;USE AW_HefestoDW2025;&#xA;GO&#xA;&#xA;-- ==================================&#xA;-- Dimensiones de ubicación geográfica&#xA;-- ==================================&#xA;&#xA;-- Nuevo modelo jerárquico&#xA;CREATE TABLE dimPais (&#xA;    PaisID NVARCHAR(3) PRIMARY KEY,&#xA;    Nombre NVARCHAR(50) NOT NULL&#xA;);&#xA;&#xA;CREATE TABLE dimEstado (&#xA;    EstadoID INT PRIMARY KEY,&#xA;    EstadoCode NCHAR(3) NOT NULL,&#xA;    Nombre NVARCHAR(50) NOT NULL,&#xA;    PaisID NVARCHAR(3) FOREIGN KEY REFERENCES dimPais(PaisID)&#xA;);&#xA;&#xA;CREATE TABLE dimCiudad (&#xA;    CiudadID INT PRIMARY KEY,&#xA;    Nombre NVARCHAR(30) NOT NULL,&#xA;    CodigoPostal NVARCHAR(15) NOT NULL,&#xA;    EstadoID INT FOREIGN KEY REFERENCES dimEstado(EstadoID)&#xA;);&#xA;&#xA;-- ============================&#xA;-- Dimensiones analíticas&#xA;-- ============================&#xA;&#xA;CREATE TABLE dimProductos (&#xA;    ProductoID INT PRIMARY KEY,&#xA;    Producto NVARCHAR(100),&#xA;    NumeroProducto NVARCHAR(50),&#xA;    TipoProduccion NVARCHAR(20), -- 'Fabricado' o 'Comprado'&#xA;    Color NVARCHAR(50),&#xA;&#x9;Tamaño NVARCHAR(50),&#xA;);&#xA;&#xA;CREATE TABLE dimMonedas (&#xA;    MonedaID nchar(3) PRIMARY KEY,&#xA;    Moneda NVARCHAR(50)&#xA;);&#xA;&#xA;CREATE TABLE dimTerritorios (&#xA;    TerritorioID INT PRIMARY KEY,&#xA;    NombreTerritorio NVARCHAR(100) NOT NULL,         -- Nombre del territorio (ej: &quot;Southwest&quot;)&#xA;    Grupo NVARCHAR(50),                              -- Grupo comercial (ej: &quot;North America&quot;)&#xA;    Pais NVARCHAR(50),                               -- País principal relacionado (ej: &quot;United States&quot;)&#xA;    Region NVARCHAR(50)                              -- Región geográfica mayor o continente (ej: &quot;América&quot;, &quot;Europa&quot;, etc.)&#xA;);&#xA;&#xA;-- ===========================&#xA;-- Tabla de Dimensión Tiempo&#xA;-- ===========================&#xA;CREATE TABLE dimTiempo (&#xA;    FechaID INT PRIMARY KEY, -- formato: YYYYMMDD&#xA;    FechaCompleta DATE NOT NULL,&#xA;    Año INT NOT NULL,&#xA;    Mes NVARCHAR(20) NOT NULL,&#xA;    NumeroMes INT NOT NULL,&#xA;    Trimestre INT NOT NULL,&#xA;    NombreTrimestre NVARCHAR(20),     -- Ej: &quot;1er Trimestre&quot;&#xA;    NombreSemestre NVARCHAR(20),      -- Ej: &quot;1er Semestre&quot;&#xA;    NumeroDia INT NOT NULL,           -- Ej: 1-31&#xA;    NombreDia NVARCHAR(20)            -- Ej: &quot;Lunes&quot;&#xA;);&#xA;&#xA;-- =========================================&#xA;-- Dimensión unificada: Vendedores&#xA;-- =========================================&#xA;&#xA;CREATE TABLE dimVendedores (&#xA;    VendedorID INT PRIMARY KEY,&#xA;    NombreCompleto NVARCHAR(101),&#xA;    CiudadID INT FOREIGN KEY REFERENCES dimCiudad(CiudadID),&#xA;    TerritorioID INT FOREIGN KEY REFERENCES dimTerritorios(TerritorioID),&#xA;    Cargo NVARCHAR(101),&#xA;    TipoContrato NVARCHAR(20), -- 'Asalariado' o 'No Asalariado'&#xA;    PorcentajeComision DECIMAL(5,2),&#xA;    Tipo NCHAR(2),&#xA;&#x9;Genero NVARCHAR(20)&#xA;);&#xA;&#xA;CREATE TABLE dimOrdenes (&#xA;    OrdenID INT PRIMARY KEY,&#xA;    VendedorID INT,  -- FK hacia dimVendedores&#xA;    FechaID INT,     -- FK hacia dimTiempo (OrderDate → FechaID formato YYYYMMDD)&#xA;    Estado NVARCHAR(15), -- Enviado, Cancelado, etc.&#xA;    Canal NVARCHAR(20),  -- Internet, Presencial, Ambos&#xA;    TotalPagado DECIMAL(10,2), -- TotalDue&#xA;    FOREIGN KEY (VendedorID) REFERENCES dimVendedores(VendedorID),&#xA;    FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID)&#xA;);&#xA;&#xA;-- ============================&#xA;-- Tablas de Hechos&#xA;-- ============================&#xA;&#xA;-- Pregunta 1: Diferencia de precios&#xA;CREATE TABLE FactDiferenciaVentas (&#xA;    ProductoID INT,&#xA;    VendedorID INT,&#xA;    OrdenID INT,&#xA;    FechaID INT,&#xA;    PrecioLista DECIMAL(10,2),&#xA;    PrecioUnitario DECIMAL(10,2),  -- Ya con descuento aplicado&#xA;    CantidadUnidadesProducto INT,&#xA;    DiferenciaUnitario AS (&#xA;        PrecioLista - PrecioUnitario&#xA;    ) PERSISTED,&#xA;    DiferenciaTotal AS (&#xA;        (PrecioLista - PrecioUnitario) * CantidadUnidadesProducto&#xA;    ) PERSISTED,&#xA;    PRIMARY KEY (ProductoID, VendedorID, OrdenID),&#xA;    FOREIGN KEY (ProductoID) REFERENCES dimProductos(ProductoID),&#xA;    FOREIGN KEY (VendedorID) REFERENCES dimVendedores(VendedorID),&#xA;    FOREIGN KEY (OrdenID) REFERENCES dimOrdenes(OrdenID),&#xA;    FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID)&#xA;);&#xA;&#xA;-- Pregunta 2: Ventas en moneda extranjera&#xA;CREATE TABLE FactVentasMonedas (&#xA;    OrdenID INT,&#xA;    MonedaID NCHAR(3),&#xA;    VendedorID INT,&#xA;    FechaID INT,&#xA;    CantidadUnidadesVendidas INT,&#xA;    PrecioUnitario DECIMAL(10,2),&#xA;    TasaCambioPromedio DECIMAL(10,4),&#xA;    VentaMoneda AS (CantidadUnidadesVendidas * PrecioUnitario * TasaCambioPromedio) PERSISTED,&#xA;    FOREIGN KEY (OrdenID) REFERENCES dimOrdenes(OrdenID),&#xA;    FOREIGN KEY (MonedaID) REFERENCES dimMonedas(MonedaID),&#xA;    FOREIGN KEY (VendedorID) REFERENCES dimVendedores(VendedorID),&#xA;    FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID)&#xA;);&#xA;&#xA;-- Refactor de Pregunta 3: Todas las órdenes (no solo canceladas)&#xA;CREATE TABLE FactOrdenes (&#xA;    OrdenID INT PRIMARY KEY,&#xA;    VendedorID INT,&#xA;    FechaID INT,&#xA;    TotalOrden DECIMAL(10,2), -- TotalDue&#xA;    FOREIGN KEY (VendedorID) REFERENCES dimVendedores(VendedorID),&#xA;    FOREIGN KEY (FechaID) REFERENCES dimTiempo(FechaID),&#xA;    FOREIGN KEY (OrdenID) REFERENCES dimOrdenes(OrdenID)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Generate Data Base"
+          TopLeft="307.85714351249,131.529411649415" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
