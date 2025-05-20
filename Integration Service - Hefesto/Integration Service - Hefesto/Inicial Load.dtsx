@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="181"
-  DTS:VersionGUID="{4D5C2EAC-E188-47B8-B973-5927EAB89A6A}">
+  DTS:VersionBuild="188"
+  DTS:VersionGUID="{8E556529-E5B3-48B7-9305-60B875331D03}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -67,7 +67,24 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}"
-          SQLTask:SqlStatementSource="-- Paso 1: Eliminar datos de tablas de hechos (en orden por dependencias)&#xA;DELETE FROM FactDiferenciaVentas;&#xA;DELETE FROM FactVentasMonedas;&#xA;DELETE FROM FactOrdenes;&#xA;&#xA;-- Paso 2: Eliminar datos de dimensiones hijas primero&#xA;DELETE FROM dimOrdenes;&#xA;DELETE FROM dimVendedores;&#xA;DELETE FROM dimProductos;&#xA;DELETE FROM dimMonedas;&#xA;DELETE FROM dimTerritorios;&#xA;DELETE FROM dimTiempo;&#xA;&#xA;-- Paso 3: Borrar jerarquía geográfica desde lo más bajo&#xA;DELETE FROM dimCiudad;&#xA;DELETE FROM dimEstado;&#xA;DELETE FROM dimPais;&#xA;&#xA;-- Territorio genérico&#xA;INSERT INTO dimTerritorios (TerritorioID, NombreTerritorio, Grupo, Pais, Region)&#xA;VALUES (-1, 'Sin territorio asignado', 'No definido', 'No definido', 'No definido');&#xA;&#xA;-- País genérico&#xA;INSERT INTO dimPais (PaisID, Nombre)&#xA;VALUES ('-1', 'Sin país asignado');&#xA;&#xA;-- Estado genérico&#xA;INSERT INTO dimEstado (EstadoID, EstadoCode, Nombre, PaisID)&#xA;VALUES (-1, 'XXX', 'Sin estado asignado', '-1');&#xA;&#xA;-- Ciudad genérica&#xA;INSERT INTO dimCiudad (CiudadID, Nombre, CodigoPostal, EstadoID)&#xA;VALUES (-1, 'Sin ciudad asignada', '00000', -1);&#xA;&#xA;-- Vendedor genérico (para ventas online)&#xA;INSERT INTO dimVendedores &#xA;(VendedorID, NombreCompleto, CiudadID, TerritorioID, Cargo, TipoContrato, PorcentajeComision, Tipo)&#xA;VALUES (-1, 'Venta en línea', -1, -1, 'No aplica', 'No Asalariado', 0.00, 'IN');&#xA;&#xA;-- === 1. dimOrdenes ===&#xA;INSERT INTO dimOrdenes (OrdenID, Estado, Canal, FechaID, VendedorID, TotalPagado)&#xA;VALUES &#xA;(-1, 'En proceso', 'Internet', NULL, -1, 0),&#xA;(-2, 'Aprobado', 'Internet', NULL, -1, 0),&#xA;(-3, 'En espera', 'Internet', NULL, -1, 0),&#xA;(-4, 'Rechazado', 'Internet', NULL, -1, 0),&#xA;(-6, 'Cancelado', 'Internet', NULL, -1, 0);&#xA;&#xA;-- === 2. FactOrdenes ===&#xA;INSERT INTO FactOrdenes (OrdenID, VendedorID, FechaID, TotalOrden)&#xA;VALUES &#xA;(-1, -1, NULL, 0),&#xA;(-2, -1, NULL, 0),&#xA;(-3, -1, NULL, 0),&#xA;(-4, -1, NULL, 0),&#xA;(-6, -1, NULL, 0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="-- Paso 1: Eliminar datos de tablas de hechos (en orden por dependencias)&#xA;DELETE FROM FactDiferenciaVentas;&#xA;DELETE FROM FactVentasMonedas;&#xA;DELETE FROM FactOrdenes;&#xA;&#xA;-- Paso 2: Eliminar datos de dimensiones hijas primero&#xA;DELETE FROM dimOrdenes;&#xA;DELETE FROM dimVendedores;&#xA;DELETE FROM dimProductos;&#xA;DELETE FROM dimMonedas;&#xA;DELETE FROM dimTerritorios;&#xA;DELETE FROM dimTiempo;&#xA;&#xA;-- Paso 3: Borrar jerarquía geográfica desde lo más bajo&#xA;DELETE FROM dimCiudad;&#xA;DELETE FROM dimEstado;&#xA;DELETE FROM dimPais;&#xA;&#xA;&#xA;-- Territorio genérico&#xA;INSERT INTO dimTerritorios (TerritorioID, NombreTerritorio, Grupo, Pais, Region)&#xA;VALUES (-1, 'Sin territorio asignado', 'No definido', 'No definido', 'No definido');&#xA;&#xA;-- País genérico&#xA;INSERT INTO dimPais (PaisID, Nombre)&#xA;VALUES ('-1', 'Sin país asignado');&#xA;&#xA;-- Estado genérico&#xA;INSERT INTO dimEstado (EstadoID, EstadoCode, Nombre, PaisID)&#xA;VALUES (-1, 'XXX', 'Sin estado asignado', '-1');&#xA;&#xA;-- Ciudad genérica&#xA;INSERT INTO dimCiudad (CiudadID, Nombre, CodigoPostal, EstadoID)&#xA;VALUES (-1, 'Sin ciudad asignada', '00000', -1);&#xA;&#xA;-- Vendedor genérico (para ventas online)&#xA;INSERT INTO dimVendedores &#xA;(VendedorID, NombreCompleto, CiudadID, TerritorioID, Cargo, TipoContrato, PorcentajeComision, Tipo)&#xA;VALUES (-1, 'Venta en línea', -1, -1, 'No aplica', 'No Asalariado', 0.00, 'IN');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Datos Ficticios Control Nulls"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{69BA596F-4FF1-4D61-A555-E2FC2E54E61C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Datos Ficticios Control Nulls"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{924195C8-48EC-4ECE-96A0-D2B8E3EB4CFA}"
+          SQLTask:SqlStatementSource="&#xA;-- === 1. dimOrdenes ===&#xA;INSERT INTO dimOrdenes (OrdenID, Estado, Canal, FechaID, VendedorID, TotalPagado)&#xA;VALUES &#xA;(-1, 'En proceso', 'Internet', 20110101, -1, 0),&#xA;(-2, 'Aprobado', 'Internet', 20120101, -1, 0),&#xA;(-3, 'En espera', 'Internet', 20130101, -1, 0),&#xA;(-4, 'Rechazado', 'Internet', 20140101, -1, 0),&#xA;(-5, 'Enviado', 'Internet', 20110101, -1, 0),&#xA;(-6, 'Cancelado', 'Internet', 20120101, -1, 0);&#xA;&#xA;-- === 2. FactOrdenes ===&#xA;INSERT INTO FactOrdenes (OrdenID, VendedorID, FechaID, TotalOrden)&#xA;VALUES &#xA;(-1, -1, 20110101, 0),&#xA;(-2, -1, 20120101, 0),&#xA;(-3, -1, 20130101, 0),&#xA;(-4, -1, 20140101, 0),&#xA;(-5, -1, 20110101, 0),&#xA;(-6, -1, 20120101, 0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -5145,18 +5162,26 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
       DTS:CreationName=""
-      DTS:DTSID="{64DE386B-BCB9-44FF-9DD3-964DDCD2D4A0}"
+      DTS:DTSID="{CDEA094B-BEDE-4AA6-9A56-FD28EBB6828C}"
       DTS:From="Package\Poblar Fact Diferencia Ventas"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 10"
-      DTS:To="Package\Analysis Services Processing Task" />
+      DTS:To="Package\Datos Ficticios Control Nulls" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
       DTS:CreationName=""
-      DTS:DTSID="{7F6D2F9C-4FA3-41C9-A243-D32B53EA65ED}"
+      DTS:DTSID="{14DA1773-C2B9-4D8E-A1BC-4572DC980A57}"
       DTS:From="Package\Poblar FactOrdenes"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Datos Ficticios Control Nulls" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{C9E64B39-95AD-4323-9B70-6B42CC94347B}"
+      DTS:From="Package\Datos Ficticios Control Nulls"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
       DTS:To="Package\Analysis Services Processing Task" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
@@ -5217,11 +5242,11 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
       DTS:CreationName=""
-      DTS:DTSID="{A4C76B0B-8E47-4E1F-83F0-CC5955DAB139}"
+      DTS:DTSID="{268459D7-9B02-4E7E-A159-2A181EC38E82}"
       DTS:From="Package\Poblar Fact Ventas Monedas"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 9"
-      DTS:To="Package\Analysis Services Processing Task" />
+      DTS:To="Package\Datos Ficticios Control Nulls" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -5234,11 +5259,11 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="236,41.6"
           Id="Package\Analysis Services Processing Task"
-          TopLeft="425.714286620519,423.647058452186" />
+          TopLeft="422.142858041488,508.52941131896" />
         <NodeLayout
           Size="208,41.6"
           Id="Package\Borrar Información Anterior"
@@ -5365,9 +5390,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5401,9 +5424,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
@@ -5426,31 +5447,19 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           Id="Package\Poblar FactOrdenes"
           TopLeft="737.857144427846,331.011764504794" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="270.857143203823,377.19999979489">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="542.514286663094,73.7176470306712">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="215.857143416696,46.447058657296"
+              EndConnector="0,53.8823529465387"
               Start="0,0"
-              End="215.857143416696,38.947058657296">
+              End="0,46.3823529465387">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26.6187314053683" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26.6187314053683"
-                    Point2="0,30.6187314053683"
-                    Point3="4,30.6187314053683" />
-                  <mssgle:LineSegment
-                    End="211.857143416696,30.6187314053683" />
-                  <mssgle:CubicBezierSegment
-                    Point1="211.857143416696,30.6187314053683"
-                    Point2="215.857143416696,30.6187314053683"
-                    Point3="215.857143416696,34.6187314053683" />
-                  <mssgle:LineSegment
-                    End="215.857143416696,38.947058657296" />
+                    End="0,46.3823529465387" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5460,31 +5469,65 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="823.057144427847,372.611764504794">
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="574.476191406753,73.7176470306712">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-222.342857807327,51.0352939473921"
+              EndConnector="156.438095682088,53.1882353014907"
               Start="0,0"
-              End="-222.342857807327,43.5352939473921">
+              End="156.438095682088,45.6882353014907">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.6433781329177" />
+                    End="0,17.5189043586184" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,29.6433781329177"
-                    Point2="0,33.6433781329177"
-                    Point3="-4,33.6433781329177" />
+                    Point1="0,17.5189043586184"
+                    Point2="0,21.5189043586184"
+                    Point3="4,21.5189043586184" />
                   <mssgle:LineSegment
-                    End="-218.342857807327,33.6433781329177" />
+                    End="152.438095682088,21.5189043586184" />
                   <mssgle:CubicBezierSegment
-                    Point1="-218.342857807327,33.6433781329177"
-                    Point2="-222.342857807327,33.6433781329177"
-                    Point3="-222.342857807327,37.6433781329177" />
+                    Point1="152.438095682088,21.5189043586184"
+                    Point2="156.438095682088,21.5189043586184"
+                    Point3="156.438095682088,25.5189043586184" />
                   <mssgle:LineSegment
-                    End="-222.342857807327,43.5352939473921" />
+                    End="156.438095682088,45.6882353014907" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="491.142858073419,73.7176470306712">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-198.085714816378,50.1647058019178"
+              Start="0,0"
+              End="-198.085714816378,42.6647058019178">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.1448994512884" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.1448994512884"
+                    Point2="0,17.1448994512884"
+                    Point3="-4,17.1448994512884" />
+                  <mssgle:LineSegment
+                    End="-194.085714816378,17.1448994512884" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-194.085714816378,17.1448994512884"
+                    Point2="-198.085714816378,17.1448994512884"
+                    Point3="-198.085714816378,21.1448994512884" />
+                  <mssgle:LineSegment
+                    End="-198.085714816378,42.6647058019178" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5697,20 +5740,24 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="208.8,41.6"
+          Id="Package\Datos Ficticios Control Nulls"
+          TopLeft="438.35714371472,433.594054762091" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="543.228572346969,375.670588031524">
+          TopLeft="542.75000089407,375.670588031524">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47.976470420662"
+              EndConnector="0,57.9234667305671"
               Start="0,0"
-              End="0,40.476470420662">
+              End="0,50.4234667305671">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.476470420662" />
+                    End="0,50.4234667305671" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5720,19 +5767,31 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="542.514286663094,73.7176470306712">
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="270.857143203823,377.19999979489">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,53.8823529465387"
+              EndConnector="221.700000510897,56.3940549672011"
               Start="0,0"
-              End="0,46.3823529465387">
+              End="221.700000510897,48.8940549672011">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,46.3823529465387" />
+                    End="0,33.1219378220416" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.1219378220416"
+                    Point2="0,37.1219378220416"
+                    Point3="4,37.1219378220416" />
+                  <mssgle:LineSegment
+                    End="217.700000510897,37.1219378220416" />
+                  <mssgle:CubicBezierSegment
+                    Point1="217.700000510897,37.1219378220416"
+                    Point2="221.700000510897,37.1219378220416"
+                    Point3="221.700000510897,41.1219378220416" />
+                  <mssgle:LineSegment
+                    End="221.700000510897,48.8940549672011" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5742,31 +5801,31 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="574.476191406753,73.7176470306712">
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="823.057144427846,372.611764504794">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="156.438095682088,53.1882353014907"
+              EndConnector="-230.100000713126,60.9822902572971"
               Start="0,0"
-              End="156.438095682088,45.6882353014907">
+              End="-230.100000713126,53.4822902572971">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.5189043586184" />
+                    End="0,36.1421885426344" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.5189043586184"
-                    Point2="0,21.5189043586184"
-                    Point3="4,21.5189043586184" />
+                    Point1="0,36.1421885426344"
+                    Point2="0,40.1421885426344"
+                    Point3="-4,40.1421885426344" />
                   <mssgle:LineSegment
-                    End="152.438095682088,21.5189043586184" />
+                    End="-226.100000713126,40.1421885426344" />
                   <mssgle:CubicBezierSegment
-                    Point1="152.438095682088,21.5189043586184"
-                    Point2="156.438095682088,21.5189043586184"
-                    Point3="156.438095682088,25.5189043586184" />
+                    Point1="-226.100000713126,40.1421885426344"
+                    Point2="-230.100000713126,40.1421885426344"
+                    Point3="-230.100000713126,44.1421885426344" />
                   <mssgle:LineSegment
-                    End="156.438095682088,45.6882353014907" />
+                    End="-230.100000713126,53.4822902572971" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5776,31 +5835,19 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="491.142858073419,73.7176470306712">
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="541.450000878104,475.194054762091">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-198.085714816378,50.1647058019178"
+              EndConnector="0,33.3353565568685"
               Start="0,0"
-              End="-198.085714816378,42.6647058019178">
+              End="0,25.8353565568685">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.1448994512884" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.1448994512884"
-                    Point2="0,17.1448994512884"
-                    Point3="-4,17.1448994512884" />
-                  <mssgle:LineSegment
-                    End="-194.085714816378,17.1448994512884" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-194.085714816378,17.1448994512884"
-                    Point2="-198.085714816378,17.1448994512884"
-                    Point3="-198.085714816378,21.1448994512884" />
-                  <mssgle:LineSegment
-                    End="-198.085714816378,42.6647058019178" />
+                    End="0,25.8353565568685" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5820,7 +5867,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Población de Geografía\Poblar Dim Ciudades">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="195.2,41.6"
           Id="Package\Población de Geografía\Poblar Dim Ciudades\OLE DB Source Ciudades"
@@ -5848,7 +5895,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5879,7 +5928,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Población de Geografía\Poblar Dim Paises">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="181.6,41.6"
           Id="Package\Población de Geografía\Poblar Dim Paises\OLE DB Source Paises"
@@ -5907,7 +5956,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5938,7 +5989,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Población de Geografía\Poblar Dim Provincias">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="200,41.6"
           Id="Package\Población de Geografía\Poblar Dim Provincias\OLE DB Source Provincias"
@@ -5966,7 +6017,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5997,7 +6050,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Población de Geografía\Poblar Dim Territorios">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="221.6,41.6"
           Id="Package\Población de Geografía\Poblar Dim Territorios\OLE DB Destination Territorios"
@@ -6041,7 +6094,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6075,7 +6130,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6106,7 +6163,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Poblar Dim Moneda">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="189.6,41.6"
           Id="Package\Poblar Dim Moneda\OLE DB Source Moneda"
@@ -6134,7 +6191,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6144,7 +6203,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Poblar Dim Productos">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="220,41.6"
           Id="Package\Poblar Dim Productos\OLE DB Destination Productos"
@@ -6188,7 +6247,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6222,7 +6283,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6253,7 +6316,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Poblar Dimensiones Compartidas\Poblar Dim Ordenes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="192,41.6"
           Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Ordenes\OLE DB Source Ordenes"
@@ -6297,7 +6360,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6331,7 +6396,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6362,7 +6429,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="208,41.6"
           Id="Package\Poblar Dimensiones Compartidas\Poblar Dim Vendedores\OLE DB Source Vendedores"
@@ -6406,7 +6473,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6440,7 +6509,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6471,7 +6542,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Poblar Fact Diferencia Ventas">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="279.2,41.6"
           Id="Package\Poblar Fact Diferencia Ventas\OLE DB Destination Fact Diferencia Ventas"
@@ -6499,7 +6570,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6530,7 +6603,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Poblar Fact Ventas Monedas">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="217.6,41.6"
           Id="Package\Poblar Fact Ventas Monedas\OLE DB Source Fact Monedas"
@@ -6558,7 +6631,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6589,7 +6664,7 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
     design-time-name="Package\Poblar FactOrdenes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="215.2,41.6"
           Id="Package\Poblar FactOrdenes\OLE DB Source Fact Ordenes"
@@ -6617,7 +6692,9 @@ FROM AdventureWorks2022.Sales.SalesOrderHeader soh;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
